@@ -1,6 +1,6 @@
 //
 //  Recognition.m
-//  MAL Updater OS X
+//  DetectionKit
 //
 //  Created by 高町なのは on 2014/11/16.
 //  Copyright 2014 Atelier Shiori. All rights reserved. Code licensed under New BSD License
@@ -12,7 +12,8 @@
 #import <anitomy-osx/anitomy-objc-wrapper.h>
 
 @implementation Recognition
--(NSDictionary*)recognize:(NSString *)string{
+
+-(NSDictionary*)recognize:(NSString *)string {
     OnigRegexp    *regex;
     NSString * DetectedTitle;
     NSString * DetectedEpisode;
@@ -58,6 +59,7 @@
     return @{@"title": DetectedTitle, @"episode": DetectedEpisode, @"season": @(DetectedSeason), @"group": DetectedGroup, @"types":DetectedTypes};
     
 }
+
 +(NSArray*)populateAnimeTypes:(NSArray *)types{
     NSMutableArray * ftypes = [NSMutableArray new];
     for (NSString * type in types ) {

@@ -3,7 +3,7 @@ DetectionKit is a media detection library for macOS for use in Objective-C and S
 * Detects running media players and web browsers
 * Retrieves information about the currently playing video or stream
 
-Documentation is coming soon
+Documentation can be viewed [here](http://atelier-shiori.github.io/DetectionKit/).
 
 # Dependencies
 To use DetectionKit, you need to include the following frameworks with your application:

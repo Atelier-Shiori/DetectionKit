@@ -37,6 +37,9 @@
 		2D63135A1EDA135300C3CB6B /* streamlinkdetect.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01B1ED9FF1E0076B1AC /* streamlinkdetect.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2D6313601EDA137F00C3CB6B /* DetectionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BCFE21ED9FD8F0076B1AC /* DetectionKit.framework */; };
 		2D6313611EDA137F00C3CB6B /* DetectionKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BCFE21ED9FD8F0076B1AC /* DetectionKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2D6313671EDA172F00C3CB6B /* KodiSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6313651EDA172F00C3CB6B /* KodiSettings.m */; };
+		2D6313681EDA172F00C3CB6B /* KodiSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D6313661EDA172F00C3CB6B /* KodiSettings.xib */; };
+		2D63136B1EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6313691EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +103,11 @@
 		2D6313481EDA134A00C3CB6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D63134B1EDA134A00C3CB6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2D63134D1EDA134A00C3CB6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D6313641EDA172F00C3CB6B /* KodiSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KodiSettings.h; sourceTree = "<group>"; };
+		2D6313651EDA172F00C3CB6B /* KodiSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KodiSettings.m; sourceTree = "<group>"; };
+		2D6313661EDA172F00C3CB6B /* KodiSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KodiSettings.xib; sourceTree = "<group>"; };
+		2D6313691EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumberFormatterNumberOnly.m; sourceTree = "<group>"; };
+		2D63136A1EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberFormatterNumberOnly.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +203,11 @@
 				2D6313431EDA134A00C3CB6B /* AppDelegate.m */,
 				2D6313481EDA134A00C3CB6B /* Assets.xcassets */,
 				2D63134A1EDA134A00C3CB6B /* MainMenu.xib */,
+				2D6313691EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.m */,
+				2D63136A1EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.h */,
+				2D6313641EDA172F00C3CB6B /* KodiSettings.h */,
+				2D6313651EDA172F00C3CB6B /* KodiSettings.m */,
+				2D6313661EDA172F00C3CB6B /* KodiSettings.xib */,
 				2D63134D1EDA134A00C3CB6B /* Info.plist */,
 				2D6313451EDA134A00C3CB6B /* Supporting Files */,
 			);
@@ -348,6 +361,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D6313681EDA172F00C3CB6B /* KodiSettings.xib in Resources */,
 				2D6313491EDA134A00C3CB6B /* Assets.xcassets in Resources */,
 				2D63134C1EDA134A00C3CB6B /* MainMenu.xib in Resources */,
 			);
@@ -378,7 +392,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D6313471EDA134A00C3CB6B /* main.m in Sources */,
+				2D63136B1EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.m in Sources */,
 				2D6313441EDA134A00C3CB6B /* AppDelegate.m in Sources */,
+				2D6313671EDA172F00C3CB6B /* KodiSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

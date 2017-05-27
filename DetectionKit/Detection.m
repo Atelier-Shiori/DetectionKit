@@ -1,6 +1,6 @@
 //
 //  Detection.m
-//  MAL Updater OS X
+//  DetectionKit
 //
 //  Created by Tail Red on 1/31/15.
 //  Copyright 2015 Atelier Shiori. All rights reserved. Code licensed under New BSD License
@@ -18,15 +18,16 @@
 #pragma Private Methods
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *detectStream;
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *detectPlayer;
--(bool)checkifIgnored:(NSString *)filename source:(NSString *)source;
--(bool)checkifTitleIgnored:(NSString *)filename source:(NSString *)source;
--(bool)checkifDirectoryIgnored:(NSString *)filename;
--(bool)checkIgnoredKeywords:(NSArray *)types;
+@property (strong) Reachability *kodireach;
+- (bool)checkifIgnored:(NSString *)filename source:(NSString *)source;
+- (bool)checkifTitleIgnored:(NSString *)filename source:(NSString *)source;
+- (bool)checkifDirectoryIgnored:(NSString *)filename;
+- (bool)checkIgnoredKeywords:(NSArray *)types;
 @end
 
 @implementation Detection
-#pragma Public Methods
--(NSDictionary *)detectmedia{
+#pragma mark Public Methods
+- (NSDictionary *)detectmedia {
     NSDictionary * result;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enablekodiapi"]) {
         result = [self detectKodi];
@@ -59,15 +60,18 @@
         return nil;
     }
 }
--(NSDictionary *)checksstreamlinkinfo:(NSDictionary *)d{
+
+- (NSDictionary *)checksstreamlinkinfo:(NSDictionary *)d {
     Detection * detector = [Detection new];
     if (![detector checkStreamlinkTitleIgnored:d]) {
         return [detector convertstreamlinkinfo:d];
     }
     return nil;
 }
-#pragma Private Methods
--(NSDictionary *)detectPlayer{
+
+#pragma mark Private Methods
+
+- (NSDictionary *)detectPlayer{
     //Create an NSDictionary
     NSDictionary * result;
     // LSOF mplayer to get the media title and segment
@@ -141,7 +145,8 @@
     }
     return result;
 }
--(NSDictionary *)detectStream{
+
+- (NSDictionary *)detectStream {
     // Create Dictionary
     NSDictionary * d;
     //Set detectream Task and Run it
@@ -217,7 +222,8 @@
     }
     return nil;
 }
--(NSDictionary *)detectKodi{
+
+- (NSDictionary *)detectKodi {
     // Only Detect from Kodi RPC when the host is reachable.
     if ([self getKodiOnlineStatus]) {
         // Kodi/Plex Theater Detection
@@ -282,7 +288,8 @@
         return nil;
     }
 }
--(NSDictionary *)detectStreamLink{
+
+- (NSDictionary *)detectStreamLink {
     streamlinkdetector * detect = [streamlinkdetector new];
     NSArray * a = [detect detectAndRetrieveInfo];
     if (a.count > 0) {
@@ -308,7 +315,10 @@
     }
     return nil;
 }
--(NSDictionary *)convertstreamlinkinfo:(NSDictionary *)result{
+
+#pragma mark Helpers
+
+- (NSDictionary *)convertstreamlinkinfo:(NSDictionary *)result {
     NSString * DetectedTitle = (NSString *)result[@"title"];
     NSString * DetectedEpisode = [NSString stringWithFormat:@"%@",result[@"episode"]];
     NSString * DetectedSource = [NSString stringWithFormat:@"%@ in %@", [result[@"site"] capitalizedString], result[@"browser"]];
@@ -316,17 +326,19 @@
     NSNumber * DetectedSeason = (NSNumber *)result[@"season"];
     return @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": [NSArray new]};
 }
--(bool)checkStreamlinkTitleIgnored:(NSDictionary *)d{
+
+- (bool)checkStreamlinkTitleIgnored:(NSDictionary *)d {
     return [self checkifIgnored:d[@"title"] source:d[@"site"]];
 }
 
--(bool)checkifIgnored:(NSString *)filename source:(NSString *)source{
+- (bool)checkifIgnored:(NSString *)filename source:(NSString *)source {
     if ([self checkifTitleIgnored:filename source:source] || [self checkifDirectoryIgnored:filename]) {
         return true;
     }
     return false;
 }
--(bool)checkifTitleIgnored:(NSString *)filename source:(NSString *)source{
+
+- (bool)checkifTitleIgnored:(NSString *)filename source:(NSString *)source {
     // Get filename only
     filename = [filename replaceByRegexp:[OnigRegexp compile:@"^.+/" options:OnigOptionIgnorecase] with:@""];
     source = [source replaceByRegexp:[OnigRegexp compile:@"\\sin\\s\\w+" options:OnigOptionIgnorecase] with:@""];
@@ -343,7 +355,7 @@
     }
     return false;
 }
--(bool)checkifDirectoryIgnored:(NSString *)filename{
+- (bool)checkifDirectoryIgnored:(NSString *)filename {
     //Checks if file name or directory is on ignore list
     filename = [filename stringByReplacingOccurrencesOfString:@"n/" withString:@"/"];
     // Get only the path
@@ -363,7 +375,7 @@
     }
     return false;
 }
--(bool)checkIgnoredKeywords:(NSArray *)types{
+- (bool)checkIgnoredKeywords:(NSArray *)types {
     // Check for potentially invalid types
     for (NSString * type in types) {
         if ([[OnigRegexp compile:@"(ED|Ending|NCED|NCOP|OP|Opening|Preview|PV)" options:OnigOptionIgnorecase] match:type]) {
@@ -372,7 +384,9 @@
     }
     return false;
 }
--(void)setKodiReach:(BOOL)enable{
+
+#pragma mark Kodi Reachability
+- (void)setKodiReach:(BOOL)enable {
     if (enable == 1) {
         //Create Reachability Object
         _kodireach = [Reachability reachabilityWithHostname:(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:@"kodiaddress"]];
@@ -393,7 +407,7 @@
         _kodireach = nil;
     }
 }
--(void)setKodiReachAddress:(NSString *)url{
+- (void)setKodiReachAddress:(NSString *)url{
     [_kodireach stopNotifier];
     _kodireach = [Reachability reachabilityWithHostname:url];
     // Set up blocks

@@ -3,7 +3,7 @@
 //  DetectionKit
 //
 //  Created by 桐間紗路 on 2017/05/27.
-//  Copyright © 2017 Atelier Shiori. All rights reserved.
+//  Copyright © 2017 Atelier Shiori. All rights reserved. Code licensed under New BSD License
 //
 
 #import <Cocoa/Cocoa.h>
