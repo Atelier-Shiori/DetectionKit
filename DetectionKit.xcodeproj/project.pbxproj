@@ -10,6 +10,33 @@
 		2D5BCFEC1ED9FD8F0076B1AC /* DetectionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BCFE21ED9FD8F0076B1AC /* DetectionKit.framework */; };
 		2D5BCFF11ED9FD8F0076B1AC /* DetectionKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5BCFF01ED9FD8F0076B1AC /* DetectionKitTests.m */; };
 		2D5BCFF31ED9FD8F0076B1AC /* DetectionKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D5BCFE51ED9FD8F0076B1AC /* DetectionKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D5BCFFE1ED9FDC00076B1AC /* Detection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D5BCFFC1ED9FDC00076B1AC /* Detection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D5BCFFF1ED9FDC00076B1AC /* Detection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5BCFFD1ED9FDC00076B1AC /* Detection.m */; };
+		2D5BD01C1ED9FF1E0076B1AC /* CocoaOniguruma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */; };
+		2D5BD01D1ED9FF1E0076B1AC /* EasyNSURLConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */; };
+		2D5BD01E1ED9FF1E0076B1AC /* streamlinkdetect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01B1ED9FF1E0076B1AC /* streamlinkdetect.framework */; };
+		2D5BD0201ED9FF7B0076B1AC /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01F1ED9FF7B0076B1AC /* Reachability.framework */; };
+		2D5BD0231EDA000B0076B1AC /* Recognition.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D5BD0211EDA000B0076B1AC /* Recognition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D5BD0241EDA000B0076B1AC /* Recognition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5BD0221EDA000B0076B1AC /* Recognition.m */; };
+		2D5BD0261EDA00A30076B1AC /* anitomy-osx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */; };
+		2D5BD0281EDA019B0076B1AC /* supportedplayers.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D5BD0271EDA019B0076B1AC /* supportedplayers.json */; };
+		2D5BD02A1EDA05D30076B1AC /* detectstream in Resources */ = {isa = PBXBuildFile; fileRef = 2D5BD0291EDA05D20076B1AC /* detectstream */; };
+		2D6313441EDA134A00C3CB6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6313431EDA134A00C3CB6B /* AppDelegate.m */; };
+		2D6313471EDA134A00C3CB6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6313461EDA134A00C3CB6B /* main.m */; };
+		2D6313491EDA134A00C3CB6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6313481EDA134A00C3CB6B /* Assets.xcassets */; };
+		2D63134C1EDA134A00C3CB6B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D63134A1EDA134A00C3CB6B /* MainMenu.xib */; };
+		2D6313511EDA135300C3CB6B /* anitomy-osx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */; };
+		2D6313521EDA135300C3CB6B /* anitomy-osx.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2D6313531EDA135300C3CB6B /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01F1ED9FF7B0076B1AC /* Reachability.framework */; };
+		2D6313541EDA135300C3CB6B /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01F1ED9FF7B0076B1AC /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2D6313551EDA135300C3CB6B /* CocoaOniguruma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */; };
+		2D6313561EDA135300C3CB6B /* CocoaOniguruma.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2D6313571EDA135300C3CB6B /* EasyNSURLConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */; };
+		2D6313581EDA135300C3CB6B /* EasyNSURLConnection.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2D6313591EDA135300C3CB6B /* streamlinkdetect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01B1ED9FF1E0076B1AC /* streamlinkdetect.framework */; };
+		2D63135A1EDA135300C3CB6B /* streamlinkdetect.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01B1ED9FF1E0076B1AC /* streamlinkdetect.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2D6313601EDA137F00C3CB6B /* DetectionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BCFE21ED9FD8F0076B1AC /* DetectionKit.framework */; };
+		2D6313611EDA137F00C3CB6B /* DetectionKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BCFE21ED9FD8F0076B1AC /* DetectionKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -20,7 +47,33 @@
 			remoteGlobalIDString = 2D5BCFE11ED9FD8F0076B1AC;
 			remoteInfo = DetectionKit;
 		};
+		2D6313621EDA137F00C3CB6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D5BCFD91ED9FD8F0076B1AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D5BCFE11ED9FD8F0076B1AC;
+			remoteInfo = DetectionKit;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2D63135B1EDA135300C3CB6B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2D63135A1EDA135300C3CB6B /* streamlinkdetect.framework in Embed Frameworks */,
+				2D6313561EDA135300C3CB6B /* CocoaOniguruma.framework in Embed Frameworks */,
+				2D6313521EDA135300C3CB6B /* anitomy-osx.framework in Embed Frameworks */,
+				2D6313541EDA135300C3CB6B /* Reachability.framework in Embed Frameworks */,
+				2D6313581EDA135300C3CB6B /* EasyNSURLConnection.framework in Embed Frameworks */,
+				2D6313611EDA137F00C3CB6B /* DetectionKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2D5BCFE21ED9FD8F0076B1AC /* DetectionKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DetectionKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,6 +82,24 @@
 		2D5BCFEB1ED9FD8F0076B1AC /* DetectionKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DetectionKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D5BCFF01ED9FD8F0076B1AC /* DetectionKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectionKitTests.m; sourceTree = "<group>"; };
 		2D5BCFF21ED9FD8F0076B1AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D5BCFFC1ED9FDC00076B1AC /* Detection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Detection.h; sourceTree = "<group>"; };
+		2D5BCFFD1ED9FDC00076B1AC /* Detection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Detection.m; sourceTree = "<group>"; };
+		2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaOniguruma.framework; path = Frameworks/CocoaOniguruma.framework; sourceTree = "<group>"; };
+		2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyNSURLConnection.framework; path = Frameworks/EasyNSURLConnection.framework; sourceTree = "<group>"; };
+		2D5BD01B1ED9FF1E0076B1AC /* streamlinkdetect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = streamlinkdetect.framework; path = Frameworks/streamlinkdetect.framework; sourceTree = "<group>"; };
+		2D5BD01F1ED9FF7B0076B1AC /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Frameworks/Reachability.framework; sourceTree = "<group>"; };
+		2D5BD0211EDA000B0076B1AC /* Recognition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recognition.h; sourceTree = "<group>"; };
+		2D5BD0221EDA000B0076B1AC /* Recognition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recognition.m; sourceTree = "<group>"; };
+		2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "anitomy-osx.framework"; path = "Frameworks/anitomy-osx.framework"; sourceTree = "<group>"; };
+		2D5BD0271EDA019B0076B1AC /* supportedplayers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = supportedplayers.json; sourceTree = "<group>"; };
+		2D5BD0291EDA05D20076B1AC /* detectstream */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = detectstream; path = detectstream/detectstream; sourceTree = "<group>"; };
+		2D6313401EDA134900C3CB6B /* DetectionKit Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DetectionKit Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D6313421EDA134A00C3CB6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2D6313431EDA134A00C3CB6B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2D6313461EDA134A00C3CB6B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2D6313481EDA134A00C3CB6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2D63134B1EDA134A00C3CB6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2D63134D1EDA134A00C3CB6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +107,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D5BD01C1ED9FF1E0076B1AC /* CocoaOniguruma.framework in Frameworks */,
+				2D5BD0261EDA00A30076B1AC /* anitomy-osx.framework in Frameworks */,
+				2D5BD01D1ED9FF1E0076B1AC /* EasyNSURLConnection.framework in Frameworks */,
+				2D5BD01E1ED9FF1E0076B1AC /* streamlinkdetect.framework in Frameworks */,
+				2D5BD0201ED9FF7B0076B1AC /* Reachability.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +123,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2D63133D1EDA134900C3CB6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D6313591EDA135300C3CB6B /* streamlinkdetect.framework in Frameworks */,
+				2D6313551EDA135300C3CB6B /* CocoaOniguruma.framework in Frameworks */,
+				2D6313511EDA135300C3CB6B /* anitomy-osx.framework in Frameworks */,
+				2D6313531EDA135300C3CB6B /* Reachability.framework in Frameworks */,
+				2D6313571EDA135300C3CB6B /* EasyNSURLConnection.framework in Frameworks */,
+				2D6313601EDA137F00C3CB6B /* DetectionKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -55,6 +144,7 @@
 			children = (
 				2D5BCFE41ED9FD8F0076B1AC /* DetectionKit */,
 				2D5BCFEF1ED9FD8F0076B1AC /* DetectionKitTests */,
+				2D6313411EDA134900C3CB6B /* DetectionKit Sample */,
 				2D5BCFE31ED9FD8F0076B1AC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,6 +154,7 @@
 			children = (
 				2D5BCFE21ED9FD8F0076B1AC /* DetectionKit.framework */,
 				2D5BCFEB1ED9FD8F0076B1AC /* DetectionKitTests.xctest */,
+				2D6313401EDA134900C3CB6B /* DetectionKit Sample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -72,7 +163,18 @@
 			isa = PBXGroup;
 			children = (
 				2D5BCFE51ED9FD8F0076B1AC /* DetectionKit.h */,
+				2D5BCFFC1ED9FDC00076B1AC /* Detection.h */,
+				2D5BCFFD1ED9FDC00076B1AC /* Detection.m */,
+				2D5BD0211EDA000B0076B1AC /* Recognition.h */,
+				2D5BD0221EDA000B0076B1AC /* Recognition.m */,
 				2D5BCFE61ED9FD8F0076B1AC /* Info.plist */,
+				2D5BD0291EDA05D20076B1AC /* detectstream */,
+				2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */,
+				2D5BD01F1ED9FF7B0076B1AC /* Reachability.framework */,
+				2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */,
+				2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */,
+				2D5BD01B1ED9FF1E0076B1AC /* streamlinkdetect.framework */,
+				2D5BD0271EDA019B0076B1AC /* supportedplayers.json */,
 			);
 			path = DetectionKit;
 			sourceTree = "<group>";
@@ -86,6 +188,27 @@
 			path = DetectionKitTests;
 			sourceTree = "<group>";
 		};
+		2D6313411EDA134900C3CB6B /* DetectionKit Sample */ = {
+			isa = PBXGroup;
+			children = (
+				2D6313421EDA134A00C3CB6B /* AppDelegate.h */,
+				2D6313431EDA134A00C3CB6B /* AppDelegate.m */,
+				2D6313481EDA134A00C3CB6B /* Assets.xcassets */,
+				2D63134A1EDA134A00C3CB6B /* MainMenu.xib */,
+				2D63134D1EDA134A00C3CB6B /* Info.plist */,
+				2D6313451EDA134A00C3CB6B /* Supporting Files */,
+			);
+			path = "DetectionKit Sample";
+			sourceTree = "<group>";
+		};
+		2D6313451EDA134A00C3CB6B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2D6313461EDA134A00C3CB6B /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -93,7 +216,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D5BCFFE1ED9FDC00076B1AC /* Detection.h in Headers */,
 				2D5BCFF31ED9FD8F0076B1AC /* DetectionKit.h in Headers */,
+				2D5BD0231EDA000B0076B1AC /* Recognition.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,12 +261,32 @@
 			productReference = 2D5BCFEB1ED9FD8F0076B1AC /* DetectionKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		2D63133F1EDA134900C3CB6B /* DetectionKit Sample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D63134E1EDA134A00C3CB6B /* Build configuration list for PBXNativeTarget "DetectionKit Sample" */;
+			buildPhases = (
+				2D63133C1EDA134900C3CB6B /* Sources */,
+				2D63133D1EDA134900C3CB6B /* Frameworks */,
+				2D63133E1EDA134900C3CB6B /* Resources */,
+				2D63135B1EDA135300C3CB6B /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D6313631EDA137F00C3CB6B /* PBXTargetDependency */,
+			);
+			name = "DetectionKit Sample";
+			productName = "DetectionKit Sample";
+			productReference = 2D6313401EDA134900C3CB6B /* DetectionKit Sample.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		2D5BCFD91ED9FD8F0076B1AC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Atelier Shiori";
 				TargetAttributes = {
@@ -155,6 +300,11 @@
 						DevelopmentTeam = 9HDZTER525;
 						ProvisioningStyle = Automatic;
 					};
+					2D63133F1EDA134900C3CB6B = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 9HDZTER525;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 2D5BCFDC1ED9FD8F0076B1AC /* Build configuration list for PBXProject "DetectionKit" */;
@@ -163,6 +313,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 2D5BCFD81ED9FD8F0076B1AC;
 			productRefGroup = 2D5BCFE31ED9FD8F0076B1AC /* Products */;
@@ -171,6 +322,7 @@
 			targets = (
 				2D5BCFE11ED9FD8F0076B1AC /* DetectionKit */,
 				2D5BCFEA1ED9FD8F0076B1AC /* DetectionKitTests */,
+				2D63133F1EDA134900C3CB6B /* DetectionKit Sample */,
 			);
 		};
 /* End PBXProject section */
@@ -180,6 +332,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D5BD0281EDA019B0076B1AC /* supportedplayers.json in Resources */,
+				2D5BD02A1EDA05D30076B1AC /* detectstream in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +344,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2D63133E1EDA134900C3CB6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D6313491EDA134A00C3CB6B /* Assets.xcassets in Resources */,
+				2D63134C1EDA134A00C3CB6B /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -197,6 +360,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D5BCFFF1ED9FDC00076B1AC /* Detection.m in Sources */,
+				2D5BD0241EDA000B0076B1AC /* Recognition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +373,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2D63133C1EDA134900C3CB6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D6313471EDA134A00C3CB6B /* main.m in Sources */,
+				2D6313441EDA134A00C3CB6B /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -216,7 +390,23 @@
 			target = 2D5BCFE11ED9FD8F0076B1AC /* DetectionKit */;
 			targetProxy = 2D5BCFED1ED9FD8F0076B1AC /* PBXContainerItemProxy */;
 		};
+		2D6313631EDA137F00C3CB6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D5BCFE11ED9FD8F0076B1AC /* DetectionKit */;
+			targetProxy = 2D6313621EDA137F00C3CB6B /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2D63134A1EDA134A00C3CB6B /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D63134B1EDA134A00C3CB6B /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2D5BCFF41ED9FD8F0076B1AC /* Debug */ = {
@@ -324,10 +514,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DetectionKit/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = DetectionKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = moe.ateliershiori.DetectionKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -344,10 +539,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DetectionKit/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = DetectionKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = moe.ateliershiori.DetectionKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -378,6 +578,42 @@
 			};
 			name = Release;
 		};
+		2D63134F1EDA134A00C3CB6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9HDZTER525;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DetectionKit/Frameworks",
+				);
+				INFOPLIST_FILE = "DetectionKit Sample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "moe.ateliershiori.DetectionKit-Sample";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2D6313501EDA134A00C3CB6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9HDZTER525;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DetectionKit/Frameworks",
+				);
+				INFOPLIST_FILE = "DetectionKit Sample/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "moe.ateliershiori.DetectionKit-Sample";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -397,12 +633,22 @@
 				2D5BCFF81ED9FD8F0076B1AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2D5BCFF91ED9FD8F0076B1AC /* Build configuration list for PBXNativeTarget "DetectionKitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D5BCFFA1ED9FD8F0076B1AC /* Debug */,
 				2D5BCFFB1ED9FD8F0076B1AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D63134E1EDA134A00C3CB6B /* Build configuration list for PBXNativeTarget "DetectionKit Sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D63134F1EDA134A00C3CB6B /* Debug */,
+				2D6313501EDA134A00C3CB6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

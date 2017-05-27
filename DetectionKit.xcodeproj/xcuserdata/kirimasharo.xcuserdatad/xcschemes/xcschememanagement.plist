@@ -4,10 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DetectionKit Sample.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>DetectionKit.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>DetectionKitSample.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -18,6 +28,31 @@
 			<true/>
 		</dict>
 		<key>2D5BCFEA1ED9FD8F0076B1AC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2D5BD02E1EDA060E0076B1AC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2D5CF0001EDA09F200FFCFE8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2D5CF00B1EDA0A4500FFCFE8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2D5CF0161EDA0A5500FFCFE8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2D63133F1EDA134900C3CB6B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
