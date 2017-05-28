@@ -3,11 +3,11 @@
 <plist version="1.0">
   <dict>
     <key>CFBundleIdentifier</key>
-      <string>com.jazzy.easynsurlconnection</string>
+      <string>com.jazzy.detectionkit</string>
     <key>CFBundleName</key>
-      <string>EasyNSURLConnection</string>
+      <string>DetectionKit</string>
     <key>DocSetPlatformFamily</key>
-      <string>easynsurlconnection</string>
+      <string>detectionkit</string>
     <key>isDashDocset</key>
       <true/>
     <key>dashIndexFilePath</key>
