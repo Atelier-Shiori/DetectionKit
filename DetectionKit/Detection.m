@@ -15,7 +15,6 @@
 #import <CocoaOniguruma/OnigRegexpUtility.h>
 
 @interface Detection()
-#pragma Private Methods
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *detectStream;
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *detectPlayer;
 @property (strong) Reachability *kodireach;
@@ -82,12 +81,26 @@
     NSArray *player = [NSJSONSerialization JSONObjectWithData:supportedplayersdata options:kNilOptions error:&error];
     NSString *string;
     OnigRegexp    *regex;
-    for(int i = 0; i <player.count; i++) {
+    for (int i = 0; i <player.count; i++) {
         NSTask *task;
         NSDictionary *theplayer = player[i];
-        task = [[NSTask alloc] init];
-        task.launchPath = @"/usr/sbin/lsof";
-        task.arguments = @[@"-c", (NSString *)theplayer[@"process_name"], @"-F", @"n"]; 		//lsof -c '<player name>' -Fn
+        if (theplayer[@"applescript_command"]) {
+            // Run Applescript command as specified
+            task = [[NSTask alloc] init];
+            task.launchPath = @"/usr/bin/osascript";
+            task.arguments = @[@"-e", (NSString *)theplayer[@"applescript_command"]];
+        }
+        else {
+            task = [[NSTask alloc] init];
+            task.launchPath = @"/usr/sbin/lsof";
+            task.arguments = @[@"-c", (NSString *)theplayer[@"process_name"], @"-F", @"n"]; 		//lsof -c '<player name>' -Fn
+        }
+        // Check if running
+        if (theplayer[@"player_bundle_identifier"]) {
+            if (![self checkIdentifier:theplayer[@"player_bundle_identifier"]]) {
+                continue; // Application not running, don't check
+            }
+        }
         NSPipe *pipe;
         pipe = [NSPipe pipe];
         task.standardOutput = pipe;
@@ -102,6 +115,10 @@
         
         string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
         if (string.length > 0) {
+            if (![[OnigRegexp compile:@"/"] search:string]) {
+                string = [string stringByReplacingOccurrencesOfString:@":" withString:@"/"]; // Replace colons with clashes (colon not a valid filename character)
+                string = [NSString stringWithFormat:@"/%@",string];
+            }
             regex = [OnigRegexp compile:@"^.+(avi|mkv|mp4|ogm|rm|rmvb|wmv|divx|mov|flv|mpg|3gp)$" options:OnigOptionIgnorecase];
             //Get the filename first
             OnigResult    *match;
@@ -424,4 +441,15 @@
     [_kodireach startNotifier];
 }
 
+- (BOOL)checkIdentifier:(NSString*)identifier {
+    NSWorkspace * ws = [NSWorkspace sharedWorkspace];
+    NSArray *runningApps = [ws runningApplications];
+    NSRunningApplication *a;
+    for (a in runningApps) {
+        if ([[a bundleIdentifier] isEqualToString:identifier]) {
+            return true;
+        }
+    }
+    return false;
+}
 @end
