@@ -4,38 +4,38 @@
   'roots': [
     {
       'type': 'directory',
-      'name': "/Users/kirimasharo/Desktop/DetectionKit/build/Release/DetectionKit.framework/Headers",
+      'name': "/Volumes/MacStorage/DetectionKit/build/Release/DetectionKit.framework/Headers",
       'contents': [
         {
           'type': 'file',
           'name': "Detection.h",
-          'external-contents': "/Users/kirimasharo/Desktop/DetectionKit/DetectionKit/Detection.h"
+          'external-contents': "/Volumes/MacStorage/DetectionKit/DetectionKit/Detection.h"
         },
         {
           'type': 'file',
           'name': "DetectionKit-Swift.h",
-          'external-contents': "/Users/kirimasharo/Desktop/DetectionKit/build/Release/DetectionKit.framework/Versions/A/Headers/DetectionKit-Swift.h"
+          'external-contents': "/Volumes/MacStorage/DetectionKit/build/Release/DetectionKit.framework/Versions/A/Headers/DetectionKit-Swift.h"
         },
         {
           'type': 'file',
           'name': "DetectionKit.h",
-          'external-contents': "/Users/kirimasharo/Desktop/DetectionKit/DetectionKit/DetectionKit.h"
+          'external-contents': "/Volumes/MacStorage/DetectionKit/DetectionKit/DetectionKit.h"
         },
         {
           'type': 'file',
           'name': "Recognition.h",
-          'external-contents': "/Users/kirimasharo/Desktop/DetectionKit/DetectionKit/Recognition.h"
+          'external-contents': "/Volumes/MacStorage/DetectionKit/DetectionKit/Recognition.h"
         }
       ]
     },
     {
       'type': 'directory',
-      'name': "/Users/kirimasharo/Desktop/DetectionKit/build/Release/DetectionKit.framework/Modules",
+      'name': "/Volumes/MacStorage/DetectionKit/build/Release/DetectionKit.framework/Modules",
       'contents': [
         {
           'type': 'file',
           'name': "module.modulemap",
-          'external-contents': "/Users/kirimasharo/Desktop/DetectionKit/build/DetectionKit.build/Release/DetectionKit.build/module.modulemap"
+          'external-contents': "/Volumes/MacStorage/DetectionKit/build/DetectionKit.build/Release/DetectionKit.build/module.modulemap"
         }
       ]
     }
