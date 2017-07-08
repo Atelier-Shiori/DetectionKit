@@ -80,7 +80,7 @@
 - (IBAction)login:(id)sender {
     [_window beginSheet:_plexlogin.window  completionHandler:^(NSModalResponse returnCode) {
         if (returnCode == NSModalResponseOK) {
-            if ([PlexAuth peformplexlogin:_plexlogin.username.stringValue withPassword:_plexlogin.password.stringValue]) {
+            if ([PlexAuth performplexlogin:_plexlogin.username.stringValue withPassword:_plexlogin.password.stringValue]) {
                 _plexloginbut.hidden = YES;
                 _plexlogoutbut.hidden = NO;
             }

@@ -3,7 +3,7 @@
 //  DetectionKit
 //
 //  Created by 天々座理世 on 2017/07/07.
-//  Copyright © 2017年 Atelier Shiori. All rights reserved.
+//  Copyright © 2017年 Atelier Shiori. All rights reserved.  Code licensed under New BSD License
 //
 
 #import <Foundation/Foundation.h>
@@ -17,7 +17,7 @@
  @pram password The password for the provided account.
  @return bool If login is successful or not.
  */
-+ (bool)peformplexlogin:(NSString *)username withPassword:(NSString *)password;
++ (bool)performplexlogin:(NSString *)username withPassword:(NSString *)password;
 /**
  Removes a plex account
  @return bool If account removal is successful.

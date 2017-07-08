@@ -3,7 +3,7 @@
 //  DetectionKit
 //
 //  Created by 天々座理世 on 2017/07/07.
-//  Copyright © 2017年 Atelier Shiori. All rights reserved.
+//  Copyright © 2017年 Atelier Shiori. All rights reserved. Code licensed under New BSD License
 //
 
 #import "PlexAuth.h"
@@ -11,14 +11,13 @@
 #import <EasyNSURLConnection/EasyNSURLConnectionClass.h>
 
 @implementation PlexAuth
-+ (bool)peformplexlogin:(NSString *)username withPassword:(NSString *)password {
++ (bool)performplexlogin:(NSString *)username withPassword:(NSString *)password {
     // Retrieve Token
     EasyNSURLConnection * request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:@"https://plex.tv/users/sign_in.xml"]];
     request.headers = @{@"X-Plex-Client-Identifier":[[NSUserDefaults standardUserDefaults] objectForKey:@"plexidentifier"],@"X-Plex-Product":NSBundle.mainBundle.infoDictionary[@"CFBundleName"],@"X-Plex-Version":NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]};
     [request addFormData:username forKey:@"user[login]"];
     [request addFormData:password forKey:@"user[password]"];
     [request startFormRequest];
-    NSLog(@"%@",[request getResponseDataString]);
     switch (request.getStatusCode) {
         case 200:
         case 201:{

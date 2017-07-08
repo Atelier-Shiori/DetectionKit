@@ -1,6 +1,0 @@
-framework module DetectionKit {
-  umbrella header "DetectionKit.h"
-
-  export *
-  module * { export * }
-}
