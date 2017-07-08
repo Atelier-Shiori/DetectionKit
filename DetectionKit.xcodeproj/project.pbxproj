@@ -40,6 +40,16 @@
 		2D6313671EDA172F00C3CB6B /* KodiSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6313651EDA172F00C3CB6B /* KodiSettings.m */; };
 		2D6313681EDA172F00C3CB6B /* KodiSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D6313661EDA172F00C3CB6B /* KodiSettings.xib */; };
 		2D63136B1EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6313691EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.m */; };
+		91AFCF5B1F100EBB0029AC09 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AFCF5A1F100EBB0029AC09 /* SAMKeychain.framework */; };
+		91AFCF5C1F100EC80029AC09 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AFCF5A1F100EBB0029AC09 /* SAMKeychain.framework */; };
+		91AFCF5D1F100EC80029AC09 /* SAMKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91AFCF5A1F100EBB0029AC09 /* SAMKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		91AFCF601F1030C60029AC09 /* PlexAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = 91AFCF5E1F1030C60029AC09 /* PlexAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		91AFCF611F1030C60029AC09 /* PlexAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 91AFCF5F1F1030C60029AC09 /* PlexAuth.m */; };
+		91AFCF7C1F10386A0029AC09 /* XMLReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AFCF7B1F10386A0029AC09 /* XMLReader.framework */; };
+		91AFCF7D1F1038730029AC09 /* XMLReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AFCF7B1F10386A0029AC09 /* XMLReader.framework */; };
+		91AFCF7E1F1038730029AC09 /* XMLReader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91AFCF7B1F10386A0029AC09 /* XMLReader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		91AFCF821F103CF00029AC09 /* PlexLoginPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 91AFCF801F103CF00029AC09 /* PlexLoginPanel.m */; };
+		91AFCF831F103CF00029AC09 /* PlexLoginPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91AFCF811F103CF00029AC09 /* PlexLoginPanel.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +77,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2D63135A1EDA135300C3CB6B /* streamlinkdetect.framework in Embed Frameworks */,
+				91AFCF5D1F100EC80029AC09 /* SAMKeychain.framework in Embed Frameworks */,
 				2D6313561EDA135300C3CB6B /* CocoaOniguruma.framework in Embed Frameworks */,
+				91AFCF7E1F1038730029AC09 /* XMLReader.framework in Embed Frameworks */,
 				2D6313521EDA135300C3CB6B /* anitomy-osx.framework in Embed Frameworks */,
 				2D6313541EDA135300C3CB6B /* Reachability.framework in Embed Frameworks */,
 				2D6313581EDA135300C3CB6B /* EasyNSURLConnection.framework in Embed Frameworks */,
@@ -108,6 +120,13 @@
 		2D6313661EDA172F00C3CB6B /* KodiSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KodiSettings.xib; sourceTree = "<group>"; };
 		2D6313691EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumberFormatterNumberOnly.m; sourceTree = "<group>"; };
 		2D63136A1EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberFormatterNumberOnly.h; sourceTree = "<group>"; };
+		91AFCF5A1F100EBB0029AC09 /* SAMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAMKeychain.framework; path = Frameworks/SAMKeychain.framework; sourceTree = "<group>"; };
+		91AFCF5E1F1030C60029AC09 /* PlexAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlexAuth.h; sourceTree = "<group>"; };
+		91AFCF5F1F1030C60029AC09 /* PlexAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlexAuth.m; sourceTree = "<group>"; };
+		91AFCF7B1F10386A0029AC09 /* XMLReader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XMLReader.framework; path = Frameworks/XMLReader.framework; sourceTree = "<group>"; };
+		91AFCF7F1F103CF00029AC09 /* PlexLoginPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlexLoginPanel.h; sourceTree = "<group>"; };
+		91AFCF801F103CF00029AC09 /* PlexLoginPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlexLoginPanel.m; sourceTree = "<group>"; };
+		91AFCF811F103CF00029AC09 /* PlexLoginPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlexLoginPanel.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +136,10 @@
 			files = (
 				2D5BD01C1ED9FF1E0076B1AC /* CocoaOniguruma.framework in Frameworks */,
 				2D5BD0261EDA00A30076B1AC /* anitomy-osx.framework in Frameworks */,
+				91AFCF7C1F10386A0029AC09 /* XMLReader.framework in Frameworks */,
 				2D5BD01D1ED9FF1E0076B1AC /* EasyNSURLConnection.framework in Frameworks */,
 				2D5BD01E1ED9FF1E0076B1AC /* streamlinkdetect.framework in Frameworks */,
+				91AFCF5B1F100EBB0029AC09 /* SAMKeychain.framework in Frameworks */,
 				2D5BD0201ED9FF7B0076B1AC /* Reachability.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,7 +157,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D6313591EDA135300C3CB6B /* streamlinkdetect.framework in Frameworks */,
+				91AFCF5C1F100EC80029AC09 /* SAMKeychain.framework in Frameworks */,
 				2D6313551EDA135300C3CB6B /* CocoaOniguruma.framework in Frameworks */,
+				91AFCF7D1F1038730029AC09 /* XMLReader.framework in Frameworks */,
 				2D6313511EDA135300C3CB6B /* anitomy-osx.framework in Frameworks */,
 				2D6313531EDA135300C3CB6B /* Reachability.framework in Frameworks */,
 				2D6313571EDA135300C3CB6B /* EasyNSURLConnection.framework in Frameworks */,
@@ -173,6 +196,8 @@
 				2D5BCFE51ED9FD8F0076B1AC /* DetectionKit.h */,
 				2D5BCFFC1ED9FDC00076B1AC /* Detection.h */,
 				2D5BCFFD1ED9FDC00076B1AC /* Detection.m */,
+				91AFCF5E1F1030C60029AC09 /* PlexAuth.h */,
+				91AFCF5F1F1030C60029AC09 /* PlexAuth.m */,
 				2D5BD0211EDA000B0076B1AC /* Recognition.h */,
 				2D5BD0221EDA000B0076B1AC /* Recognition.m */,
 				2D5BCFE61ED9FD8F0076B1AC /* Info.plist */,
@@ -183,6 +208,8 @@
 				2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */,
 				2D5BD01B1ED9FF1E0076B1AC /* streamlinkdetect.framework */,
 				2D5BD0271EDA019B0076B1AC /* supportedplayers.json */,
+				91AFCF7B1F10386A0029AC09 /* XMLReader.framework */,
+				91AFCF5A1F100EBB0029AC09 /* SAMKeychain.framework */,
 			);
 			path = DetectionKit;
 			sourceTree = "<group>";
@@ -210,6 +237,9 @@
 				2D6313661EDA172F00C3CB6B /* KodiSettings.xib */,
 				2D63134D1EDA134A00C3CB6B /* Info.plist */,
 				2D6313451EDA134A00C3CB6B /* Supporting Files */,
+				91AFCF7F1F103CF00029AC09 /* PlexLoginPanel.h */,
+				91AFCF801F103CF00029AC09 /* PlexLoginPanel.m */,
+				91AFCF811F103CF00029AC09 /* PlexLoginPanel.xib */,
 			);
 			path = "DetectionKit Sample";
 			sourceTree = "<group>";
@@ -230,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D5BCFFE1ED9FDC00076B1AC /* Detection.h in Headers */,
+				91AFCF601F1030C60029AC09 /* PlexAuth.h in Headers */,
 				2D5BCFF31ED9FD8F0076B1AC /* DetectionKit.h in Headers */,
 				2D5BD0231EDA000B0076B1AC /* Recognition.h in Headers */,
 			);
@@ -362,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D6313681EDA172F00C3CB6B /* KodiSettings.xib in Resources */,
+				91AFCF831F103CF00029AC09 /* PlexLoginPanel.xib in Resources */,
 				2D6313491EDA134A00C3CB6B /* Assets.xcassets in Resources */,
 				2D63134C1EDA134A00C3CB6B /* MainMenu.xib in Resources */,
 			);
@@ -375,6 +407,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D5BCFFF1ED9FDC00076B1AC /* Detection.m in Sources */,
+				91AFCF611F1030C60029AC09 /* PlexAuth.m in Sources */,
 				2D5BD0241EDA000B0076B1AC /* Recognition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +428,7 @@
 				2D63136B1EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.m in Sources */,
 				2D6313441EDA134A00C3CB6B /* AppDelegate.m in Sources */,
 				2D6313671EDA172F00C3CB6B /* KodiSettings.m in Sources */,
+				91AFCF821F103CF00029AC09 /* PlexLoginPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,6 +701,7 @@
 				2D6313501EDA134A00C3CB6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

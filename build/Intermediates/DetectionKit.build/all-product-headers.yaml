@@ -1,0 +1,48 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Volumes/MacStorage/DetectionKit/Build/Products/Debug/DetectionKit.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "Detection.h",
+          'external-contents': "/Volumes/MacStorage/DetectionKit/DetectionKit/Detection.h"
+        },
+        {
+          'type': 'file',
+          'name': "DetectionKit-Swift.h",
+          'external-contents': "/Volumes/MacStorage/DetectionKit/Build/Products/Debug/DetectionKit.framework/Versions/A/Headers/DetectionKit-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "DetectionKit.h",
+          'external-contents': "/Volumes/MacStorage/DetectionKit/DetectionKit/DetectionKit.h"
+        },
+        {
+          'type': 'file',
+          'name': "PlexAuth.h",
+          'external-contents': "/Volumes/MacStorage/DetectionKit/DetectionKit/PlexAuth.h"
+        },
+        {
+          'type': 'file',
+          'name': "Recognition.h",
+          'external-contents': "/Volumes/MacStorage/DetectionKit/DetectionKit/Recognition.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Volumes/MacStorage/DetectionKit/Build/Products/Debug/DetectionKit.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Volumes/MacStorage/DetectionKit/Build/Intermediates/DetectionKit.build/Debug/DetectionKit.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}

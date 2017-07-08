@@ -14,7 +14,7 @@
     <a title="Detection Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">DetectionKit Docs</a> (80% documented)</p>
+        <p><a href="../index.html">DetectionKit Docs</a> (88% documented)</p>
         <p class="header-right"><a href="https://github.com/Atelier-Shiori/DetectionKit"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right"><a href="dash-feed://http%3A%2F%2Fatelier%2Dshiori%2Egithub%2Eio%2FDetectionKit%2Fdocsets%2FDetectionKit%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
       </div>
@@ -34,6 +34,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/Detection.html">Detection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PlexAuth.html">PlexAuth</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Recognition.html">Recognition</a>
@@ -108,6 +111,42 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/c:objc(cs)Detection(py)plexonline"></a>
+                    <a name="//apple_ref/objc/Property/plexonline" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)Detection(py)plexonline">plexonline</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The current Kodi Json RPC reachability status.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">@property</span> <span class="p">(</span><span class="n">getter</span><span class="o">=</span><span class="n">getPlexOnlineStatus</span><span class="p">,</span> <span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span>
+    <span class="kt">_Bool</span> <span class="n">plexonline</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">plexonline</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="hhttps://github.com/Atelier-Shiori/DetectionKit/tree/v1.0/DetectionKit/Detection.h#L25">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/c:objc(cs)Detection(im)detectmedia"></a>
                     <a name="//apple_ref/objc/Method/-detectmedia" class="dashAnchor"></a>
                     <a class="token" href="#/c:objc(cs)Detection(im)detectmedia">-detectmedia</a>
@@ -118,7 +157,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This detects media from open video players, streams or web browsers</p>
+                        <p>This detects media from open video players, streams or web browsers
+- returns: NSDictionary The detected information of a media file or stream.</p>
 
                       </div>
                       <div class="declaration">
@@ -137,9 +177,10 @@
                       <div>
                         <h4>Return Value</h4>
                         <p>NSDictionary The detected information of a media file or stream.</p>
+
                       </div>
                       <div class="slightly-smaller">
-                        <a href="hhttps://github.com/Atelier-Shiori/DetectionKit/tree/v1.0/DetectionKit/Detection.h#L27">Show on GitHub</a>
+                        <a href="hhttps://github.com/Atelier-Shiori/DetectionKit/tree/v1.0/DetectionKit/Detection.h#L31">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -157,7 +198,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Checks if the stream link title is on a ignore list.</p>
+                        <p>Checks if the stream link title is on a ignore list.
+- parameter: d Stream information of a streamlink stream.
+- returns: NSArray The detected information of a stream.</p>
 
                       </div>
                       <div class="declaration">
@@ -186,6 +229,7 @@
                               <td>
                                 <div>
                                   <p>Stream information of a streamlink stream.</p>
+
                                 </div>
                               </td>
                             </tr>
@@ -195,9 +239,10 @@
                       <div>
                         <h4>Return Value</h4>
                         <p>NSArray The detected information of a stream.</p>
+
                       </div>
                       <div class="slightly-smaller">
-                        <a href="hhttps://github.com/Atelier-Shiori/DetectionKit/tree/v1.0/DetectionKit/Detection.h#L33">Show on GitHub</a>
+                        <a href="hhttps://github.com/Atelier-Shiori/DetectionKit/tree/v1.0/DetectionKit/Detection.h#L37">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -244,7 +289,8 @@
                               </td>
                               <td>
                                 <div>
-                                  
+                                  <p>The state of the Kodi JSON RPC reachability.</p>
+
                                 </div>
                               </td>
                             </tr>
@@ -252,7 +298,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="hhttps://github.com/Atelier-Shiori/DetectionKit/tree/v1.0/DetectionKit/Detection.h#L38">Show on GitHub</a>
+                        <a href="hhttps://github.com/Atelier-Shiori/DetectionKit/tree/v1.0/DetectionKit/Detection.h#L42">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -299,7 +345,8 @@
                               </td>
                               <td>
                                 <div>
-                                  
+                                  <p>The host name to the computer running Kodi.</p>
+
                                 </div>
                               </td>
                             </tr>
@@ -307,7 +354,119 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="hhttps://github.com/Atelier-Shiori/DetectionKit/tree/v1.0/DetectionKit/Detection.h#L43">Show on GitHub</a>
+                        <a href="hhttps://github.com/Atelier-Shiori/DetectionKit/tree/v1.0/DetectionKit/Detection.h#L47">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)Detection(im)setPlexReach:"></a>
+                    <a name="//apple_ref/objc/Method/-setPlexReach:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)Detection(im)setPlexReach:">-setPlexReach:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Turns on/off Plex Media Server API reachability.
+@pram enable The state of the Plex API reachability.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setPlexReach</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">enable</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">setPlexReach</span><span class="p">(</span><span class="n">_</span> <span class="nv">enable</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>enable</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The state of the Plex API reachability.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="hhttps://github.com/Atelier-Shiori/DetectionKit/tree/v1.0/DetectionKit/Detection.h#L52">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)Detection(im)setPlexReachAddress:"></a>
+                    <a name="//apple_ref/objc/Method/-setPlexReachAddress:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)Detection(im)setPlexReachAddress:">-setPlexReachAddress:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the address for the Plex Media Server reachability
+@pram url The host name/IP Address to the computer running Plex Media Server.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setPlexReachAddress</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">url</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">setPlexReachAddress</span><span class="p">(</span><span class="n">_</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The host name/IP Address to the computer running Plex Media Server.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="hhttps://github.com/Atelier-Shiori/DetectionKit/tree/v1.0/DetectionKit/Detection.h#L57">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -317,8 +476,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://ateliershiori.moe" target="_blank" rel="external">Atelier Shiori</a>. All rights reserved. (Last updated: 2017-05-28)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://ateliershiori.moe" target="_blank" rel="external">Atelier Shiori</a>. All rights reserved. (Last updated: 2017-07-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

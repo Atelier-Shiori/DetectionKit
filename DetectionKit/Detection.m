@@ -8,16 +8,20 @@
 
 #import "Detection.h"
 #import "Recognition.h"
+#import "PlexAuth.h"
 #import <EasyNSURLConnection/EasyNSURLConnectionClass.h>
 #import <streamlinkdetect/streamlinkdetect.h>
 #import <Reachability/Reachability.h>
 #import <CocoaOniguruma/OnigRegexp.h>
 #import <CocoaOniguruma/OnigRegexpUtility.h>
+#import <SAMKeychain/SAMKeychain.h>
+#import <XMLReader/XMLReader.h>
 
 @interface Detection()
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *detectStream;
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *detectPlayer;
 @property (strong) Reachability *kodireach;
+@property (strong) Reachability *plexreach;
 - (bool)checkifIgnored:(NSString *)filename source:(NSString *)source;
 - (bool)checkifTitleIgnored:(NSString *)filename source:(NSString *)source;
 - (bool)checkifDirectoryIgnored:(NSString *)filename;
@@ -30,6 +34,12 @@
     NSDictionary * result;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enablekodiapi"]) {
         result = [self detectKodi];
+        if (result) {
+            return result;
+        }
+    }
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enableplexapi"]) {
+        result = [self detectPlex];
         if (result) {
             return result;
         }
@@ -333,6 +343,89 @@
     return nil;
 }
 
+- (NSDictionary *)detectPlex {
+    NSString *username = [PlexAuth checkplexaccount];
+    if (username.length > 0) {
+        if ([self getPlexOnlineStatus]) {
+            // Retrieve ssessions opened in Plex Media Server
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            EasyNSURLConnection * request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%li/status/sessions?X-Plex-Token=%@", [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username] ]]];
+            request.headers = @{@"X-Plex-Client-Identifier":[defaults objectForKey:@"plexidentifier"],@"X-Plex-Product":NSBundle.mainBundle.infoDictionary[@"CFBundleName"],@"X-Plex-Version":NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]};
+            [request startFormRequest];
+            switch (request.getStatusCode) {
+                case 200:{
+                    return [self parsePlexXML:request.getResponseDataString];
+                }
+                default:
+                    return nil;
+            }
+        }
+        else {
+            return nil;
+        }
+    }
+    return nil;
+}
+
+- (NSDictionary *)parsePlexXML:(NSString *)xml {
+    NSError *error = nil;
+    NSDictionary *d = [XMLReader dictionaryForXMLString:xml options:XMLReaderOptionsProcessNamespaces error:&error];
+    NSArray *sessions;
+    if (d[@"MediaContainer"]) {
+        sessions = d[@"MediaContainer"];
+        if (![sessions isKindOfClass:[NSArray class]]) {
+            // Import only contains one object, put it in an array.
+            sessions = [NSArray arrayWithObject:sessions];
+        }
+        NSString *currentuser = [PlexAuth checkplexaccount];
+        for (NSDictionary *videoi in sessions) {
+            NSDictionary *video = videoi[@"Video"];
+            NSString *playerstate = video[@"Player"][@"state"];
+            NSString *playerusername = video[@"User"][@"title"];
+            if ([playerstate isEqualToString:@"playing"] && [playerusername isEqualToString:currentuser]) {
+                NSDictionary *metadata = [self retrievemetadata:(NSString *)video[@"key"]];
+                NSString *filepath = metadata[@"Media"][@"Part"][@"file"];
+                NSDictionary *recoginfo = [[Recognition alloc] recognize:filepath];
+                NSString * DetectedTitle = (NSString *)recoginfo[@"title"];
+                NSString * DetectedEpisode = (NSString *)recoginfo[@"episode"];
+                NSString * DetectedSource = @"Plex";
+                NSNumber * DetectedSeason = recoginfo[@"season"];
+                NSString * DetectedGroup = (NSString *)recoginfo[@"group"];
+                if (DetectedTitle.length > 0 && ![self checkifTitleIgnored:DetectedTitle source:@"Plex"]) {
+                    //Return result
+                    return @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": recoginfo[@"types"]};
+                }
+            }
+            else {
+                continue;
+            }
+        }
+    }
+    return nil;
+}
+
+- (NSDictionary *)retrievemetadata:(NSString *)key {
+    NSString *username = [PlexAuth checkplexaccount];
+    // Retrieve Token
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    EasyNSURLConnection * request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%li/status/sessions?X-Plex-Token=%@", [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username] ]]];
+    request.headers = @{@"X-Plex-Client-Identifier":[defaults objectForKey:@"plexidentifier"],@"X-Plex-Product":NSBundle.mainBundle.infoDictionary[@"CFBundleName"],@"X-Plex-Version":NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]};
+    [request startFormRequest];
+    switch (request.getStatusCode) {
+        case 200:{
+            NSError *error = nil;
+            NSDictionary *d = [XMLReader dictionaryForXMLString:request.getResponseDataString options:XMLReaderOptionsProcessNamespaces error:&error];
+            if ([d[@"MediaContainer"][@"Video"] isKindOfClass:[NSDictionary class]]){
+                return d[@"MediaContainer"][@"Video"];
+            }
+            
+        }
+        default:
+            return nil;
+    }
+
+}
+
 #pragma mark Helpers
 
 - (NSDictionary *)convertstreamlinkinfo:(NSDictionary *)result {
@@ -441,6 +534,46 @@
     [_kodireach startNotifier];
 }
 
+#pragma mark Plex Media Server Helper Methods
+- (void)setPlexReach:(BOOL)enable {
+    if (enable == 1) {
+        //Create Reachability Object
+        _plexreach = [Reachability reachabilityWithHostname:(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:@"plexaddress"]];
+        // Set up blocks
+        _plexreach.reachableBlock = ^(Reachability*reach)
+        {
+            _plexonline = true;
+        };
+        _plexreach.unreachableBlock = ^(Reachability*reach)
+        {
+            _plexonline = false;
+        };
+        // Start notifier
+        [_plexreach startNotifier];
+    }
+    else {
+        [_plexreach stopNotifier];
+        _plexreach = nil;
+    }
+}
+- (void)setPlexReachAddress:(NSString *)url{
+    [_plexreach stopNotifier];
+    _plexreach = [Reachability reachabilityWithHostname:url];
+    // Set up blocks
+    // Set the blocks
+    _plexreach.reachableBlock = ^(Reachability*reach)
+    {
+        _plexonline = true;
+    };
+    _plexreach.unreachableBlock = ^(Reachability*reach)
+    {
+        _plexonline = false;
+    };
+    // Start notifier
+    [_plexreach startNotifier];
+}
+
+#pragma mark Utility Methods
 - (BOOL)checkIdentifier:(NSString*)identifier {
     NSWorkspace * ws = [NSWorkspace sharedWorkspace];
     NSArray *runningApps = [ws runningApplications];
@@ -452,4 +585,5 @@
     }
     return false;
 }
+
 @end
