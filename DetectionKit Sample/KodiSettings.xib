@@ -130,8 +130,12 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <binding destination="yqP-Hc-xDN" name="value" keyPath="values.plexaddress" id="Ua4-dw-I0B">
+                                <dictionary key="options">
+                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                </dictionary>
+                            </binding>
                             <binding destination="yqP-Hc-xDN" name="enabled" keyPath="values.enableplexapi" id="WGx-m2-fYG"/>
-                            <binding destination="yqP-Hc-xDN" name="value" keyPath="values.plexaddress" id="bld-fZ-tx6"/>
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5LT-Br-11K">
@@ -146,8 +150,12 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <binding destination="yqP-Hc-xDN" name="value" keyPath="values.plexport" id="8y1-DU-6T7">
+                                <dictionary key="options">
+                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                </dictionary>
+                            </binding>
                             <binding destination="yqP-Hc-xDN" name="enabled" keyPath="values.enableplexapi" id="D2Z-0f-8DW"/>
-                            <binding destination="yqP-Hc-xDN" name="value" keyPath="values.plexport" id="vaC-Ed-YZF"/>
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5gg-0c-zYc">
@@ -218,8 +226,12 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <binding destination="yqP-Hc-xDN" name="value" keyPath="values.plexidentifier" id="CxC-vg-0wn">
+                                <dictionary key="options">
+                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                </dictionary>
+                            </binding>
                             <binding destination="yqP-Hc-xDN" name="enabled" keyPath="values.enableplexapi" id="XAT-8m-shb"/>
-                            <binding destination="yqP-Hc-xDN" name="value" keyPath="values.plexidentifier" id="v9H-VA-ULE"/>
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydf-bb-4d3">

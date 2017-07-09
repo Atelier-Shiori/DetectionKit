@@ -9,6 +9,7 @@
 #import "PlexAuth.h"
 #import <SAMKeychain/SAMKeychain.h>
 #import <EasyNSURLConnection/EasyNSURLConnectionClass.h>
+#import <XMLReader/XMLReader.h>
 
 @implementation PlexAuth
 + (bool)performplexlogin:(NSString *)username withPassword:(NSString *)password {
@@ -21,10 +22,17 @@
     switch (request.getStatusCode) {
         case 200:
         case 201:{
-            NSString *token = [self extractXMLElement:@"authentication-token" withXML:[request getResponseDataString]];
-            // Store Token
-            [SAMKeychain setPassword:token forService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username];
+            NSError *error = nil;
+            NSDictionary *d = [XMLReader dictionaryForXMLString:request.getResponseDataString options:XMLReaderOptionsProcessNamespaces error:&error];
+            if (!error){
+                NSString *token = d[@"user"][@"authToken"];
+                // Store Token
+                [SAMKeychain setPassword:token forService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account: d[@"user"][@"username"][0]];
             return true;
+            }
+            else {
+                return false;
+            }
         }
         default:
             return false;
@@ -51,15 +59,5 @@
     return @"";
 }
 
-+ (NSString *)extractXMLElement:(NSString *)tagname withXML:(NSString *)xml {
-    NSScanner *scanner = [NSScanner scannerWithString:xml];
-    NSString *text;
-    while (![scanner isAtEnd]){
-        [scanner scanUpToString:[NSString stringWithFormat:@"<%@>", tagname] intoString:NULL];
-        [scanner scanString:[NSString stringWithFormat:@"<%@>", tagname] intoString:NULL];
-        [scanner scanUpToString:[NSString stringWithFormat:@"</%@>", tagname] intoString:&text];
-    }
-    return text;
-}
 
 @end
