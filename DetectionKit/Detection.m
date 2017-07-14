@@ -504,10 +504,12 @@
         _kodireach.reachableBlock = ^(Reachability*reach)
         {
             _kodionline = true;
+            NSLog(@"Kodi host is online.");
         };
         _kodireach.unreachableBlock = ^(Reachability*reach)
         {
             _kodionline = false;
+            NSLog(@"Kodi host is offline.");
         };
         // Start notifier
         [_kodireach startNotifier];
@@ -524,10 +526,12 @@
     // Set the blocks
     _kodireach.reachableBlock = ^(Reachability*reach)
     {
+        NSLog(@"Plex Media Server host is online.");
         _kodionline = true;
     };
     _kodireach.unreachableBlock = ^(Reachability*reach)
     {
+        NSLog(@"Plex Media Server host is offline.");
         _kodionline = false;
     };
     // Start notifier
