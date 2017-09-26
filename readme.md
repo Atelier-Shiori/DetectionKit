@@ -11,7 +11,6 @@ To use DetectionKit, you need to include the following frameworks with your appl
 * CocoaOniguruma.framework
 * EasyNSURLConnection.framework
 * Reachability.framework
-* streamlinkdetect.framework
 
 # License
 DetectionKit is licensed under the BSD License.

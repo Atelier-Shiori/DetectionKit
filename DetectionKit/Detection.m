@@ -9,8 +9,11 @@
 #import "Detection.h"
 #import "Recognition.h"
 #import "PlexAuth.h"
+#import "StreamInfoRetrieval.h"
+#import "MediaStreamParse.h"
+#import "OnigRegexp+MatchExtensions.h"
+#import <AppKit/AppKit.h>
 #import <EasyNSURLConnection/EasyNSURLConnectionClass.h>
-#import <streamlinkdetect/streamlinkdetect.h>
 #import <Reachability/Reachability.h>
 #import <CocoaOniguruma/OnigRegexp.h>
 #import <CocoaOniguruma/OnigRegexpUtility.h>
@@ -53,12 +56,9 @@
         // Return results
         return result;
     }
-    if ([[streamlinkdetector new] checkifStreamLinkExists]) {
+    else {
         // Check Streamlink
         result = [self detectStreamLink];
-    }
-    else {
-        result = nil;
     }
     if (result) {
         // Return results
@@ -146,7 +146,7 @@
                 BOOL onIgnoreList = [self checkifIgnored:string source:DetectedSource];
                 //Make sure the file name is valid, even if player is open. Do not update video files in ignored directories
                 
-                if ([regex match:string] !=nil && !onIgnoreList) {
+                if ([[regex match:string] havematches] && !onIgnoreList) {
                     NSDictionary *d = [[Recognition alloc] recognize:string];
                     BOOL invalidepisode = [self checkIgnoredKeywords:d[@"types"]];
                     if (!invalidepisode) {
@@ -317,8 +317,7 @@
 }
 
 - (NSDictionary *)detectStreamLink {
-    streamlinkdetector * detect = [streamlinkdetector new];
-    NSArray * a = [detect detectAndRetrieveInfo];
+    NSArray * a = [self detectAndRetrieveInfo];
     if (a.count > 0) {
         NSDictionary * result = a[0];
         if (!result[@"title"] || !result[@"site"]) {
@@ -457,7 +456,7 @@
     if (ignoredfilenames.count > 0) {
         for (NSDictionary * d in ignoredfilenames) {
             NSString * rule = [NSString stringWithFormat:@"%@", d[@"rule"]];
-            if ([[OnigRegexp compile:@"%@" options:OnigOptionIgnorecase] match:filename] && rule.length !=0) { // Blank rules are infinite, thus should not be counted
+            if ([[[OnigRegexp compile:@"%@" options:OnigOptionIgnorecase] match:filename] havematches] && rule.length !=0) { // Blank rules are infinite, thus should not be counted
                 NSLog(@"Video file name is on filename ignore list.");
                 return true;
             }
@@ -488,11 +487,45 @@
 - (bool)checkIgnoredKeywords:(NSArray *)types {
     // Check for potentially invalid types
     for (NSString * type in types) {
-        if ([[OnigRegexp compile:@"(ED|Ending|NCED|NCOP|OP|Opening|Preview|PV)" options:OnigOptionIgnorecase] match:type]) {
+        if ([[[OnigRegexp compile:@"(ED|Ending|NCED|NCOP|OP|Opening|Preview|PV)" options:OnigOptionIgnorecase] match:type] havematches]) {
             return true;
         }
     }
     return false;
+}
+
+- (NSArray *)detectAndRetrieveInfo{
+    NSTask *task;
+    task = [[NSTask alloc] init];
+    task.launchPath = @"/bin/ps";
+    task.arguments = @[@"-ax"];
+    NSPipe *pipe;
+    pipe = [NSPipe pipe];
+    task.standardOutput = pipe;
+    
+    NSFileHandle *file;
+    file = pipe.fileHandleForReading;
+    
+    [task launch];
+    
+    NSData *data;
+    data = [file readDataToEndOfFile];
+    NSString *string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    NSString *pattern = @"streamlink *.* (https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})";
+    OnigRegexp *regex = [OnigRegexp compile:pattern];
+    OnigResult *matches = [regex search:string];
+    if (matches.strings.count > 0) {
+        string = matches.strings[0];
+        NSString *pattern = @"(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})";
+        regex = [OnigRegexp compile:pattern];
+        string = [regex search:string].strings[0];
+        NSDictionary *info = [StreamInfoRetrieval retrieveStreamInfo:string];
+        if (info){
+            return [MediaStreamParse parse:@[info]];
+        }
+        return nil;
+    }
+    return nil;
 }
 
 #pragma mark Kodi Reachability

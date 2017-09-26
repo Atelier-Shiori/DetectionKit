@@ -1,10 +1,9 @@
 //
-//  streamlinkdetect.h
+//  ezregex.h
 //  streamlinkdetect
 //
-//  Created by 天々座理世 on 2017/03/21.
-//  Copyright © 2017年 Atelier Shiori. All rights reserved.
-//
+//  Created by Tail Red on 2/06/15.
+//  Copyright 2015 Atelier Shiori. All rights reserved. Code licensed under New BSD License
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -20,18 +19,14 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
-/**
- The product version of the streamlinkdetect framework
- */
-FOUNDATION_EXPORT double streamlinkdetectVersionNumber;
-
-/**
- The product version string of the streamlinkdetect framework
- */
-FOUNDATION_EXPORT const unsigned char streamlinkdetectVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <streamlinkdetect/PublicHeader.h>
-#import <streamlinkdetect/streamlinkdetector.h>
-#import <streamlinkdetect/streamlinkdetectordelegate.h>
+//
+// This class is used to simplify regex
+//
+@interface ezregex : NSObject
+-(BOOL)checkMatch:(NSString *)string pattern:(NSString *)pattern;
+-(NSString *)searchreplace:(NSString *)string pattern:(NSString *)pattern;
+-(NSString *)findMatch:(NSString *)string pattern:(NSString *)pattern rangeatindex:(int)ri;
+-(NSArray *)findMatches:(NSString *)string pattern:(NSString *)pattern;
+@end
