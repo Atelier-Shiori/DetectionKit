@@ -8,6 +8,9 @@
 
 #import "OnigRegexp+MatchExtensions.h"
 
-@implementation OnigRegexp (MatchExtensions)
-
+@implementation OnigResult (MatchExtensions)
+- (bool)havematches {
+    return self.count > 0;
+}
 @end
+

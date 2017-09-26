@@ -6,8 +6,13 @@
 //  Copyright © 2017年 Atelier Shiori. All rights reserved.
 //
 
-#import <CocoaOniguruma/CocoaOniguruma.h>
+#import <CocoaOniguruma/OnigRegexp.h>
 
-@interface OnigRegexp (MatchExtensions)
-
+@interface OnigResult (MatchExtensions)
+/**
+Gives a bool if there is matches or not.
+ @return bool The state if there is matches for a given regular expression.
+ */
+- (bool)havematches;
 @end
+
