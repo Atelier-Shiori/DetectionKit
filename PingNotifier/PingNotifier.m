@@ -48,9 +48,6 @@
             [_pingclient startPinging];
             _pingstoptimer = [MSWeakTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(stopPingTimer) userInfo:nil repeats:NO dispatchQueue:_stopqueue];
         }
-        else {
-            NSLog(@"failed to start");
-        }
     }];
 }
 

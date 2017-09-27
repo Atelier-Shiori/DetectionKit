@@ -72,6 +72,18 @@
 		91AFCF831F103CF00029AC09 /* PlexLoginPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91AFCF811F103CF00029AC09 /* PlexLoginPanel.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		2DFCE45E1F7B474200878045 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		2D5BCFED1ED9FD8F0076B1AC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -100,6 +112,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2D7A7CBE1F7AD2DF0087A8E1;
 			remoteInfo = GPPing;
+		};
+		2DFCE45F1F7B475B00878045 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D5BCFD91ED9FD8F0076B1AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D7A7CBE1F7AD2DF0087A8E1;
+			remoteInfo = GBPing;
+		};
+		2DFCE4611F7B475D00878045 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D5BCFD91ED9FD8F0076B1AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D64A6EC1F7B36CA0042DF2D;
+			remoteInfo = PingNotifier;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -417,8 +443,11 @@
 				2D5BCFE01ED9FD8F0076B1AC /* Resources */,
 			);
 			buildRules = (
+				2DFCE45E1F7B474200878045 /* PBXBuildRule */,
 			);
 			dependencies = (
+				2DFCE4621F7B475D00878045 /* PBXTargetDependency */,
+				2DFCE4601F7B475B00878045 /* PBXTargetDependency */,
 			);
 			name = DetectionKit;
 			productName = DetectionKit;
@@ -678,6 +707,16 @@
 			isa = PBXTargetDependency;
 			target = 2D7A7CBE1F7AD2DF0087A8E1 /* GBPing */;
 			targetProxy = 2D7A7CC41F7AD2DF0087A8E1 /* PBXContainerItemProxy */;
+		};
+		2DFCE4601F7B475B00878045 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D7A7CBE1F7AD2DF0087A8E1 /* GBPing */;
+			targetProxy = 2DFCE45F1F7B475B00878045 /* PBXContainerItemProxy */;
+		};
+		2DFCE4621F7B475D00878045 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D64A6EC1F7B36CA0042DF2D /* PingNotifier */;
+			targetProxy = 2DFCE4611F7B475D00878045 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
