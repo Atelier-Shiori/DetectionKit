@@ -14,7 +14,7 @@
 #import "OnigRegexp+MatchExtensions.h"
 #import <AppKit/AppKit.h>
 #import <EasyNSURLConnection/EasyNSURLConnectionClass.h>
-#import <Reachability/Reachability.h>
+#import <PingNotifier/PingNotifier.h>
 #import <CocoaOniguruma/OnigRegexp.h>
 #import <CocoaOniguruma/OnigRegexpUtility.h>
 #import <SAMKeychain/SAMKeychain.h>
@@ -23,8 +23,8 @@
 @interface Detection()
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *detectStream;
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *detectPlayer;
-@property (strong) Reachability *kodireach;
-@property (strong) Reachability *plexreach;
+@property (strong) PingNotifier *kodireach;
+@property (strong) PingNotifier *plexreach;
 - (bool)checkifIgnored:(NSString *)filename source:(NSString *)source;
 - (bool)checkifTitleIgnored:(NSString *)filename source:(NSString *)source;
 - (bool)checkifDirectoryIgnored:(NSString *)filename;
@@ -532,82 +532,66 @@
 - (void)setKodiReach:(BOOL)enable {
     if (enable == 1) {
         //Create Reachability Object
-        _kodireach = [Reachability reachabilityWithHostname:(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:@"kodiaddress"]];
+        if (!_kodireach) {
+            _kodireach = [[PingNotifier alloc] initWithHost:(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:@"kodiaddress"]];
+        }
         // Set up blocks
-        _kodireach.reachableBlock = ^(Reachability*reach)
+        _kodireach.onlineblock = ^(void)
         {
             _kodionline = true;
             NSLog(@"Kodi host is online.");
         };
-        _kodireach.unreachableBlock = ^(Reachability*reach)
+        _kodireach.offlineblock = ^(void)
         {
             _kodionline = false;
             NSLog(@"Kodi host is offline.");
         };
         // Start notifier
-        [_kodireach startNotifier];
+        [_kodireach startPing];
     }
     else {
-        [_kodireach stopNotifier];
+        [_kodireach stopPing];
         _kodireach = nil;
     }
 }
 - (void)setKodiReachAddress:(NSString *)url{
-    [_kodireach stopNotifier];
-    _kodireach = [Reachability reachabilityWithHostname:url];
-    // Set up blocks
-    // Set the blocks
-    _kodireach.reachableBlock = ^(Reachability*reach)
-    {
-        NSLog(@"Plex Media Server host is online.");
-        _kodionline = true;
-    };
-    _kodireach.unreachableBlock = ^(Reachability*reach)
-    {
-        NSLog(@"Plex Media Server host is offline.");
-        _kodionline = false;
-    };
+    [_kodireach stopPing];
+    [_kodireach changeHostName:url];
     // Start notifier
-    [_kodireach startNotifier];
+    [_kodireach startPing];
 }
 
 #pragma mark Plex Media Server Helper Methods
 - (void)setPlexReach:(BOOL)enable {
     if (enable == 1) {
         //Create Reachability Object
-        _plexreach = [Reachability reachabilityWithHostname:(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:@"plexaddress"]];
+        if (!_plexreach) {
+            _plexreach = [[PingNotifier alloc] initWithHost:(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:@"plexaddress"]];
+        }
         // Set up blocks
-        _plexreach.reachableBlock = ^(Reachability*reach)
+        _plexreach.onlineblock = ^(void)
         {
+            NSLog(@"Plex Media Server is online");
             _plexonline = true;
         };
-        _plexreach.unreachableBlock = ^(Reachability*reach)
+        _plexreach.offlineblock = ^(void)
         {
+            NSLog(@"Plex Media Server is offline");
             _plexonline = false;
         };
         // Start notifier
-        [_plexreach startNotifier];
+        [_plexreach startPing];
     }
     else {
-        [_plexreach stopNotifier];
+        [_plexreach stopPing];
         _plexreach = nil;
     }
 }
 - (void)setPlexReachAddress:(NSString *)url{
-    [_plexreach stopNotifier];
-    _plexreach = [Reachability reachabilityWithHostname:url];
-    // Set up blocks
-    // Set the blocks
-    _plexreach.reachableBlock = ^(Reachability*reach)
-    {
-        _plexonline = true;
-    };
-    _plexreach.unreachableBlock = ^(Reachability*reach)
-    {
-        _plexonline = false;
-    };
+    [_plexreach stopPing];
+    [_plexreach changeHostName:url];
     // Start notifier
-    [_plexreach startNotifier];
+    [_plexreach startPing];
 }
 
 #pragma mark Utility Methods

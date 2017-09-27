@@ -22,7 +22,6 @@
 		2D5BCFFF1ED9FDC00076B1AC /* Detection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5BCFFD1ED9FDC00076B1AC /* Detection.m */; };
 		2D5BD01C1ED9FF1E0076B1AC /* CocoaOniguruma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */; };
 		2D5BD01D1ED9FF1E0076B1AC /* EasyNSURLConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */; };
-		2D5BD0201ED9FF7B0076B1AC /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01F1ED9FF7B0076B1AC /* Reachability.framework */; };
 		2D5BD0231EDA000B0076B1AC /* Recognition.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D5BD0211EDA000B0076B1AC /* Recognition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D5BD0241EDA000B0076B1AC /* Recognition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5BD0221EDA000B0076B1AC /* Recognition.m */; };
 		2D5BD0261EDA00A30076B1AC /* anitomy-osx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */; };
@@ -34,8 +33,6 @@
 		2D63134C1EDA134A00C3CB6B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D63134A1EDA134A00C3CB6B /* MainMenu.xib */; };
 		2D6313511EDA135300C3CB6B /* anitomy-osx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */; };
 		2D6313521EDA135300C3CB6B /* anitomy-osx.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2D6313531EDA135300C3CB6B /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01F1ED9FF7B0076B1AC /* Reachability.framework */; };
-		2D6313541EDA135300C3CB6B /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01F1ED9FF7B0076B1AC /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2D6313551EDA135300C3CB6B /* CocoaOniguruma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */; };
 		2D6313561EDA135300C3CB6B /* CocoaOniguruma.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2D6313571EDA135300C3CB6B /* EasyNSURLConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */; };
@@ -45,6 +42,22 @@
 		2D6313671EDA172F00C3CB6B /* KodiSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6313651EDA172F00C3CB6B /* KodiSettings.m */; };
 		2D6313681EDA172F00C3CB6B /* KodiSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D6313661EDA172F00C3CB6B /* KodiSettings.xib */; };
 		2D63136B1EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6313691EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.m */; };
+		2D64A6D51F7B25970042DF2D /* MSWeakTimer_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D64A6D21F7B159F0042DF2D /* MSWeakTimer_macOS.framework */; };
+		2D64A6D61F7B25970042DF2D /* MSWeakTimer_macOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D64A6D21F7B159F0042DF2D /* MSWeakTimer_macOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2D64A6F41F7B36CA0042DF2D /* PingNotifier.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D64A6ED1F7B36CA0042DF2D /* PingNotifier.framework */; };
+		2D64A6F51F7B36CA0042DF2D /* PingNotifier.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D64A6ED1F7B36CA0042DF2D /* PingNotifier.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2D64A6F91F7B36EE0042DF2D /* PingNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7A7CD81F7AD4800087A8E1 /* PingNotifier.m */; };
+		2D64A6FA1F7B36FD0042DF2D /* PingNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D7A7CD71F7AD4800087A8E1 /* PingNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D64A6FB1F7B37130042DF2D /* GBPing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7A7CBF1F7AD2DF0087A8E1 /* GBPing.framework */; };
+		2D64A6FC1F7B37710042DF2D /* MSWeakTimer_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D64A6D21F7B159F0042DF2D /* MSWeakTimer_macOS.framework */; };
+		2D7A7CC61F7AD2DF0087A8E1 /* GBPing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7A7CBF1F7AD2DF0087A8E1 /* GBPing.framework */; };
+		2D7A7CC71F7AD2DF0087A8E1 /* GBPing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7A7CBF1F7AD2DF0087A8E1 /* GBPing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2D7A7CD01F7AD3060087A8E1 /* GBPing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7A7CCB1F7AD3050087A8E1 /* GBPing.m */; };
+		2D7A7CD11F7AD3060087A8E1 /* GBPingSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7A7CCD1F7AD3050087A8E1 /* GBPingSummary.m */; };
+		2D7A7CD21F7AD3340087A8E1 /* GBPing.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D7A7CCF1F7AD3060087A8E1 /* GBPing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D7A7CD31F7AD3340087A8E1 /* GBPingSummary.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D7A7CCC1F7AD3050087A8E1 /* GBPingSummary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D7A7CD41F7AD3340087A8E1 /* ICMPHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D7A7CCE1F7AD3060087A8E1 /* ICMPHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D7A7CD91F7AD4800087A8E1 /* PingNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D7A7CD71F7AD4800087A8E1 /* PingNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D8C5C371F79EFE200B3EC96 /* ezregex.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5C351F79EFD600B3EC96 /* ezregex.m */; };
 		2D8C5C381F79EFE700B3EC96 /* ezregex.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D8C5C361F79EFD600B3EC96 /* ezregex.h */; };
 		91AFCF5B1F100EBB0029AC09 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AFCF5A1F100EBB0029AC09 /* SAMKeychain.framework */; };
@@ -74,6 +87,20 @@
 			remoteGlobalIDString = 2D5BCFE11ED9FD8F0076B1AC;
 			remoteInfo = DetectionKit;
 		};
+		2D64A6F21F7B36CA0042DF2D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D5BCFD91ED9FD8F0076B1AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D64A6EC1F7B36CA0042DF2D;
+			remoteInfo = PingNotifier;
+		};
+		2D7A7CC41F7AD2DF0087A8E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D5BCFD91ED9FD8F0076B1AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D7A7CBE1F7AD2DF0087A8E1;
+			remoteInfo = GPPing;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,11 +110,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2D64A6F51F7B36CA0042DF2D /* PingNotifier.framework in Embed Frameworks */,
 				91AFCF5D1F100EC80029AC09 /* SAMKeychain.framework in Embed Frameworks */,
+				2D7A7CC71F7AD2DF0087A8E1 /* GBPing.framework in Embed Frameworks */,
+				2D64A6D61F7B25970042DF2D /* MSWeakTimer_macOS.framework in Embed Frameworks */,
 				2D6313561EDA135300C3CB6B /* CocoaOniguruma.framework in Embed Frameworks */,
 				91AFCF7E1F1038730029AC09 /* XMLReader.framework in Embed Frameworks */,
 				2D6313521EDA135300C3CB6B /* anitomy-osx.framework in Embed Frameworks */,
-				2D6313541EDA135300C3CB6B /* Reachability.framework in Embed Frameworks */,
 				2D6313581EDA135300C3CB6B /* EasyNSURLConnection.framework in Embed Frameworks */,
 				2D6313611EDA137F00C3CB6B /* DetectionKit.framework in Embed Frameworks */,
 			);
@@ -111,7 +140,6 @@
 		2D5BCFFD1ED9FDC00076B1AC /* Detection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Detection.m; sourceTree = "<group>"; };
 		2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaOniguruma.framework; path = Frameworks/CocoaOniguruma.framework; sourceTree = "<group>"; };
 		2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyNSURLConnection.framework; path = Frameworks/EasyNSURLConnection.framework; sourceTree = "<group>"; };
-		2D5BD01F1ED9FF7B0076B1AC /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Frameworks/Reachability.framework; sourceTree = "<group>"; };
 		2D5BD0211EDA000B0076B1AC /* Recognition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recognition.h; sourceTree = "<group>"; };
 		2D5BD0221EDA000B0076B1AC /* Recognition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recognition.m; sourceTree = "<group>"; };
 		2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "anitomy-osx.framework"; path = "Frameworks/anitomy-osx.framework"; sourceTree = "<group>"; };
@@ -129,6 +157,18 @@
 		2D6313661EDA172F00C3CB6B /* KodiSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KodiSettings.xib; sourceTree = "<group>"; };
 		2D6313691EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumberFormatterNumberOnly.m; sourceTree = "<group>"; };
 		2D63136A1EDA1DA800C3CB6B /* NSNumberFormatterNumberOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberFormatterNumberOnly.h; sourceTree = "<group>"; };
+		2D64A6D21F7B159F0042DF2D /* MSWeakTimer_macOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MSWeakTimer_macOS.framework; path = Frameworks/MSWeakTimer_macOS.framework; sourceTree = "<group>"; };
+		2D64A6ED1F7B36CA0042DF2D /* PingNotifier.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PingNotifier.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D64A6F01F7B36CA0042DF2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D7A7CBF1F7AD2DF0087A8E1 /* GBPing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GBPing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D7A7CC21F7AD2DF0087A8E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D7A7CCB1F7AD3050087A8E1 /* GBPing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GBPing.m; sourceTree = "<group>"; };
+		2D7A7CCC1F7AD3050087A8E1 /* GBPingSummary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBPingSummary.h; sourceTree = "<group>"; };
+		2D7A7CCD1F7AD3050087A8E1 /* GBPingSummary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GBPingSummary.m; sourceTree = "<group>"; };
+		2D7A7CCE1F7AD3060087A8E1 /* ICMPHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ICMPHeader.h; sourceTree = "<group>"; };
+		2D7A7CCF1F7AD3060087A8E1 /* GBPing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBPing.h; sourceTree = "<group>"; };
+		2D7A7CD71F7AD4800087A8E1 /* PingNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PingNotifier.h; sourceTree = "<group>"; };
+		2D7A7CD81F7AD4800087A8E1 /* PingNotifier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PingNotifier.m; sourceTree = "<group>"; };
 		2D8C5C351F79EFD600B3EC96 /* ezregex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ezregex.m; sourceTree = "<group>"; };
 		2D8C5C361F79EFD600B3EC96 /* ezregex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ezregex.h; sourceTree = "<group>"; };
 		2DD1B0881F78146C0061AC16 /* StreamInfoRetrieval.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StreamInfoRetrieval.h; sourceTree = "<group>"; };
@@ -154,7 +194,6 @@
 				91AFCF7C1F10386A0029AC09 /* XMLReader.framework in Frameworks */,
 				2D5BD01D1ED9FF1E0076B1AC /* EasyNSURLConnection.framework in Frameworks */,
 				91AFCF5B1F100EBB0029AC09 /* SAMKeychain.framework in Frameworks */,
-				2D5BD0201ED9FF7B0076B1AC /* Reachability.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,13 +209,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D64A6F41F7B36CA0042DF2D /* PingNotifier.framework in Frameworks */,
 				91AFCF5C1F100EC80029AC09 /* SAMKeychain.framework in Frameworks */,
+				2D7A7CC61F7AD2DF0087A8E1 /* GBPing.framework in Frameworks */,
+				2D64A6D51F7B25970042DF2D /* MSWeakTimer_macOS.framework in Frameworks */,
 				2D6313551EDA135300C3CB6B /* CocoaOniguruma.framework in Frameworks */,
 				91AFCF7D1F1038730029AC09 /* XMLReader.framework in Frameworks */,
 				2D6313511EDA135300C3CB6B /* anitomy-osx.framework in Frameworks */,
-				2D6313531EDA135300C3CB6B /* Reachability.framework in Frameworks */,
 				2D6313571EDA135300C3CB6B /* EasyNSURLConnection.framework in Frameworks */,
 				2D6313601EDA137F00C3CB6B /* DetectionKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D64A6E91F7B36CA0042DF2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D64A6FB1F7B37130042DF2D /* GBPing.framework in Frameworks */,
+				2D64A6FC1F7B37710042DF2D /* MSWeakTimer_macOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D7A7CBB1F7AD2DF0087A8E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +246,10 @@
 				2D5BCFE41ED9FD8F0076B1AC /* DetectionKit */,
 				2D5BCFEF1ED9FD8F0076B1AC /* DetectionKitTests */,
 				2D6313411EDA134900C3CB6B /* DetectionKit Sample */,
+				2D7A7CC01F7AD2DF0087A8E1 /* GBPing */,
+				2D64A6EE1F7B36CA0042DF2D /* PingNotifier */,
 				2D5BCFE31ED9FD8F0076B1AC /* Products */,
+				2D7A7CD51F7AD45E0087A8E1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -199,6 +259,8 @@
 				2D5BCFE21ED9FD8F0076B1AC /* DetectionKit.framework */,
 				2D5BCFEB1ED9FD8F0076B1AC /* DetectionKitTests.xctest */,
 				2D6313401EDA134900C3CB6B /* DetectionKit Sample.app */,
+				2D7A7CBF1F7AD2DF0087A8E1 /* GBPing.framework */,
+				2D64A6ED1F7B36CA0042DF2D /* PingNotifier.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -225,8 +287,8 @@
 				2D29289D1F7873BC00782F15 /* NSString+HTML.m */,
 				2D5BCFE61ED9FD8F0076B1AC /* Info.plist */,
 				2D5BD0291EDA05D20076B1AC /* detectstream */,
+				2D64A6D21F7B159F0042DF2D /* MSWeakTimer_macOS.framework */,
 				2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */,
-				2D5BD01F1ED9FF7B0076B1AC /* Reachability.framework */,
 				2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */,
 				2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */,
 				2D5BD0271EDA019B0076B1AC /* supportedplayers.json */,
@@ -274,6 +336,36 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2D64A6EE1F7B36CA0042DF2D /* PingNotifier */ = {
+			isa = PBXGroup;
+			children = (
+				2D7A7CD71F7AD4800087A8E1 /* PingNotifier.h */,
+				2D7A7CD81F7AD4800087A8E1 /* PingNotifier.m */,
+				2D64A6F01F7B36CA0042DF2D /* Info.plist */,
+			);
+			path = PingNotifier;
+			sourceTree = "<group>";
+		};
+		2D7A7CC01F7AD2DF0087A8E1 /* GBPing */ = {
+			isa = PBXGroup;
+			children = (
+				2D7A7CCF1F7AD3060087A8E1 /* GBPing.h */,
+				2D7A7CCB1F7AD3050087A8E1 /* GBPing.m */,
+				2D7A7CCC1F7AD3050087A8E1 /* GBPingSummary.h */,
+				2D7A7CCD1F7AD3050087A8E1 /* GBPingSummary.m */,
+				2D7A7CCE1F7AD3060087A8E1 /* ICMPHeader.h */,
+				2D7A7CC21F7AD2DF0087A8E1 /* Info.plist */,
+			);
+			path = GBPing;
+			sourceTree = "<group>";
+		};
+		2D7A7CD51F7AD45E0087A8E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -283,6 +375,7 @@
 			files = (
 				2D5BCFFE1ED9FDC00076B1AC /* Detection.h in Headers */,
 				91AFCF601F1030C60029AC09 /* PlexAuth.h in Headers */,
+				2D7A7CD91F7AD4800087A8E1 /* PingNotifier.h in Headers */,
 				2D2928A41F79B36200782F15 /* OnigRegexp+MatchExtensions.h in Headers */,
 				2D5BCFF31ED9FD8F0076B1AC /* DetectionKit.h in Headers */,
 				2D8C5C381F79EFE700B3EC96 /* ezregex.h in Headers */,
@@ -290,6 +383,24 @@
 				2D2928A71F79E91400782F15 /* MediaStreamParse.h in Headers */,
 				2D2928A81F79E91800782F15 /* NSString+HTML.h in Headers */,
 				2D5BD0231EDA000B0076B1AC /* Recognition.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D64A6EA1F7B36CA0042DF2D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D64A6FA1F7B36FD0042DF2D /* PingNotifier.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D7A7CBC1F7AD2DF0087A8E1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D7A7CD21F7AD3340087A8E1 /* GBPing.h in Headers */,
+				2D7A7CD31F7AD3340087A8E1 /* GBPingSummary.h in Headers */,
+				2D7A7CD41F7AD3340087A8E1 /* ICMPHeader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,11 +456,49 @@
 			);
 			dependencies = (
 				2D6313631EDA137F00C3CB6B /* PBXTargetDependency */,
+				2D7A7CC51F7AD2DF0087A8E1 /* PBXTargetDependency */,
+				2D64A6F31F7B36CA0042DF2D /* PBXTargetDependency */,
 			);
 			name = "DetectionKit Sample";
 			productName = "DetectionKit Sample";
 			productReference = 2D6313401EDA134900C3CB6B /* DetectionKit Sample.app */;
 			productType = "com.apple.product-type.application";
+		};
+		2D64A6EC1F7B36CA0042DF2D /* PingNotifier */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D64A6F61F7B36CA0042DF2D /* Build configuration list for PBXNativeTarget "PingNotifier" */;
+			buildPhases = (
+				2D64A6E81F7B36CA0042DF2D /* Sources */,
+				2D64A6E91F7B36CA0042DF2D /* Frameworks */,
+				2D64A6EA1F7B36CA0042DF2D /* Headers */,
+				2D64A6EB1F7B36CA0042DF2D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PingNotifier;
+			productName = PingNotifier;
+			productReference = 2D64A6ED1F7B36CA0042DF2D /* PingNotifier.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2D7A7CBE1F7AD2DF0087A8E1 /* GBPing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D7A7CCA1F7AD2DF0087A8E1 /* Build configuration list for PBXNativeTarget "GBPing" */;
+			buildPhases = (
+				2D7A7CBA1F7AD2DF0087A8E1 /* Sources */,
+				2D7A7CBB1F7AD2DF0087A8E1 /* Frameworks */,
+				2D7A7CBC1F7AD2DF0087A8E1 /* Headers */,
+				2D7A7CBD1F7AD2DF0087A8E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GBPing;
+			productName = GPPing;
+			productReference = 2D7A7CBF1F7AD2DF0087A8E1 /* GBPing.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -376,6 +525,16 @@
 						DevelopmentTeam = 9HDZTER525;
 						ProvisioningStyle = Automatic;
 					};
+					2D64A6EC1F7B36CA0042DF2D = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = 9HDZTER525;
+						ProvisioningStyle = Automatic;
+					};
+					2D7A7CBE1F7AD2DF0087A8E1 = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = 9HDZTER525;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 2D5BCFDC1ED9FD8F0076B1AC /* Build configuration list for PBXProject "DetectionKit" */;
@@ -394,6 +553,8 @@
 				2D5BCFE11ED9FD8F0076B1AC /* DetectionKit */,
 				2D5BCFEA1ED9FD8F0076B1AC /* DetectionKitTests */,
 				2D63133F1EDA134900C3CB6B /* DetectionKit Sample */,
+				2D7A7CBE1F7AD2DF0087A8E1 /* GBPing */,
+				2D64A6EC1F7B36CA0042DF2D /* PingNotifier */,
 			);
 		};
 /* End PBXProject section */
@@ -423,6 +584,20 @@
 				91AFCF831F103CF00029AC09 /* PlexLoginPanel.xib in Resources */,
 				2D6313491EDA134A00C3CB6B /* Assets.xcassets in Resources */,
 				2D63134C1EDA134A00C3CB6B /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D64A6EB1F7B36CA0042DF2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D7A7CBD1F7AD2DF0087A8E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +639,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2D64A6E81F7B36CA0042DF2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D64A6F91F7B36EE0042DF2D /* PingNotifier.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D7A7CBA1F7AD2DF0087A8E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D7A7CD01F7AD3060087A8E1 /* GBPing.m in Sources */,
+				2D7A7CD11F7AD3060087A8E1 /* GBPingSummary.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -476,6 +668,16 @@
 			isa = PBXTargetDependency;
 			target = 2D5BCFE11ED9FD8F0076B1AC /* DetectionKit */;
 			targetProxy = 2D6313621EDA137F00C3CB6B /* PBXContainerItemProxy */;
+		};
+		2D64A6F31F7B36CA0042DF2D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D64A6EC1F7B36CA0042DF2D /* PingNotifier */;
+			targetProxy = 2D64A6F21F7B36CA0042DF2D /* PBXContainerItemProxy */;
+		};
+		2D7A7CC51F7AD2DF0087A8E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D7A7CBE1F7AD2DF0087A8E1 /* GBPing */;
+			targetProxy = 2D7A7CC41F7AD2DF0087A8E1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -533,7 +735,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -578,7 +780,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -696,6 +898,136 @@
 			};
 			name = Release;
 		};
+		2D64A6F71F7B36CA0042DF2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9HDZTER525;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DetectionKit/Frameworks",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = PingNotifier/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = moe.ateliershiori.PingNotifier;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2D64A6F81F7B36CA0042DF2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9HDZTER525;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DetectionKit/Frameworks",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = PingNotifier/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = moe.ateliershiori.PingNotifier;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		2D7A7CC81F7AD2DF0087A8E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9HDZTER525;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/GBPing/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = moe.ateliershiori.GPPing;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2D7A7CC91F7AD2DF0087A8E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9HDZTER525;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/GBPing/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = moe.ateliershiori.GPPing;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -731,6 +1063,24 @@
 			buildConfigurations = (
 				2D63134F1EDA134A00C3CB6B /* Debug */,
 				2D6313501EDA134A00C3CB6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D64A6F61F7B36CA0042DF2D /* Build configuration list for PBXNativeTarget "PingNotifier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D64A6F71F7B36CA0042DF2D /* Debug */,
+				2D64A6F81F7B36CA0042DF2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D7A7CCA1F7AD2DF0087A8E1 /* Build configuration list for PBXNativeTarget "GBPing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D7A7CC81F7AD2DF0087A8E1 /* Debug */,
+				2D7A7CC91F7AD2DF0087A8E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

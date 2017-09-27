@@ -24,7 +24,6 @@ NSString *const supportedSites = @"(crunchyroll|daisuki|animelab|funimation)";
         [request setTimeoutInterval:15];
         // Set User Agent
         [request setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12" forHTTPHeaderField:@"User-Agent"];
-        NSLock * lock = [NSLock new]; // NSMutableArray is not Thread Safe, lock before performing operation
         // Based on http://demianturner.com/2016/08/synchronous-nsurlsession-in-obj-c/
         __block NSHTTPURLResponse *urlresponse = nil;
         __block NSData *data = nil;
@@ -45,7 +44,7 @@ NSString *const supportedSites = @"(crunchyroll|daisuki|animelab|funimation)";
             NSString * title = [StreamInfoRetrieval getPageTitle:dom];
             NSString * browser = @"streamlink";
             if (title && dom && site) {
-                return @{ @"title":title, @"DOM":dom, @"url":URL, @"browser":browser, @"site":site};
+                return @{@"title":title, @"DOM":dom, @"url":URL, @"browser":browser, @"site":site};
             }
         }
     }

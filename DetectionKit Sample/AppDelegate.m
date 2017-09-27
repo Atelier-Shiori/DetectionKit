@@ -10,6 +10,7 @@
 #import "KodiSettings.h"
 #import <DetectionKit/DetectionKit.h>
 #import "PlexLoginPanel.h"
+#import <PingNotifier/PingNotifier.h>
 
 @interface AppDelegate ()
 @property (strong) Detection *detect;
@@ -19,6 +20,7 @@
 @property (strong) PlexLoginPanel *plexlogin;
 @property (weak) IBOutlet NSButton *plexloginbut;
 @property (weak) IBOutlet NSButton *plexlogoutbut;
+@property (strong) PingNotifier* pingclient;
 @end
 
 @implementation AppDelegate
@@ -60,6 +62,15 @@
         _plexloginbut.hidden = NO;
         _plexlogoutbut.hidden = YES;
     }
+    // Test Ping
+    _pingclient = [[PingNotifier alloc] initWithHost:@"169.254.77.43"];
+    [_pingclient setOnlineblock:^(void) {
+        NSLog(@"Host is online");
+    }];
+    [_pingclient setOfflineblock:^(void) {
+        NSLog(@"Host is offline");
+    }];
+    [_pingclient startPing];
 }
 
 
