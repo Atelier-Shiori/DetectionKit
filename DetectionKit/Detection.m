@@ -47,10 +47,10 @@
             return result;
         }
     }
-    result = [self detectPlayer];
+    result = [self detectStreamLink];
     if (!result) {
         // Check Stream
-        result = [self detectStream];
+        result = [self detectPlayer];
     }
     if (result) {
         // Return results
@@ -58,7 +58,7 @@
     }
     else {
         // Check Streamlink
-        result = [self detectStreamLink];
+        result = [self detectStream];
     }
     if (result) {
         // Return results
