@@ -38,13 +38,14 @@
     NSString * tmpseason;
     NSString * tmptitle = [NSString stringWithFormat:@"%@ %@", DetectedTitle, d[@"season"]];
     OnigResult * smatch;
-    regex = [OnigRegexp compile:@"((S|s)\\d|\\d)" options:OnigOptionIgnorecase];
-    smatch = [regex match:tmptitle];
-    if (smatch) {
+    regex = [OnigRegexp compile:@"((S|s|Season )\\d+|\\d+(st|nd|rd|th) Season|\\d+)" options:OnigOptionIgnorecase];
+    smatch = [regex search:tmptitle];
+    if (smatch.count > 0) {
         tmpseason = [smatch stringAt:0];
-        regex = [OnigRegexp compile:@"(S|s)" options:OnigOptionIgnorecase];
+        regex = [OnigRegexp compile:@"(S|s|Season |(st|nd|rd|th) Season)" options:OnigOptionIgnorecase];
         tmpseason = [tmpseason replaceByRegexp:regex with:@""];
         DetectedSeason = [tmpseason intValue];
+        DetectedTitle = [DetectedTitle replaceByRegexp:[OnigRegexp compile:@"((S|s|Season )\\d+|\\d+(st|nd|rd|th) Season|\\d+)" options:OnigOptionIgnorecase] with:@""];
     }
     else {
         DetectedSeason = 1;
@@ -81,5 +82,6 @@
     }
     return ftypes;
 }
+
 
 @end
