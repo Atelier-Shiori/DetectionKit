@@ -10,7 +10,7 @@
 #import "KodiSettings.h"
 #import <DetectionKit/DetectionKit.h>
 #import "PlexLoginPanel.h"
-#import <PingNotifier/PingNotifier.h>
+#import "PingNotifier/PingNotifier.h"
 
 @interface AppDelegate ()
 @property (strong) Detection *detect;

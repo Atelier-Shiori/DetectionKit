@@ -14,17 +14,17 @@
 
 @implementation MediaStreamParse
 +(NSArray *)parse:(NSArray *)pages {
-    NSMutableArray * final = [[NSMutableArray alloc] init];
-    ezregex * ez = [[ezregex alloc] init];
+    NSMutableArray *final = [[NSMutableArray alloc] init];
+    ezregex *ez = [[ezregex alloc] init];
     //Perform Regex and sanitize
     if (pages.count > 0) {
         for (NSDictionary *m in pages) {
-            NSString * regextitle = [NSString stringWithFormat:@"%@",m[@"title"]];
-            NSString * url = [NSString stringWithFormat:@"%@", m[@"url"]];
-            NSString * site = [NSString stringWithFormat:@"%@", m[@"site"]];
-            NSString * title;
-            NSString * tmpepisode;
-            NSString * tmpseason;
+            NSString *regextitle = [NSString stringWithFormat:@"%@",m[@"title"]];
+            NSString *url = [NSString stringWithFormat:@"%@", m[@"url"]];
+            NSString *site = [NSString stringWithFormat:@"%@", m[@"site"]];
+            NSString *title;
+            NSString *tmpepisode;
+            NSString *tmpseason;
             if ([site isEqualToString:@"crunchyroll"]) {
                 //Add Regex Arguments Here
                 if ([ez checkMatch:url pattern:@"[^/]+\\/episode-[0-9]+.*-[0-9]+"]||[ez checkMatch:url pattern:@"[^/]+\\/.*-movie-[0-9]+"]||[ez checkMatch:url pattern:@"[^/]+\\/.*-\\d+"]) {
@@ -70,7 +70,7 @@
             else if ([site isEqualToString:@"funimation"]) {
                 if ([ez checkMatch:url pattern:@"shows\\/*.*\\/"]) {
                     //Get the Document Object Model
-                    NSString * DOM = [NSString stringWithFormat:@"%@",m[@"DOM"]];
+                    NSString *DOM = [NSString stringWithFormat:@"%@",m[@"DOM"]];
                     tmpepisode = [ez findMatch:[NSString stringWithFormat:@"%@", DOM] pattern:@"Episode\\s+\\d+" rangeatindex:0];
                     tmpepisode = [ez searchreplace:tmpepisode pattern:@"Episode\\s+"];
                     title = [ez findMatch:[NSString stringWithFormat:@"%@", DOM] pattern:@"<h2 class=\"show-headline video-title\"><a href=\"*.*\">*.*<\\/a>" rangeatindex:0];
@@ -85,12 +85,12 @@
                 continue;
             }
             
-            NSNumber * episode;
-            NSNumber * season;
+            NSNumber *episode;
+            NSNumber *season;
             // Populate Season
             if (tmpseason.length == 0) {
                 // Parse Season from title
-                NSDictionary * seasondata = [MediaStreamParse checkSeason:title];
+                NSDictionary *seasondata = [MediaStreamParse checkSeason:title];
                 if (seasondata != nil) {
                     season = (NSNumber *)seasondata[@"season"];
                     title = seasondata[@"title"];
@@ -106,7 +106,7 @@
             title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             tmpepisode = [tmpepisode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             // Final Checks
-            if ([tmpepisode length] ==0) {
+            if (tmpepisode.length ==0) {
                 episode = @(0);
             }
             else {
@@ -116,7 +116,7 @@
                 continue;
             }
             // Add to Final Array
-            NSDictionary * frecord = [[NSDictionary alloc] initWithObjectsAndKeys:title, @"title", episode, @"episode", season, @"season", [m objectForKey:@"browser"], @"browser", site, @"site", nil];
+            NSDictionary *frecord = @{@"title": title, @"episode": episode, @"season": season, @"browser": m[@"browser"], @"site": site};
             [final addObject:frecord];
         }
     }
@@ -124,22 +124,22 @@
 }
 +(NSDictionary *)checkSeason:(NSString *) title {
     // Parses season
-    ezregex * ez = [ezregex new];
-    NSString * tmpseason;
-    NSDictionary * result;
-    NSString * pattern = @"(\\d(st|nd|rd|th) season|season \\d|s\\d)";
+    ezregex *ez = [ezregex new];
+    NSString *tmpseason;
+    NSDictionary *result;
+    NSString *pattern = @"(\\d(st|nd|rd|th) season|season \\d|s\\d)";
     if ([ez checkMatch:title pattern:pattern]) {
         tmpseason = [ez findMatch:title pattern:pattern rangeatindex:0];
         title = [title stringByReplacingOccurrencesOfString:tmpseason withString:@""];
         tmpseason = [ez findMatch:tmpseason pattern:@"\\d+" rangeatindex:0];
-        result = [[NSDictionary alloc] initWithObjectsAndKeys:title, @"title", [[NSNumberFormatter alloc] numberFromString:tmpseason], @"season", nil];
+        result = @{@"title": title, @"season": [[NSNumberFormatter alloc] numberFromString:tmpseason]};
         
     }
     pattern = @"(first|season|third|fourth|fifth) season";
     if ([ez checkMatch:title pattern:@"(first|season|third|fourth|fifth) season"] && tmpseason.length == 0) {
         tmpseason = [ez findMatch:title pattern:pattern rangeatindex:0];
         title = [title stringByReplacingOccurrencesOfString:tmpseason withString:@""];
-        result = [[NSDictionary alloc] initWithObjectsAndKeys:title, @"title",@([MediaStreamParse recognizeseason:tmpseason]), @"season", nil];
+        result = @{@"title": title,@"season": @([MediaStreamParse recognizeseason:tmpseason])};
     }
     return result;
 }

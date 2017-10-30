@@ -14,8 +14,8 @@
 @implementation PlexAuth
 + (bool)performplexlogin:(NSString *)username withPassword:(NSString *)password {
     // Retrieve Token
-    EasyNSURLConnection * request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:@"https://plex.tv/users/sign_in.xml"]];
-    request.headers = @{@"X-Plex-Client-Identifier":[[NSUserDefaults standardUserDefaults] objectForKey:@"plexidentifier"],@"X-Plex-Product":NSBundle.mainBundle.infoDictionary[@"CFBundleName"],@"X-Plex-Version":NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]};
+    EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:@"https://plex.tv/users/sign_in.xml"]];
+    request.headers = (NSMutableDictionary *)@{@"X-Plex-Client-Identifier":[[NSUserDefaults standardUserDefaults] objectForKey:@"plexidentifier"],@"X-Plex-Product":NSBundle.mainBundle.infoDictionary[@"CFBundleName"],@"X-Plex-Version":NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]};
     [request addFormData:username forKey:@"user[login]"];
     [request addFormData:password forKey:@"user[password]"];
     [request startFormRequest];
@@ -49,15 +49,13 @@
 
 + (NSString *)checkplexaccount{
     // This method checks for any accounts that Hachidori can use
-    NSArray * accounts = [SAMKeychain accountsForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]]];
+    NSArray *accounts = [SAMKeychain accountsForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]]];
     if (accounts > 0) {
         //retrieve first valid account
-        for (NSDictionary * account in accounts) {
+        for (NSDictionary *account in accounts) {
             return (NSString *)account[@"acct"];
         }
     }
     return @"";
 }
-
-
 @end

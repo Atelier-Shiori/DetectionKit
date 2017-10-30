@@ -15,9 +15,9 @@
 
 -(NSDictionary*)recognize:(NSString *)string {
     OnigRegexp    *regex;
-    NSString * DetectedTitle;
-    NSString * DetectedEpisode;
-    NSString * DetectedGroup;
+    NSString *DetectedTitle;
+    NSString *DetectedEpisode;
+    NSString *DetectedGroup;
     
     int DetectedSeason;
     //Get Filename
@@ -25,26 +25,26 @@
     string = [string replaceByRegexp:regex with:@""];
     regex = [OnigRegexp compile:@"^.+\\\\" options:OnigOptionIgnorecase];//for Plex
     string = [string replaceByRegexp:regex with:@""];
-    NSDictionary * d = [[anitomy_bridge new] tokenize:string];
+    NSDictionary *d = [[anitomy_bridge new] tokenize:string];
     DetectedTitle = d[@"title"];
     DetectedEpisode = d[@"episode"];
     DetectedGroup = d[@"group"];
     if (DetectedGroup.length == 0) {
         DetectedGroup = @"Unknown";
     }
-    NSArray * DetectedTypes = [Recognition populateAnimeTypes:d[@"type"]];
+    NSArray *DetectedTypes = [Recognition populateAnimeTypes:d[@"type"]];
     
     //Season Checking
-    NSString * tmpseason;
-    NSString * tmptitle = [NSString stringWithFormat:@"%@ %@", DetectedTitle, d[@"season"]];
-    OnigResult * smatch;
+    NSString *tmpseason;
+    NSString *tmptitle = [NSString stringWithFormat:@"%@ %@", DetectedTitle, d[@"season"]];
+    OnigResult *smatch;
     regex = [OnigRegexp compile:@"((S|s|Season )\\d+|\\d+(st|nd|rd|th) Season|\\d+)" options:OnigOptionIgnorecase];
     smatch = [regex search:tmptitle];
     if (smatch.count > 0) {
         tmpseason = [smatch stringAt:0];
         regex = [OnigRegexp compile:@"(S|s|Season |(st|nd|rd|th) Season)" options:OnigOptionIgnorecase];
         tmpseason = [tmpseason replaceByRegexp:regex with:@""];
-        DetectedSeason = [tmpseason intValue];
+        DetectedSeason = tmpseason.intValue;
         DetectedTitle = [DetectedTitle replaceByRegexp:[OnigRegexp compile:@"((S|s|Season )\\d+|\\d+(st|nd|rd|th) Season|\\d+)" options:OnigOptionIgnorecase] with:@""];
     }
     else {
@@ -62,7 +62,7 @@
 }
 
 +(NSArray*)populateAnimeTypes:(NSArray *)types{
-    NSMutableArray * ftypes = [NSMutableArray new];
+    NSMutableArray *ftypes = [NSMutableArray new];
     for (NSString * type in types ) {
         if ([type caseInsensitiveCompare:@"Genkijouban"] == NSOrderedSame) {
             [ftypes addObject:@"Movie"];

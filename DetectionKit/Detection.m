@@ -14,7 +14,7 @@
 #import "OnigRegexp+MatchExtensions.h"
 #import <AppKit/AppKit.h>
 #import <EasyNSURLConnection/EasyNSURLConnectionClass.h>
-#import <PingNotifier/PingNotifier.h>
+#import "PingNotifier/PingNotifier.h"
 #import <CocoaOniguruma/OnigRegexp.h>
 #import <CocoaOniguruma/OnigRegexpUtility.h>
 #import <SAMKeychain/SAMKeychain.h>
@@ -34,7 +34,7 @@
 @implementation Detection
 #pragma mark Public Methods
 - (NSDictionary *)detectmedia {
-    NSDictionary * result;
+    NSDictionary *result;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enablekodiapi"]) {
         result = [self detectKodi];
         if (result) {
@@ -50,7 +50,7 @@
     result = [self detectStreamLink];
     if (!result) {
         // Check Stream
-        result = [self detectPlayer];
+        result = self.detectPlayer;
     }
     if (result) {
         // Return results
@@ -58,7 +58,7 @@
     }
     else {
         // Check Streamlink
-        result = [self detectStream];
+        result = self.detectStream;
     }
     if (result) {
         // Return results
@@ -71,7 +71,7 @@
 }
 
 - (NSDictionary *)checksstreamlinkinfo:(NSDictionary *)d {
-    Detection * detector = [Detection new];
+    Detection *detector = [Detection new];
     if (![detector checkStreamlinkTitleIgnored:d]) {
         return [detector convertstreamlinkinfo:d];
     }
@@ -82,7 +82,7 @@
 
 - (NSDictionary *)detectPlayer{
     //Create an NSDictionary
-    NSDictionary * result;
+    NSDictionary *result;
     // LSOF mplayer to get the media title and segment
     // Read supportedplayers.json
     NSError* error;
@@ -103,7 +103,7 @@
         else {
             task = [[NSTask alloc] init];
             task.launchPath = @"/usr/sbin/lsof";
-            task.arguments = @[@"-c", (NSString *)theplayer[@"process_name"], @"-F", @"n"]; 		//lsof -c '<player name>' -Fn
+            task.arguments = @[@"-c", (NSString *)theplayer[@"process_name"], @"-F", @"n"];         //lsof -c '<player name>' -Fn
         }
         // Check if running
         if (theplayer[@"player_bundle_identifier"]) {
@@ -133,12 +133,12 @@
             //Get the filename first
             OnigResult    *match;
             match = [regex search:string];
-            NSMutableArray * filenames = [NSMutableArray new];
-            for (NSString * matchedString in match.strings) {
+            NSMutableArray *filenames = [NSMutableArray new];
+            for (NSString *matchedString in match.strings) {
                 [filenames addObject:matchedString];
             }
             // Populate Source
-            NSString * DetectedSource = theplayer[@"player_name"];
+            NSString *DetectedSource = theplayer[@"player_name"];
             //Check if thee file name or directory is on any ignore list
             for (long i = filenames.count-1;i >= 0;i--) {
                 //Check every possible match
@@ -150,10 +150,10 @@
                     NSDictionary *d = [[Recognition alloc] recognize:string];
                     BOOL invalidepisode = [self checkIgnoredKeywords:d[@"types"]];
                     if (!invalidepisode) {
-                        NSString * DetectedTitle = (NSString *)d[@"title"];
-                        NSString * DetectedEpisode = (NSString *)d[@"episode"];
-                        NSNumber * DetectedSeason = d[@"season"];
-                        NSString * DetectedGroup = (NSString *)d[@"group"];
+                        NSString *DetectedTitle = (NSString *)d[@"title"];
+                        NSString *DetectedEpisode = (NSString *)d[@"episode"];
+                        NSNumber *DetectedSeason = d[@"season"];
+                        NSString *DetectedGroup = (NSString *)d[@"group"];
                         if (DetectedTitle.length > 0) {
                             //Return result
                             result = @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": d[@"types"]};
@@ -175,7 +175,7 @@
 
 - (NSDictionary *)detectStream {
     // Create Dictionary
-    NSDictionary * d;
+    NSDictionary *d;
     //Set detectream Task and Run it
     NSTask *task;
     task = [[NSTask alloc] init];
@@ -212,8 +212,8 @@
         return nil;
     }
     else {
-        NSArray * c = d[@"result"];
-        NSDictionary * result = c[0];
+        NSArray *c = d[@"result"];
+        NSDictionary *result = c[0];
         if (!result[@"title"]) {
             return nil;
         }
@@ -223,27 +223,26 @@
         else if ([(NSString *)result[@"site"] isEqualToString:@"plex"]) {
             //Do additional pharsing
             NSDictionary *d2 = [[Recognition alloc] recognize:result[@"title"]];
-            NSString * DetectedTitle = (NSString *)d2[@"title"];
-            NSString * DetectedEpisode = (NSString *)d2[@"episode"];
-            NSString * DetectedSource = [NSString stringWithFormat:@"%@ in %@", [result[@"site"] capitalizedString], result[@"browser"]];
-            NSNumber * DetectedSeason = d2[@"season"];
-            NSString * DetectedGroup = (NSString *)d2[@"group"];
+            NSString *DetectedTitle = (NSString *)d2[@"title"];
+            NSString *DetectedEpisode = (NSString *)d2[@"episode"];
+            NSString *DetectedSource = [NSString stringWithFormat:@"%@ in %@", [result[@"site"] capitalizedString], result[@"browser"]];
+            NSNumber *DetectedSeason = d2[@"season"];
+            NSString *DetectedGroup = (NSString *)d2[@"group"];
             if (DetectedTitle.length > 0 && ![self checkifTitleIgnored:DetectedTitle source:result[@"site"]]) {
                 //Return result
                 return @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": d2[@"types"]};
             }
-            
         }
         else if (!result[@"episode"]) {
             //Episode number is missing. Do not use the stream data as a failsafe to keep the program from crashing
             return nil;
         }
         else {
-            NSString * DetectedTitle = (NSString *)result[@"title"];
-            NSString * DetectedEpisode = [NSString stringWithFormat:@"%@",result[@"episode"]];
-            NSString * DetectedSource = [NSString stringWithFormat:@"%@ in %@", [result[@"site"] capitalizedString], result[@"browser"]];
-            NSString * DetectedGroup = (NSString *)result[@"site"];
-            NSNumber * DetectedSeason = (NSNumber *)result[@"season"];
+            NSString *DetectedTitle = (NSString *)result[@"title"];
+            NSString *DetectedEpisode = [NSString stringWithFormat:@"%@",result[@"episode"]];
+            NSString *DetectedSource = [NSString stringWithFormat:@"%@ in %@", [result[@"site"] capitalizedString], result[@"browser"]];
+            NSString *DetectedGroup = (NSString *)result[@"site"];
+            NSNumber *DetectedSeason = (NSNumber *)result[@"season"];
             return @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": [NSArray new]};
         }
     }
@@ -252,27 +251,31 @@
 
 - (NSDictionary *)detectKodi {
     // Only Detect from Kodi RPC when the host is reachable.
-    if ([self getKodiOnlineStatus]) {
+    if (self.kodionline) {
         // Kodi/Plex Theater Detection
-        NSString * address = [[NSUserDefaults standardUserDefaults] objectForKey:@"kodiaddress"];
-        NSString * port = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"kodiport"]];
+        NSString *address = [[NSUserDefaults standardUserDefaults] objectForKey:@"kodiaddress"];
+        NSString *port = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"kodiport"]];
         if (address.length == 0) {
             return nil;
         }
         if (port.length == 0) {
             port = @"3005";
         }
-        EasyNSURLConnection * request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%@/jsonrpc", address,port]]];
-        [request startJSONRequest:@"{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"season\", \"episode\", \"showtitle\", \"tvshowid\", \"thumbnail\", \"file\", \"fanart\", \"streamdetails\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}" type:EasyNSURLConnectionJsonType];
+        EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%@/jsonrpc", address,port]]];
+        request.usejson = true;
+        NSString *plexjsonrequeststr = @"{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"season\", \"episode\", \"showtitle\", \"tvshowid\", \"thumbnail\", \"file\", \"fanart\", \"streamdetails\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}";
+        request.formdata = [[NSMutableDictionary alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:[plexjsonrequeststr dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil]];
+        [request startFormRequest];
+        //[request startJSONRequest:@"{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"season\", \"episode\", \"showtitle\", \"tvshowid\", \"thumbnail\", \"file\", \"fanart\", \"streamdetails\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}" type:EasyNSURLConnectionJsonType];
         if (request.getStatusCode == 200) {
-            NSDictionary * result;
-            NSError * error = nil;
-            result = [NSJSONSerialization JSONObjectWithData:[request getResponseData] options:kNilOptions error:&error];
+            NSDictionary *result;
+            NSError *error = nil;
+            result = [request getResponseDataJsonParsed];
             if (result[@"result"]) {
                 //Valid Result, parse title
-                NSDictionary * items = result[@"result"];
-                NSDictionary * item = items[@"item"];
-                NSString * label;
+                NSDictionary *items = result[@"result"];
+                NSDictionary *item = items[@"item"];
+                NSString *label;
                 if ([[NSUserDefaults standardUserDefaults] boolForKey:@"kodiusefilename"])
                 {
                     // Use filename for recognition
@@ -282,19 +285,19 @@
                     // Use the label
                     label = item[@"label"];
                 }
-                NSDictionary * d=[[Recognition alloc] recognize:label];
+                NSDictionary *d=[[Recognition alloc] recognize:label];
                 BOOL invalidepisode = [self checkIgnoredKeywords:d[@"types"]];
                 if (!invalidepisode) {
-                    NSString * DetectedTitle = (NSString *)d[@"title"];
-                    NSString * DetectedEpisode = (NSString *)d[@"episode"];
-                    NSNumber * DetectedSeason = d[@"season"];
-                    NSString * DetectedGroup = d[@"group"];
-                    NSString * DetectedSource = @"Kodi/Plex";
+                    NSString *DetectedTitle = (NSString *)d[@"title"];
+                    NSString *DetectedEpisode = (NSString *)d[@"episode"];
+                    NSNumber *DetectedSeason = d[@"season"];
+                    NSString *DetectedGroup = d[@"group"];
+                    NSString *DetectedSource = @"Kodi/Plex";
                     if ([self checkifTitleIgnored:(NSString *)DetectedTitle source:DetectedSource]) {
                         return nil;
                     }
                     else {
-                        NSDictionary * output = @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": d[@"types"]};
+                        NSDictionary *output = @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": d[@"types"]};
                         return output;
                     }
                 }
@@ -317,9 +320,9 @@
 }
 
 - (NSDictionary *)detectStreamLink {
-    NSArray * a = [self detectAndRetrieveInfo];
+    NSArray *a = [self detectAndRetrieveInfo];
     if (a.count > 0) {
-        NSDictionary * result = a[0];
+        NSDictionary *result = a[0];
         if (!result[@"title"] || !result[@"site"]) {
             return nil;
         }
@@ -331,11 +334,11 @@
             return nil;
         }
         else {
-            NSString * DetectedTitle = (NSString *)result[@"title"];
-            NSString * DetectedEpisode = [NSString stringWithFormat:@"%@",result[@"episode"]];
-            NSString * DetectedSource = [NSString stringWithFormat:@"%@ in %@", [result[@"site"] capitalizedString], result[@"browser"]];
-            NSString * DetectedGroup = (NSString *)result[@"site"];
-            NSNumber * DetectedSeason = (NSNumber *)result[@"season"];
+            NSString *DetectedTitle = (NSString *)result[@"title"];
+            NSString *DetectedEpisode = [NSString stringWithFormat:@"%@",result[@"episode"]];
+            NSString *DetectedSource = [NSString stringWithFormat:@"%@ in %@", [result[@"site"] capitalizedString], result[@"browser"]];
+            NSString *DetectedGroup = (NSString *)result[@"site"];
+            NSNumber *DetectedSeason = (NSNumber *)result[@"season"];
             return @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": [NSArray new]};
         }
     }
@@ -345,11 +348,11 @@
 - (NSDictionary *)detectPlex {
     NSString *username = [PlexAuth checkplexaccount];
     if (username.length > 0) {
-        if ([self getPlexOnlineStatus]) {
+        if (self.plexonline) {
             // Retrieve ssessions opened in Plex Media Server
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            EasyNSURLConnection * request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%li/status/sessions?X-Plex-Token=%@", [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username] ]]];
-            request.headers = @{@"X-Plex-Client-Identifier":[defaults objectForKey:@"plexidentifier"],@"X-Plex-Product":NSBundle.mainBundle.infoDictionary[@"CFBundleName"],@"X-Plex-Version":NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]};
+            EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%li/status/sessions?X-Plex-Token=%@", [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username] ]]];
+            request.headers = (NSMutableDictionary *)@{@"X-Plex-Client-Identifier":[defaults objectForKey:@"plexidentifier"],@"X-Plex-Product":NSBundle.mainBundle.infoDictionary[@"CFBundleName"],@"X-Plex-Version":NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]};
             [request startFormRequest];
             switch (request.getStatusCode) {
                 case 200:{
@@ -374,25 +377,27 @@
         sessions = d[@"MediaContainer"];
         if (![sessions isKindOfClass:[NSArray class]]) {
             // Import only contains one object, put it in an array.
-            sessions = [NSArray arrayWithObject:sessions];
+            sessions = @[sessions];
         }
         NSString *currentuser = [PlexAuth checkplexaccount];
         for (NSDictionary *videoi in sessions) {
             NSDictionary *video = videoi[@"Video"];
-            NSString *playerstate = video[@"Player"][@"state"];
-            NSString *playerusername = video[@"User"][@"title"];
-            if ([playerstate isEqualToString:@"playing"] && [playerusername isEqualToString:currentuser]) {
-                NSDictionary *metadata = [self retrievemetadata:(NSString *)video[@"key"]];
-                NSString *filepath = metadata[@"Media"][@"Part"][@"file"];
-                NSDictionary *recoginfo = [[Recognition alloc] recognize:filepath];
-                NSString * DetectedTitle = (NSString *)recoginfo[@"title"];
-                NSString * DetectedEpisode = (NSString *)recoginfo[@"episode"];
-                NSString * DetectedSource = @"Plex";
-                NSNumber * DetectedSeason = recoginfo[@"season"];
-                NSString * DetectedGroup = (NSString *)recoginfo[@"group"];
-                if (DetectedTitle.length > 0 && ![self checkifTitleIgnored:DetectedTitle source:@"Plex"]) {
-                    //Return result
-                    return @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": recoginfo[@"types"]};
+            if (video[@"Player"][@"state"]) {
+                NSString *playerstate = video[@"Player"][@"state"];
+                NSString *playerusername = video[@"User"][@"title"];
+                if ([playerstate isEqualToString:@"playing"] && [playerusername isEqualToString:currentuser]) {
+                    NSDictionary *metadata = [self retrievemetadata:(NSString *)video[@"key"]];
+                    NSString *filepath = metadata[@"Media"][@"Part"][@"file"];
+                    NSDictionary *recoginfo = [[Recognition alloc] recognize:filepath];
+                    NSString *DetectedTitle = (NSString *)recoginfo[@"title"];
+                    NSString *DetectedEpisode = (NSString *)recoginfo[@"episode"];
+                    NSString *DetectedSource = @"Plex";
+                    NSNumber *DetectedSeason = recoginfo[@"season"];
+                    NSString *DetectedGroup = (NSString *)recoginfo[@"group"];
+                    if (DetectedTitle.length > 0 && ![self checkifTitleIgnored:DetectedTitle source:@"Plex"]) {
+                        //Return result
+                        return @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": recoginfo[@"types"]};
+                    }
                 }
             }
             else {
@@ -407,8 +412,8 @@
     NSString *username = [PlexAuth checkplexaccount];
     // Retrieve Token
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    EasyNSURLConnection * request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%li/status/sessions?X-Plex-Token=%@", [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username] ]]];
-    request.headers = @{@"X-Plex-Client-Identifier":[defaults objectForKey:@"plexidentifier"],@"X-Plex-Product":NSBundle.mainBundle.infoDictionary[@"CFBundleName"],@"X-Plex-Version":NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]};
+    EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%li/status/sessions?X-Plex-Token=%@", [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username] ]]];
+    request.headers = (NSMutableDictionary *)@{@"X-Plex-Client-Identifier":[defaults objectForKey:@"plexidentifier"],@"X-Plex-Product":NSBundle.mainBundle.infoDictionary[@"CFBundleName"],@"X-Plex-Version":NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]};
     [request startFormRequest];
     switch (request.getStatusCode) {
         case 200:{
@@ -428,11 +433,11 @@
 #pragma mark Helpers
 
 - (NSDictionary *)convertstreamlinkinfo:(NSDictionary *)result {
-    NSString * DetectedTitle = (NSString *)result[@"title"];
-    NSString * DetectedEpisode = [NSString stringWithFormat:@"%@",result[@"episode"]];
-    NSString * DetectedSource = [NSString stringWithFormat:@"%@ in %@", [result[@"site"] capitalizedString], result[@"browser"]];
-    NSString * DetectedGroup = (NSString *)result[@"site"];
-    NSNumber * DetectedSeason = (NSNumber *)result[@"season"];
+    NSString *DetectedTitle = (NSString *)result[@"title"];
+    NSString *DetectedEpisode = [NSString stringWithFormat:@"%@",result[@"episode"]];
+    NSString *DetectedSource = [NSString stringWithFormat:@"%@ in %@", [result[@"site"] capitalizedString], result[@"browser"]];
+    NSString *DetectedGroup = (NSString *)result[@"site"];
+    NSNumber *DetectedSeason = (NSNumber *)result[@"season"];
     return @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": [NSArray new]};
 }
 
@@ -451,11 +456,11 @@
     // Get filename only
     filename = [filename replaceByRegexp:[OnigRegexp compile:@"^.+/" options:OnigOptionIgnorecase] with:@""];
     source = [source replaceByRegexp:[OnigRegexp compile:@"\\sin\\s\\w+" options:OnigOptionIgnorecase] with:@""];
-    NSArray * ignoredfilenames = [[[NSUserDefaults standardUserDefaults] objectForKey:@"IgnoreTitleRules"] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(rulesource == %@) OR (rulesource ==[c] %@)" , @"All Sources", source]];
+    NSArray *ignoredfilenames = [[[NSUserDefaults standardUserDefaults] objectForKey:@"IgnoreTitleRules"] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(rulesource == %@) OR (rulesource ==[c] %@)" , @"All Sources", source]];
     NSLog(@"Debug: %@", filename);
     if (ignoredfilenames.count > 0) {
-        for (NSDictionary * d in ignoredfilenames) {
-            NSString * rule = [NSString stringWithFormat:@"%@", d[@"rule"]];
+        for (NSDictionary *d in ignoredfilenames) {
+            NSString *rule = [NSString stringWithFormat:@"%@", d[@"rule"]];
             if ([[[OnigRegexp compile:@"%@" options:OnigOptionIgnorecase] match:filename] havematches] && rule.length !=0) { // Blank rules are infinite, thus should not be counted
                 NSLog(@"Video file name is on filename ignore list.");
                 return true;
@@ -473,9 +478,9 @@
         return false;
     }
     //Check ignore directories. If on ignore directory, set onIgnoreList to true.
-    NSArray * ignoredirectories = [[NSUserDefaults standardUserDefaults] objectForKey:@"ignoreddirectories"];
+    NSArray *ignoredirectories = [[NSUserDefaults standardUserDefaults] objectForKey:@"ignoreddirectories"];
     if (ignoredirectories.count > 0) {
-        for (NSDictionary * d in ignoredirectories) {
+        for (NSDictionary *d in ignoredirectories) {
             if ([filename isEqualToString:d[@"directory"]]) {
                 NSLog(@"Video being played is in ignored directory");
                 return true;
@@ -486,7 +491,7 @@
 }
 - (bool)checkIgnoredKeywords:(NSArray *)types {
     // Check for potentially invalid types
-    for (NSString * type in types) {
+    for (NSString *type in types) {
         if ([[[OnigRegexp compile:@"(ED|Ending|NCED|NCOP|OP|Opening|Preview|PV)" options:OnigOptionIgnorecase] match:type] havematches]) {
             return true;
         }
@@ -596,11 +601,11 @@
 
 #pragma mark Utility Methods
 - (BOOL)checkIdentifier:(NSString*)identifier {
-    NSWorkspace * ws = [NSWorkspace sharedWorkspace];
-    NSArray *runningApps = [ws runningApplications];
+    NSWorkspace *ws = [NSWorkspace sharedWorkspace];
+    NSArray *runningApps = ws.runningApplications;
     NSRunningApplication *a;
     for (a in runningApps) {
-        if ([[a bundleIdentifier] isEqualToString:identifier]) {
+        if ([a.bundleIdentifier isEqualToString:identifier]) {
             return true;
         }
     }

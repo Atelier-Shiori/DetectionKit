@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface StreamInfoRetrieval : NSObject
-+(NSDictionary *)retrieveStreamInfo:(NSString*) URL;
-+(NSString *)getPageTitle:(NSString *)dom;
++ (NSDictionary *)retrieveStreamInfo:(NSString*) URL;
++ (NSString *)getPageTitle:(NSString *)dom;
 @end
