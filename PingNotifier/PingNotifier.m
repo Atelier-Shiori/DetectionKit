@@ -45,13 +45,7 @@
         if (success) {
             _isSetUp = true;
             _blockran = false;
-            @try {
-                [_pingclient startPinging];
-            }
-            @catch (NSException *e) {
-                NSLog(@"Ping failed to start: %@" , e);
-                [self setOnline:false];
-            }
+            [_pingclient startPinging];
             _pingstoptimer = [MSWeakTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(stopPingTimer) userInfo:nil repeats:NO dispatchQueue:_stopqueue];
         }
     }];

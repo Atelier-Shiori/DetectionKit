@@ -498,7 +498,7 @@ static NSTimeInterval const kDefaultTimeout =           2.0;
                 packet = [self pingPacketWithType:kICMPv6TypeEchoRequest payload:payload requiresChecksum:NO];
             } break;
             default: {
-                assert(NO);
+                return;
             } break;
         }
         
