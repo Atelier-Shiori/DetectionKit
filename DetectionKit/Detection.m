@@ -381,27 +381,32 @@
         }
         NSString *currentuser = [PlexAuth checkplexaccount];
         for (NSDictionary *videoi in sessions) {
-            NSDictionary *video = videoi[@"Video"];
-            if (video[@"Player"][@"state"]) {
-                NSString *playerstate = video[@"Player"][@"state"];
-                NSString *playerusername = video[@"User"][@"title"];
-                if ([playerstate isEqualToString:@"playing"] && [playerusername isEqualToString:currentuser]) {
-                    NSDictionary *metadata = [self retrievemetadata:(NSString *)video[@"key"]];
-                    NSString *filepath = metadata[@"Media"][@"Part"][@"file"];
-                    NSDictionary *recoginfo = [[Recognition alloc] recognize:filepath];
-                    NSString *DetectedTitle = (NSString *)recoginfo[@"title"];
-                    NSString *DetectedEpisode = (NSString *)recoginfo[@"episode"];
-                    NSString *DetectedSource = @"Plex";
-                    NSNumber *DetectedSeason = recoginfo[@"season"];
-                    NSString *DetectedGroup = (NSString *)recoginfo[@"group"];
-                    if (DetectedTitle.length > 0 && ![self checkifTitleIgnored:DetectedTitle source:@"Plex"]) {
-                        //Return result
-                        return @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": recoginfo[@"types"]};
+            NSArray *videoa = videoi[@"Video"];
+            if (![videoa isKindOfClass:[NSArray class]]) {
+                videoa = @[videoa];
+            }
+            for (NSDictionary *video in videoa) {
+                if (video[@"Player"][@"state"]) {
+                    NSString *playerstate = video[@"Player"][@"state"];
+                    NSString *playerusername = video[@"User"][@"title"];
+                    if ([playerstate isEqualToString:@"playing"] && [playerusername isEqualToString:currentuser]) {
+                        NSDictionary *metadata = [self retrievemetadata:(NSString *)video[@"key"]];
+                        NSString *filepath = metadata[@"Media"][@"Part"][@"file"];
+                        NSDictionary *recoginfo = [[Recognition alloc] recognize:filepath];
+                        NSString *DetectedTitle = (NSString *)recoginfo[@"title"];
+                        NSString *DetectedEpisode = (NSString *)recoginfo[@"episode"];
+                        NSString *DetectedSource = @"Plex";
+                        NSNumber *DetectedSeason = recoginfo[@"season"];
+                        NSString *DetectedGroup = (NSString *)recoginfo[@"group"];
+                        if (DetectedTitle.length > 0 && ![self checkifTitleIgnored:DetectedTitle source:@"Plex"]) {
+                            //Return result
+                            return @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": recoginfo[@"types"]};
+                        }
                     }
                 }
-            }
-            else {
-                continue;
+                else {
+                    continue;
+                }
             }
         }
     }
