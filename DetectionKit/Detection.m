@@ -382,6 +382,9 @@
         NSString *currentuser = [PlexAuth checkplexaccount];
         for (NSDictionary *videoi in sessions) {
             NSArray *videoa = videoi[@"Video"];
+            if (!videoa) {
+                continue;
+            }
             if (![videoa isKindOfClass:[NSArray class]]) {
                 videoa = @[videoa];
             }
