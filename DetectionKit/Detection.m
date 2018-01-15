@@ -220,6 +220,9 @@
         else if ([self checkifTitleIgnored:(NSString *)result[@"title"] source:result[@"site"]]) {
             return nil;
         }
+        if ([(NSString *)result[@"type"] isEqualToString:@"manga"]) {
+            return nil;
+        }
         else if ([(NSString *)result[@"site"] isEqualToString:@"plex"]) {
             //Do additional pharsing
             NSDictionary *d2 = [[Recognition alloc] recognize:result[@"title"]];
