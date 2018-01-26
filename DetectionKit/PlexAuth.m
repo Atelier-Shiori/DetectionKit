@@ -50,7 +50,7 @@
 + (NSString *)checkplexaccount{
     // This method checks for any accounts that Hachidori can use
     NSArray *accounts = [SAMKeychain accountsForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]]];
-    if (accounts > 0) {
+    if (accounts.count > 0) {
         //retrieve first valid account
         for (NSDictionary *account in accounts) {
             return (NSString *)account[@"acct"];

@@ -88,10 +88,10 @@
     NSError* error;
     NSData *supportedplayersdata = [[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"supportedplayers" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil] dataUsingEncoding:NSUTF8StringEncoding];
 
-    NSArray *player = [NSJSONSerialization JSONObjectWithData:supportedplayersdata options:kNilOptions error:&error];
+    NSArray *player = [NSJSONSerialization JSONObjectWithData:supportedplayersdata options:0 error:&error];
     NSString *string;
     OnigRegexp    *regex;
-    for (int i = 0; i <player.count; i++) {
+    for (NSUInteger i = 0; i <player.count; i++) {
         NSTask *task;
         NSDictionary *theplayer = player[i];
         if (theplayer[@"applescript_command"]) {
@@ -140,9 +140,9 @@
             // Populate Source
             NSString *DetectedSource = theplayer[@"player_name"];
             //Check if thee file name or directory is on any ignore list
-            for (long i = filenames.count-1;i >= 0;i--) {
+            for (NSUInteger f = 0; f < filenames.count; f++) {
                 //Check every possible match
-                string = filenames[i];
+                string = filenames[f];
                 BOOL onIgnoreList = [self checkifIgnored:string source:DetectedSource];
                 //Make sure the file name is valid, even if player is open. Do not update video files in ignored directories
                 
@@ -206,7 +206,7 @@
         return nil;
     }
     
-    d = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    d = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     
     if (d[@"result"]  == [NSNull null]) { // Check to see if anything is playing on stream
         return nil;
@@ -296,7 +296,7 @@
                     NSNumber *DetectedSeason = d[@"season"];
                     NSString *DetectedGroup = d[@"group"];
                     NSString *DetectedSource = @"Kodi/Plex";
-                    if ([self checkifTitleIgnored:(NSString *)DetectedTitle source:DetectedSource]) {
+                    if ([self checkifTitleIgnored:DetectedTitle source:DetectedSource]) {
                         return nil;
                     }
                     else {
@@ -384,11 +384,11 @@
         }
         NSString *currentuser = [PlexAuth checkplexaccount];
         for (NSDictionary *videoi in sessions) {
-            NSArray *videoa = videoi[@"Video"];
+            id videoa = videoi[@"Video"];
             if (!videoa) {
                 continue;
             }
-            if (![videoa isKindOfClass:[NSArray class]]) {
+            else if (![videoa isKindOfClass:[NSArray class]]) {
                 videoa = @[videoa];
             }
             for (NSDictionary *video in videoa) {
@@ -397,7 +397,7 @@
                     NSString *playerusername = video[@"User"][@"title"];
                     if ([playerstate isEqualToString:@"playing"] && [playerusername isEqualToString:currentuser]) {
                         NSDictionary *metadata = [self retrievemetadata:(NSString *)video[@"key"]];
-                        NSString *filepath = metadata[@"Media"][@"Part"][@"file"];
+                        NSString *filepath = metadata[@"Media"][@"Part"][@"file"] ? metadata[@"Media"][@"Part"][@"file"]  : metadata[@"title"];
                         NSDictionary *recoginfo = [[Recognition alloc] recognize:filepath];
                         NSString *DetectedTitle = (NSString *)recoginfo[@"title"];
                         NSString *DetectedEpisode = (NSString *)recoginfo[@"episode"];
@@ -532,8 +532,8 @@
     OnigResult *matches = [regex search:string];
     if (matches.strings.count > 0) {
         string = matches.strings[0];
-        NSString *pattern = @"(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})";
-        regex = [OnigRegexp compile:pattern];
+        NSString *urlpattern = @"(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})";
+        regex = [OnigRegexp compile:urlpattern];
         string = [regex search:string].strings[0];
         NSDictionary *info = [StreamInfoRetrieval retrieveStreamInfo:string];
         if (info){
