@@ -133,3 +133,9 @@ iOSInjectionProject/
 ### Objective-C Patch ###
 
 # End of https://www.gitignore.io/api/objective-c
+.idea/DetectionKit.iml
+.idea/codeStyles/Project.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/xcode.xml
