@@ -86,8 +86,11 @@
     // LSOF mplayer to get the media title and segment
     // Read supportedplayers.json
     NSError* error;
-    NSData *supportedplayersdata = [[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"supportedplayers" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil] dataUsingEncoding:NSUTF8StringEncoding];
-
+    NSData *supportedplayersdata = [[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"supportedplayers" ofType:@"json"] encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
+    if (!supportedplayersdata) {
+        NSLog(@"Error: Can't load supportedplayers.json, %@", error.localizedDescription);
+        return result;
+    }
     NSArray *player = [NSJSONSerialization JSONObjectWithData:supportedplayersdata options:0 error:&error];
     NSString *string;
     OnigRegexp    *regex;
