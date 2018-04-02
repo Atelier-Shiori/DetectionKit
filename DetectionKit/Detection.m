@@ -396,11 +396,17 @@
             }
             for (NSDictionary *video in videoa) {
                 if (video[@"Player"][@"state"]) {
-                    NSString *playerstate = video[@"Player"][@"state"];
+                    NSString *playerstate = [video[@"Player"][@"state"] isKindOfClass:[NSString class]] ? video[@"Player"][@"state"] : video[@"Player"][@"state"][0];
                     NSString *playerusername = video[@"User"][@"title"];
                     if ([playerstate isEqualToString:@"playing"] && [playerusername isEqualToString:currentuser]) {
-                        NSDictionary *metadata = [self retrievemetadata:(NSString *)video[@"key"]];
-                        NSString *filepath = metadata[@"Media"][@"Part"][@"file"] ? metadata[@"Media"][@"Part"][@"file"]  : metadata[@"title"];
+                        NSDictionary *metadata;
+                        if (video[@"Media"][@"Part"]) {
+                            metadata = video;
+                        }
+                        else {
+                            metadata = [self retrievemetadata:(NSString *)video[@"key"]];
+                        }
+                        NSString *filepath = metadata[@"Media"][@"Part"][@"file"] && [(NSString *)metadata[@"Media"][@"Part"][@"decision"] isEqualToString:@"directplay"] ? metadata[@"Media"][@"Part"][@"file"]  : metadata[@"title"];
                         NSDictionary *recoginfo = [[Recognition alloc] recognize:filepath];
                         NSString *DetectedTitle = (NSString *)recoginfo[@"title"];
                         NSString *DetectedEpisode = (NSString *)recoginfo[@"episode"];
