@@ -9,7 +9,7 @@ Documentation can be viewed [here](http://atelier-shiori.github.io/DetectionKit/
 To use DetectionKit, you need to include the following frameworks with your application:
 * anitomy-osx.framework
 * CocoaOniguruma.framework
-* EasyNSURLConnection.framework
+* AFNetworking.framework
 * [GBPing.framework](https://github.com/lmirosevic/GBPing) - (included, Apache Licensed)
 * PingNotifier.framework - (included)
 
