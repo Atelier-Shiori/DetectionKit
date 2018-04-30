@@ -8,35 +8,32 @@
 
 #import "PlexAuth.h"
 #import <SAMKeychain/SAMKeychain.h>
-#import <EasyNSURLConnection/EasyNSURLConnectionClass.h>
 #import <XMLReader/XMLReader.h>
+#import <AFNetworking/AFNetworking.h>
 
 @implementation PlexAuth
-+ (bool)performplexlogin:(NSString *)username withPassword:(NSString *)password {
++ (void)performplexlogin:(NSString *)username withPassword:(NSString *)password completion:(void (^)(bool success)) completionHandler {
     // Retrieve Token
-    EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:@"https://plex.tv/users/sign_in.xml"]];
-    request.headers = (NSMutableDictionary *)@{@"X-Plex-Client-Identifier":[[NSUserDefaults standardUserDefaults] objectForKey:@"plexidentifier"],@"X-Plex-Product":NSBundle.mainBundle.infoDictionary[@"CFBundleName"],@"X-Plex-Version":NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]};
-    [request addFormData:username forKey:@"user[login]"];
-    [request addFormData:password forKey:@"user[password]"];
-    [request startFormRequest];
-    switch (request.getStatusCode) {
-        case 200:
-        case 201:{
-            NSError *error = nil;
-            NSDictionary *d = [XMLReader dictionaryForXMLString:request.getResponseDataString options:XMLReaderOptionsProcessNamespaces error:&error];
-            if (!error){
-                NSString *token = d[@"user"][@"authToken"];
-                // Store Token
-                [SAMKeychain setPassword:token forService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account: d[@"user"][@"username"][0]];
-            return true;
-            }
-            else {
-                return false;
-            }
+    AFHTTPSessionManager *manager = [self manager];
+    [manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"plexidentifier"] forHTTPHeaderField:@"X-Plex-Client-Identifier"];
+    [manager.requestSerializer setValue:NSBundle.mainBundle.infoDictionary[@"CFBundleName"] forHTTPHeaderField:@"X-Plex-Product"];
+    [manager.requestSerializer setValue:@"X-Plex-Version" forHTTPHeaderField:NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]];
+    [manager POST:@"https://plex.tv/users/sign_in.xml" parameters:@{@"user[login]" : username, @"user[password]" : password} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSError *error;
+        NSDictionary *d = [XMLReader dictionaryForXMLString:[NSString stringWithUTF8String:[responseObject bytes]] options:XMLReaderOptionsProcessNamespaces error:&error];
+        if (!error) {
+            NSString *token = d[@"user"][@"authToken"];
+            // Store Token
+            [SAMKeychain setPassword:token forService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account: d[@"user"][@"username"][0]];
+            completionHandler(true);
         }
-        default:
-            return false;
-    }
+        else {
+            completionHandler(false);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        completionHandler(false);
+        return;
+    }];
 }
 
 + (bool)removeplexaccount {
@@ -57,5 +54,16 @@
         }
     }
     return @"";
+}
++ (AFHTTPSessionManager*) manager
+{
+    static dispatch_once_t onceToken;
+    static AFHTTPSessionManager *manager = nil;
+    dispatch_once(&onceToken, ^{
+        manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    });
+    
+    return manager;
 }
 @end

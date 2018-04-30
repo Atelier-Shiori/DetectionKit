@@ -13,18 +13,20 @@
 #import "MediaStreamParse.h"
 #import "OnigRegexp+MatchExtensions.h"
 #import <AppKit/AppKit.h>
-#import <EasyNSURLConnection/EasyNSURLConnectionClass.h>
 #import "PingNotifier/PingNotifier.h"
 #import <CocoaOniguruma/OnigRegexp.h>
 #import <CocoaOniguruma/OnigRegexpUtility.h>
 #import <SAMKeychain/SAMKeychain.h>
 #import <XMLReader/XMLReader.h>
+#import <AFNetworking/AFNetworking.h>
 
 @interface Detection()
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *detectStream;
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *detectPlayer;
 @property (strong) PingNotifier *kodireach;
 @property (strong) PingNotifier *plexreach;
+@property (strong) AFHTTPSessionManager *kodijsonrpcmanager;
+@property (strong) AFHTTPSessionManager *plexmanager;
 - (bool)checkifIgnored:(NSString *)filename source:(NSString *)source;
 - (bool)checkifTitleIgnored:(NSString *)filename source:(NSString *)source;
 - (bool)checkifDirectoryIgnored:(NSString *)filename;
@@ -33,6 +35,19 @@
 
 @implementation Detection
 #pragma mark Public Methods
+- (id)init {
+    if ([super init]) {
+        _kodijsonrpcmanager = [AFHTTPSessionManager manager];
+        _kodijsonrpcmanager.requestSerializer = [AFJSONRequestSerializer serializer];
+        _kodijsonrpcmanager.responseSerializer = [AFJSONResponseSerializer serializer];
+        _kodijsonrpcmanager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
+        _plexmanager = [AFHTTPSessionManager manager];
+        _plexmanager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        _plexmanager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
+    }
+    return self;
+}
+
 - (NSDictionary *)detectmedia {
     NSDictionary *result;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enablekodiapi"]) {
@@ -79,7 +94,6 @@
 }
 
 #pragma mark Private Methods
-
 - (NSDictionary *)detectPlayer{
     //Create an NSDictionary
     NSDictionary *result;
@@ -267,19 +281,14 @@
         if (port.length == 0) {
             port = @"3005";
         }
-        EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%@/jsonrpc", address,port]]];
-        request.usejson = true;
-        NSString *plexjsonrequeststr = @"{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"season\", \"episode\", \"showtitle\", \"tvshowid\", \"thumbnail\", \"file\", \"fanart\", \"streamdetails\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}";
-        request.formdata = [[NSMutableDictionary alloc] initWithDictionary:[NSJSONSerialization JSONObjectWithData:[plexjsonrequeststr dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil]];
-        [request startFormRequest];
-        //[request startJSONRequest:@"{\"jsonrpc\": \"2.0\", \"method\": \"Player.GetItem\", \"params\": { \"properties\": [\"title\", \"season\", \"episode\", \"showtitle\", \"tvshowid\", \"thumbnail\", \"file\", \"fanart\", \"streamdetails\"], \"playerid\": 1 }, \"id\": \"VideoGetItem\"}" type:EasyNSURLConnectionJsonType];
-        if (request.getStatusCode == 200) {
-            NSDictionary *result;
-            NSError *error = nil;
-            result = [request getResponseDataJsonParsed];
-            if (result[@"result"]) {
+        NSDictionary *parameters = @{@"jsonrpc": @"2.0", @"method": @"Player.GetItem", @"params": @{ @"properties": @[@"title", @"season", @"episode", @"showtitle", @"tvshowid", @"thumbnail", @"file", @"fanart", @"streamdetails"], @"playerid": @(1) }, @"id": @"VideoGetItem"};
+        NSError *error;
+        NSURLSessionDataTask *task;
+        id responseobject = [_kodijsonrpcmanager syncPOST:[NSString stringWithFormat:@"http://%@:%@/jsonrpc", address,port] parameters:parameters task:&task error:&error];
+        if (!error) {
+            if (responseobject[@"result"]) {
                 //Valid Result, parse title
-                NSDictionary *items = result[@"result"];
+                NSDictionary *items = responseobject[@"result"];
                 NSDictionary *item = items[@"item"];
                 NSString *label;
                 if ([[NSUserDefaults standardUserDefaults] boolForKey:@"kodiusefilename"])
@@ -299,6 +308,9 @@
                     NSNumber *DetectedSeason = d[@"season"];
                     NSString *DetectedGroup = d[@"group"];
                     NSString *DetectedSource = @"Kodi/Plex";
+                    if (DetectedTitle.length == 0) {
+                        return nil;
+                    }
                     if ([self checkifTitleIgnored:DetectedTitle source:DetectedSource]) {
                         return nil;
                     }
@@ -357,12 +369,15 @@
         if (self.plexonline) {
             // Retrieve ssessions opened in Plex Media Server
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%li/status/sessions?X-Plex-Token=%@", [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username] ]]];
-            request.headers = (NSMutableDictionary *)@{@"X-Plex-Client-Identifier":[defaults objectForKey:@"plexidentifier"],@"X-Plex-Product":NSBundle.mainBundle.infoDictionary[@"CFBundleName"],@"X-Plex-Version":NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]};
-            [request startFormRequest];
-            switch (request.getStatusCode) {
+            [_plexmanager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"plexidentifier"] forHTTPHeaderField:@"X-Plex-Client-Identifier"];
+            [_plexmanager.requestSerializer setValue:NSBundle.mainBundle.infoDictionary[@"CFBundleName"] forHTTPHeaderField:@"X-Plex-Product"];
+            [_plexmanager.requestSerializer setValue:@"X-Plex-Version" forHTTPHeaderField:NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]];
+            NSError *error;
+            NSURLSessionDataTask *task;
+            id responseObject = [_plexmanager syncPOST:[NSString stringWithFormat:@"http://%@:%li/status/sessions?X-Plex-Token=%@", [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username]] parameters:nil task:&task error:&error];
+            switch (((NSHTTPURLResponse *)task.response).statusCode) {
                 case 200:{
-                    return [self parsePlexXML:request.getResponseDataString];
+                    return [self parsePlexXML:[NSString stringWithUTF8String:[responseObject bytes]]];
                 }
                 default:
                     return nil;
@@ -432,13 +447,16 @@
     NSString *username = [PlexAuth checkplexaccount];
     // Retrieve Token
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    EasyNSURLConnection *request = [[EasyNSURLConnection alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%li/status/sessions?X-Plex-Token=%@", [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username] ]]];
-    request.headers = (NSMutableDictionary *)@{@"X-Plex-Client-Identifier":[defaults objectForKey:@"plexidentifier"],@"X-Plex-Product":NSBundle.mainBundle.infoDictionary[@"CFBundleName"],@"X-Plex-Version":NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]};
-    [request startFormRequest];
-    switch (request.getStatusCode) {
+    [_plexmanager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"plexidentifier"] forHTTPHeaderField:@"X-Plex-Client-Identifier"];
+    [_plexmanager.requestSerializer setValue:NSBundle.mainBundle.infoDictionary[@"CFBundleName"] forHTTPHeaderField:@"X-Plex-Product"];
+    [_plexmanager.requestSerializer setValue:@"X-Plex-Version" forHTTPHeaderField:NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]];
+    NSError *error;
+    NSURLSessionDataTask *task;
+    id responseObject = [_plexmanager syncPOST:[NSString stringWithFormat:@"http://%@:%li/status/sessions?X-Plex-Token=%@", [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username]] parameters:nil task:&task error:&error];
+    switch (((NSHTTPURLResponse *)task.response).statusCode) {
         case 200:{
             NSError *error = nil;
-            NSDictionary *d = [XMLReader dictionaryForXMLString:request.getResponseDataString options:XMLReaderOptionsProcessNamespaces error:&error];
+            NSDictionary *d = [XMLReader dictionaryForXMLString:[NSString stringWithUTF8String:[responseObject bytes]] options:XMLReaderOptionsProcessNamespaces error:&error];
             if ([d[@"MediaContainer"][@"Video"] isKindOfClass:[NSDictionary class]]){
                 return d[@"MediaContainer"][@"Video"];
             }

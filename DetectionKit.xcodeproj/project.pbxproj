@@ -21,7 +21,6 @@
 		2D5BCFFE1ED9FDC00076B1AC /* Detection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D5BCFFC1ED9FDC00076B1AC /* Detection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D5BCFFF1ED9FDC00076B1AC /* Detection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5BCFFD1ED9FDC00076B1AC /* Detection.m */; };
 		2D5BD01C1ED9FF1E0076B1AC /* CocoaOniguruma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */; };
-		2D5BD01D1ED9FF1E0076B1AC /* EasyNSURLConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */; };
 		2D5BD0231EDA000B0076B1AC /* Recognition.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D5BD0211EDA000B0076B1AC /* Recognition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D5BD0241EDA000B0076B1AC /* Recognition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5BD0221EDA000B0076B1AC /* Recognition.m */; };
 		2D5BD0261EDA00A30076B1AC /* anitomy-osx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */; };
@@ -35,8 +34,6 @@
 		2D6313521EDA135300C3CB6B /* anitomy-osx.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2D6313551EDA135300C3CB6B /* CocoaOniguruma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */; };
 		2D6313561EDA135300C3CB6B /* CocoaOniguruma.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2D6313571EDA135300C3CB6B /* EasyNSURLConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */; };
-		2D6313581EDA135300C3CB6B /* EasyNSURLConnection.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2D6313601EDA137F00C3CB6B /* DetectionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BCFE21ED9FD8F0076B1AC /* DetectionKit.framework */; };
 		2D6313611EDA137F00C3CB6B /* DetectionKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BCFE21ED9FD8F0076B1AC /* DetectionKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2D6313671EDA172F00C3CB6B /* KodiSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6313651EDA172F00C3CB6B /* KodiSettings.m */; };
@@ -70,6 +67,10 @@
 		91AFCF7E1F1038730029AC09 /* XMLReader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91AFCF7B1F10386A0029AC09 /* XMLReader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		91AFCF821F103CF00029AC09 /* PlexLoginPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 91AFCF801F103CF00029AC09 /* PlexLoginPanel.m */; };
 		91AFCF831F103CF00029AC09 /* PlexLoginPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91AFCF811F103CF00029AC09 /* PlexLoginPanel.xib */; };
+		F866294220976F90006E5E46 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F866294120976F90006E5E46 /* AFNetworking.framework */; };
+		F866294320976F90006E5E46 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F866294120976F90006E5E46 /* AFNetworking.framework */; };
+		F866294420977D3F006E5E46 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F866294120976F90006E5E46 /* AFNetworking.framework */; };
+		F866294520977D3F006E5E46 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F866294120976F90006E5E46 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -143,7 +144,7 @@
 				2D6313561EDA135300C3CB6B /* CocoaOniguruma.framework in Embed Frameworks */,
 				91AFCF7E1F1038730029AC09 /* XMLReader.framework in Embed Frameworks */,
 				2D6313521EDA135300C3CB6B /* anitomy-osx.framework in Embed Frameworks */,
-				2D6313581EDA135300C3CB6B /* EasyNSURLConnection.framework in Embed Frameworks */,
+				F866294520977D3F006E5E46 /* AFNetworking.framework in Embed Frameworks */,
 				2D6313611EDA137F00C3CB6B /* DetectionKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -165,7 +166,6 @@
 		2D5BCFFC1ED9FDC00076B1AC /* Detection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Detection.h; sourceTree = "<group>"; };
 		2D5BCFFD1ED9FDC00076B1AC /* Detection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Detection.m; sourceTree = "<group>"; };
 		2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaOniguruma.framework; path = Frameworks/CocoaOniguruma.framework; sourceTree = "<group>"; };
-		2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyNSURLConnection.framework; path = Frameworks/EasyNSURLConnection.framework; sourceTree = "<group>"; };
 		2D5BD0211EDA000B0076B1AC /* Recognition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recognition.h; sourceTree = "<group>"; };
 		2D5BD0221EDA000B0076B1AC /* Recognition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recognition.m; sourceTree = "<group>"; };
 		2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "anitomy-osx.framework"; path = "Frameworks/anitomy-osx.framework"; sourceTree = "<group>"; };
@@ -208,6 +208,7 @@
 		91AFCF7F1F103CF00029AC09 /* PlexLoginPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlexLoginPanel.h; sourceTree = "<group>"; };
 		91AFCF801F103CF00029AC09 /* PlexLoginPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlexLoginPanel.m; sourceTree = "<group>"; };
 		91AFCF811F103CF00029AC09 /* PlexLoginPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlexLoginPanel.xib; sourceTree = "<group>"; };
+		F866294120976F90006E5E46 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = Frameworks/AFNetworking.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,9 +217,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D5BD01C1ED9FF1E0076B1AC /* CocoaOniguruma.framework in Frameworks */,
+				F866294220976F90006E5E46 /* AFNetworking.framework in Frameworks */,
 				2D5BD0261EDA00A30076B1AC /* anitomy-osx.framework in Frameworks */,
 				91AFCF7C1F10386A0029AC09 /* XMLReader.framework in Frameworks */,
-				2D5BD01D1ED9FF1E0076B1AC /* EasyNSURLConnection.framework in Frameworks */,
 				91AFCF5B1F100EBB0029AC09 /* SAMKeychain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,13 +237,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D64A6F41F7B36CA0042DF2D /* PingNotifier.framework in Frameworks */,
+				F866294420977D3F006E5E46 /* AFNetworking.framework in Frameworks */,
+				F866294320976F90006E5E46 /* AFNetworking.framework in Frameworks */,
 				91AFCF5C1F100EC80029AC09 /* SAMKeychain.framework in Frameworks */,
 				2D7A7CC61F7AD2DF0087A8E1 /* GBPing.framework in Frameworks */,
 				2D64A6D51F7B25970042DF2D /* MSWeakTimer_macOS.framework in Frameworks */,
 				2D6313551EDA135300C3CB6B /* CocoaOniguruma.framework in Frameworks */,
 				91AFCF7D1F1038730029AC09 /* XMLReader.framework in Frameworks */,
 				2D6313511EDA135300C3CB6B /* anitomy-osx.framework in Frameworks */,
-				2D6313571EDA135300C3CB6B /* EasyNSURLConnection.framework in Frameworks */,
 				2D6313601EDA137F00C3CB6B /* DetectionKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,10 +315,10 @@
 				2D29289D1F7873BC00782F15 /* NSString+HTML.m */,
 				2D5BCFE61ED9FD8F0076B1AC /* Info.plist */,
 				2D5BD0291EDA05D20076B1AC /* detectstream */,
+				F866294120976F90006E5E46 /* AFNetworking.framework */,
 				2D64A6D21F7B159F0042DF2D /* MSWeakTimer_macOS.framework */,
 				2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */,
 				2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */,
-				2D5BD01A1ED9FF1E0076B1AC /* EasyNSURLConnection.framework */,
 				2D5BD0271EDA019B0076B1AC /* supportedplayers.json */,
 				91AFCF7B1F10386A0029AC09 /* XMLReader.framework */,
 				91AFCF5A1F100EBB0029AC09 /* SAMKeychain.framework */,

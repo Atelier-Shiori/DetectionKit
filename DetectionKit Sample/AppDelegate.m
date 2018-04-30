@@ -91,10 +91,12 @@
 - (IBAction)login:(id)sender {
     [_window beginSheet:_plexlogin.window  completionHandler:^(NSModalResponse returnCode) {
         if (returnCode == NSModalResponseOK) {
-            if ([PlexAuth performplexlogin:_plexlogin.username.stringValue withPassword:_plexlogin.password.stringValue]) {
-                _plexloginbut.hidden = YES;
-                _plexlogoutbut.hidden = NO;
-            }
+            [PlexAuth performplexlogin:_plexlogin.username.stringValue withPassword:_plexlogin.password.stringValue completion:^(bool success) {
+                if (success) {
+                    _plexloginbut.hidden = YES;
+                    _plexlogoutbut.hidden = NO;
+                }
+            }];
         }
     }];
 }
