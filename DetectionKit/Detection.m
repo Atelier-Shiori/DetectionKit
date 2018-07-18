@@ -414,23 +414,25 @@
                     NSString *playerstate = [video[@"Player"][@"state"] isKindOfClass:[NSString class]] ? video[@"Player"][@"state"] : video[@"Player"][@"state"][0];
                     NSString *playerusername = video[@"User"][@"title"];
                     if ([playerstate isEqualToString:@"playing"] && [playerusername isEqualToString:currentuser]) {
-                        NSDictionary *metadata;
-                        if (video[@"Media"][@"Part"]) {
-                            metadata = video;
+                        NSDictionary *result;
+                        if ([video[@"Media"][@"Part"] isKindOfClass:[NSArray class]]) {
+                            if (((NSArray *)video[@"Media"][@"Part"]).count > 0) {
+                                for (NSDictionary *v in video[@"Media"][@"Part"]) {
+                                    result = [self checkmetadata:@{@"Media" : @{@"Part" : v}}];
+                                    if (result) {
+                                        return result;
+                                    }
+                                }
+                            }
+                        }
+                        else if (video[@"Media"][@"Part"]) {
+                            result = [self checkmetadata:video];
                         }
                         else {
-                            metadata = [self retrievemetadata:(NSString *)video[@"key"]];
+                            result = [self checkmetadata:[self retrievemetadata:(NSString *)video[@"key"]]];
                         }
-                        NSString *filepath = metadata[@"Media"][@"Part"][@"file"] && [(NSString *)metadata[@"Media"][@"Part"][@"decision"] isEqualToString:@"directplay"] ? metadata[@"Media"][@"Part"][@"file"]  : metadata[@"title"];
-                        NSDictionary *recoginfo = [[Recognition alloc] recognize:filepath];
-                        NSString *DetectedTitle = (NSString *)recoginfo[@"title"];
-                        NSString *DetectedEpisode = (NSString *)recoginfo[@"episode"];
-                        NSString *DetectedSource = @"Plex";
-                        NSNumber *DetectedSeason = recoginfo[@"season"];
-                        NSString *DetectedGroup = (NSString *)recoginfo[@"group"];
-                        if (DetectedTitle.length > 0 && ![self checkifTitleIgnored:DetectedTitle source:@"Plex"]) {
-                            //Return result
-                            return @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": recoginfo[@"types"]};
+                        if (result) {
+                            return result;
                         }
                     }
                 }
@@ -439,6 +441,21 @@
                 }
             }
         }
+    }
+    return nil;
+}
+
+- (NSDictionary *)checkmetadata:(NSDictionary *)metadata {
+    NSString *filepath = metadata[@"Media"][@"Part"][@"file"] && [(NSString *)metadata[@"Media"][@"Part"][@"decision"] isEqualToString:@"directplay"] ? metadata[@"Media"][@"Part"][@"file"]  : metadata[@"title"];
+    NSDictionary *recoginfo = [[Recognition alloc] recognize:filepath];
+    NSString *DetectedTitle = (NSString *)recoginfo[@"title"];
+    NSString *DetectedEpisode = (NSString *)recoginfo[@"episode"];
+    NSString *DetectedSource = @"Plex";
+    NSNumber *DetectedSeason = recoginfo[@"season"];
+    NSString *DetectedGroup = (NSString *)recoginfo[@"group"];
+    if (DetectedTitle.length > 0 && ![self checkifTitleIgnored:DetectedTitle source:@"Plex"]) {
+        //Return result
+        return @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": recoginfo[@"types"]};
     }
     return nil;
 }
