@@ -19,6 +19,7 @@
 #import <SAMKeychain/SAMKeychain.h>
 #import <XMLReader/XMLReader.h>
 #import <AFNetworking/AFNetworking.h>
+#import <DetectStreamKit/DetectStreamKit.h>
 
 @interface Detection()
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *detectStream;
@@ -27,6 +28,7 @@
 @property (strong) PingNotifier *plexreach;
 @property (strong) AFHTTPSessionManager *kodijsonrpcmanager;
 @property (strong) AFHTTPSessionManager *plexmanager;
+@property (strong) DetectStreamManager *detectstreammgr;
 - (bool)checkifIgnored:(NSString *)filename source:(NSString *)source;
 - (bool)checkifTitleIgnored:(NSString *)filename source:(NSString *)source;
 - (bool)checkifDirectoryIgnored:(NSString *)filename;
@@ -44,6 +46,7 @@
         _plexmanager = [AFHTTPSessionManager manager];
         _plexmanager.responseSerializer = [AFHTTPResponseSerializer serializer];
         _plexmanager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
+        _detectstreammgr = [DetectStreamManager new];
     }
     return self;
 }
@@ -191,39 +194,8 @@
 }
 
 - (NSDictionary *)detectStream {
-    // Create Dictionary
-    NSDictionary *d;
-    //Set detectream Task and Run it
-    NSTask *task;
-    task = [[NSTask alloc] init];
-    NSBundle *myBundle = [NSBundle bundleForClass:[self class]];
-    task.launchPath = [myBundle pathForResource:@"detectstream" ofType:@""];
-    
-    
-    NSPipe *pipe;
-    pipe = [NSPipe pipe];
-    task.standardOutput = pipe;
-    
-    // Reads Output
-    NSFileHandle *file;
-    file = pipe.fileHandleForReading;
-    
-    // Launch Task
-    [task launch];
-    [task waitUntilExit];
-    // Parse Data from JSON and return dictionary
-    NSData *data;
-    data = [file readDataToEndOfFile];
-    
-    
-    NSError* error;
-    //Check if detectstream successfully exited. If not, ignore detection to prevent the program from crashing
-    if (task.terminationStatus != 0) {
-        NSLog(@"detectstream crashed, ignoring stream detection");
-        return nil;
-    }
-    
-    d = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    // Perform stream detection
+    NSDictionary *d = [_detectstreammgr detectStream];
     
     if (d[@"result"]  == [NSNull null]) { // Check to see if anything is playing on stream
         return nil;

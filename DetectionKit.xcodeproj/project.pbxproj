@@ -25,7 +25,6 @@
 		2D5BD0241EDA000B0076B1AC /* Recognition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5BD0221EDA000B0076B1AC /* Recognition.m */; };
 		2D5BD0261EDA00A30076B1AC /* anitomy-osx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */; };
 		2D5BD0281EDA019B0076B1AC /* supportedplayers.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D5BD0271EDA019B0076B1AC /* supportedplayers.json */; };
-		2D5BD02A1EDA05D30076B1AC /* detectstream in Resources */ = {isa = PBXBuildFile; fileRef = 2D5BD0291EDA05D20076B1AC /* detectstream */; };
 		2D6313441EDA134A00C3CB6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6313431EDA134A00C3CB6B /* AppDelegate.m */; };
 		2D6313471EDA134A00C3CB6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6313461EDA134A00C3CB6B /* main.m */; };
 		2D6313491EDA134A00C3CB6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6313481EDA134A00C3CB6B /* Assets.xcassets */; };
@@ -57,6 +56,9 @@
 		2D7A7CD91F7AD4800087A8E1 /* PingNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D7A7CD71F7AD4800087A8E1 /* PingNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D8C5C371F79EFE200B3EC96 /* ezregex.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5C351F79EFD600B3EC96 /* ezregex.m */; };
 		2D8C5C381F79EFE700B3EC96 /* ezregex.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D8C5C361F79EFD600B3EC96 /* ezregex.h */; };
+		918D8BF4210FEEF0002DCD7B /* DetectStreamKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918D8BF3210FEEF0002DCD7B /* DetectStreamKit.framework */; };
+		918D8BF5210FEF9F002DCD7B /* DetectStreamKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918D8BF3210FEEF0002DCD7B /* DetectStreamKit.framework */; };
+		918D8BF7210FEFC3002DCD7B /* DetectStreamKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 918D8BF3210FEEF0002DCD7B /* DetectStreamKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		91AFCF5B1F100EBB0029AC09 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AFCF5A1F100EBB0029AC09 /* SAMKeychain.framework */; };
 		91AFCF5C1F100EC80029AC09 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AFCF5A1F100EBB0029AC09 /* SAMKeychain.framework */; };
 		91AFCF5D1F100EC80029AC09 /* SAMKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91AFCF5A1F100EBB0029AC09 /* SAMKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -145,6 +147,7 @@
 				91AFCF7E1F1038730029AC09 /* XMLReader.framework in Embed Frameworks */,
 				2D6313521EDA135300C3CB6B /* anitomy-osx.framework in Embed Frameworks */,
 				F866294520977D3F006E5E46 /* AFNetworking.framework in Embed Frameworks */,
+				918D8BF7210FEFC3002DCD7B /* DetectStreamKit.framework in Embed Frameworks */,
 				2D6313611EDA137F00C3CB6B /* DetectionKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -170,7 +173,6 @@
 		2D5BD0221EDA000B0076B1AC /* Recognition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recognition.m; sourceTree = "<group>"; };
 		2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "anitomy-osx.framework"; path = "Frameworks/anitomy-osx.framework"; sourceTree = "<group>"; };
 		2D5BD0271EDA019B0076B1AC /* supportedplayers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = supportedplayers.json; sourceTree = "<group>"; };
-		2D5BD0291EDA05D20076B1AC /* detectstream */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = detectstream; path = detectstream/detectstream; sourceTree = "<group>"; };
 		2D6313401EDA134900C3CB6B /* DetectionKit Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DetectionKit Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D6313421EDA134A00C3CB6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2D6313431EDA134A00C3CB6B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		2DD1B0891F78146C0061AC16 /* StreamInfoRetrieval.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StreamInfoRetrieval.m; sourceTree = "<group>"; };
 		2DD1B08C1F7816790061AC16 /* MediaStreamParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediaStreamParse.h; sourceTree = "<group>"; };
 		2DD1B08D1F78167A0061AC16 /* MediaStreamParse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MediaStreamParse.m; sourceTree = "<group>"; };
+		918D8BF3210FEEF0002DCD7B /* DetectStreamKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DetectStreamKit.framework; path = Frameworks/DetectStreamKit.framework; sourceTree = "<group>"; };
 		91AFCF5A1F100EBB0029AC09 /* SAMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAMKeychain.framework; path = Frameworks/SAMKeychain.framework; sourceTree = "<group>"; };
 		91AFCF5E1F1030C60029AC09 /* PlexAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlexAuth.h; sourceTree = "<group>"; };
 		91AFCF5F1F1030C60029AC09 /* PlexAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlexAuth.m; sourceTree = "<group>"; };
@@ -220,6 +223,7 @@
 				F866294220976F90006E5E46 /* AFNetworking.framework in Frameworks */,
 				2D5BD0261EDA00A30076B1AC /* anitomy-osx.framework in Frameworks */,
 				91AFCF7C1F10386A0029AC09 /* XMLReader.framework in Frameworks */,
+				918D8BF4210FEEF0002DCD7B /* DetectStreamKit.framework in Frameworks */,
 				91AFCF5B1F100EBB0029AC09 /* SAMKeychain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,6 +249,7 @@
 				2D6313551EDA135300C3CB6B /* CocoaOniguruma.framework in Frameworks */,
 				91AFCF7D1F1038730029AC09 /* XMLReader.framework in Frameworks */,
 				2D6313511EDA135300C3CB6B /* anitomy-osx.framework in Frameworks */,
+				918D8BF5210FEF9F002DCD7B /* DetectStreamKit.framework in Frameworks */,
 				2D6313601EDA137F00C3CB6B /* DetectionKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +310,7 @@
 				91AFCF5F1F1030C60029AC09 /* PlexAuth.m */,
 				2D5BD0211EDA000B0076B1AC /* Recognition.h */,
 				2D5BD0221EDA000B0076B1AC /* Recognition.m */,
+				918D8BF3210FEEF0002DCD7B /* DetectStreamKit.framework */,
 				2DD1B0881F78146C0061AC16 /* StreamInfoRetrieval.h */,
 				2DD1B0891F78146C0061AC16 /* StreamInfoRetrieval.m */,
 				2DD1B08D1F78167A0061AC16 /* MediaStreamParse.m */,
@@ -314,7 +320,6 @@
 				2D29289E1F7873BC00782F15 /* NSString+HTML.h */,
 				2D29289D1F7873BC00782F15 /* NSString+HTML.m */,
 				2D5BCFE61ED9FD8F0076B1AC /* Info.plist */,
-				2D5BD0291EDA05D20076B1AC /* detectstream */,
 				F866294120976F90006E5E46 /* AFNetworking.framework */,
 				2D64A6D21F7B159F0042DF2D /* MSWeakTimer_macOS.framework */,
 				2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */,
@@ -596,7 +601,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D5BD0281EDA019B0076B1AC /* supportedplayers.json in Resources */,
-				2D5BD02A1EDA05D30076B1AC /* detectstream in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
