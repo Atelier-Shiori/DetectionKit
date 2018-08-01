@@ -112,19 +112,19 @@
 			remoteGlobalIDString = 2D7A7CBE1F7AD2DF0087A8E1;
 			remoteInfo = GPPing;
 		};
-		2DFCE45F1F7B475B00878045 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2D5BCFD91ED9FD8F0076B1AC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2D7A7CBE1F7AD2DF0087A8E1;
-			remoteInfo = GBPing;
-		};
 		2DFCE4611F7B475D00878045 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2D5BCFD91ED9FD8F0076B1AC /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D64A6EC1F7B36CA0042DF2D;
 			remoteInfo = PingNotifier;
+		};
+		91D4CF762111397000888EED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D5BCFD91ED9FD8F0076B1AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D7A7CBE1F7AD2DF0087A8E1;
+			remoteInfo = GBPing;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -440,7 +440,6 @@
 			);
 			dependencies = (
 				2DFCE4621F7B475D00878045 /* PBXTargetDependency */,
-				2DFCE4601F7B475B00878045 /* PBXTargetDependency */,
 			);
 			name = DetectionKit;
 			productName = DetectionKit;
@@ -498,6 +497,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				91D4CF772111397000888EED /* PBXTargetDependency */,
 			);
 			name = PingNotifier;
 			productName = PingNotifier;
@@ -698,15 +698,15 @@
 			target = 2D7A7CBE1F7AD2DF0087A8E1 /* GBPing */;
 			targetProxy = 2D7A7CC41F7AD2DF0087A8E1 /* PBXContainerItemProxy */;
 		};
-		2DFCE4601F7B475B00878045 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2D7A7CBE1F7AD2DF0087A8E1 /* GBPing */;
-			targetProxy = 2DFCE45F1F7B475B00878045 /* PBXContainerItemProxy */;
-		};
 		2DFCE4621F7B475D00878045 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2D64A6EC1F7B36CA0042DF2D /* PingNotifier */;
 			targetProxy = 2DFCE4611F7B475D00878045 /* PBXContainerItemProxy */;
+		};
+		91D4CF772111397000888EED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D7A7CBE1F7AD2DF0087A8E1 /* GBPing */;
+			targetProxy = 91D4CF762111397000888EED /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
