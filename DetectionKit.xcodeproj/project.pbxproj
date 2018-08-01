@@ -8,12 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2D29289F1F78750E00782F15 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D29289D1F7873BC00782F15 /* NSString+HTML.m */; };
-		2D2928A01F78750E00782F15 /* MediaStreamParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD1B08D1F78167A0061AC16 /* MediaStreamParse.m */; };
 		2D2928A11F78751300782F15 /* StreamInfoRetrieval.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD1B0891F78146C0061AC16 /* StreamInfoRetrieval.m */; };
 		2D2928A41F79B36200782F15 /* OnigRegexp+MatchExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D2928A21F79B36200782F15 /* OnigRegexp+MatchExtensions.h */; };
 		2D2928A51F79B36200782F15 /* OnigRegexp+MatchExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2928A31F79B36200782F15 /* OnigRegexp+MatchExtensions.m */; };
 		2D2928A61F79E90F00782F15 /* StreamInfoRetrieval.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DD1B0881F78146C0061AC16 /* StreamInfoRetrieval.h */; };
-		2D2928A71F79E91400782F15 /* MediaStreamParse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DD1B08C1F7816790061AC16 /* MediaStreamParse.h */; };
 		2D2928A81F79E91800782F15 /* NSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D29289E1F7873BC00782F15 /* NSString+HTML.h */; };
 		2D5BCFEC1ED9FD8F0076B1AC /* DetectionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5BCFE21ED9FD8F0076B1AC /* DetectionKit.framework */; };
 		2D5BCFF11ED9FD8F0076B1AC /* DetectionKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5BCFF01ED9FD8F0076B1AC /* DetectionKitTests.m */; };
@@ -54,8 +52,6 @@
 		2D7A7CD31F7AD3340087A8E1 /* GBPingSummary.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D7A7CCC1F7AD3050087A8E1 /* GBPingSummary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D7A7CD41F7AD3340087A8E1 /* ICMPHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D7A7CCE1F7AD3060087A8E1 /* ICMPHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D7A7CD91F7AD4800087A8E1 /* PingNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D7A7CD71F7AD4800087A8E1 /* PingNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2D8C5C371F79EFE200B3EC96 /* ezregex.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C5C351F79EFD600B3EC96 /* ezregex.m */; };
-		2D8C5C381F79EFE700B3EC96 /* ezregex.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D8C5C361F79EFD600B3EC96 /* ezregex.h */; };
 		918D8BF4210FEEF0002DCD7B /* DetectStreamKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918D8BF3210FEEF0002DCD7B /* DetectStreamKit.framework */; };
 		918D8BF5210FEF9F002DCD7B /* DetectStreamKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918D8BF3210FEEF0002DCD7B /* DetectStreamKit.framework */; };
 		918D8BF7210FEFC3002DCD7B /* DetectStreamKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 918D8BF3210FEEF0002DCD7B /* DetectStreamKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -197,12 +193,8 @@
 		2D7A7CCF1F7AD3060087A8E1 /* GBPing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBPing.h; sourceTree = "<group>"; };
 		2D7A7CD71F7AD4800087A8E1 /* PingNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PingNotifier.h; sourceTree = "<group>"; };
 		2D7A7CD81F7AD4800087A8E1 /* PingNotifier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PingNotifier.m; sourceTree = "<group>"; };
-		2D8C5C351F79EFD600B3EC96 /* ezregex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ezregex.m; sourceTree = "<group>"; };
-		2D8C5C361F79EFD600B3EC96 /* ezregex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ezregex.h; sourceTree = "<group>"; };
 		2DD1B0881F78146C0061AC16 /* StreamInfoRetrieval.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StreamInfoRetrieval.h; sourceTree = "<group>"; };
 		2DD1B0891F78146C0061AC16 /* StreamInfoRetrieval.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StreamInfoRetrieval.m; sourceTree = "<group>"; };
-		2DD1B08C1F7816790061AC16 /* MediaStreamParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediaStreamParse.h; sourceTree = "<group>"; };
-		2DD1B08D1F78167A0061AC16 /* MediaStreamParse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MediaStreamParse.m; sourceTree = "<group>"; };
 		918D8BF3210FEEF0002DCD7B /* DetectStreamKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DetectStreamKit.framework; path = Frameworks/DetectStreamKit.framework; sourceTree = "<group>"; };
 		91AFCF5A1F100EBB0029AC09 /* SAMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAMKeychain.framework; path = Frameworks/SAMKeychain.framework; sourceTree = "<group>"; };
 		91AFCF5E1F1030C60029AC09 /* PlexAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlexAuth.h; sourceTree = "<group>"; };
@@ -301,32 +293,28 @@
 		2D5BCFE41ED9FD8F0076B1AC /* DetectionKit */ = {
 			isa = PBXGroup;
 			children = (
-				2D5BCFE51ED9FD8F0076B1AC /* DetectionKit.h */,
+				F866294120976F90006E5E46 /* AFNetworking.framework */,
+				2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */,
+				2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */,
 				2D5BCFFC1ED9FDC00076B1AC /* Detection.h */,
 				2D5BCFFD1ED9FDC00076B1AC /* Detection.m */,
+				2D5BCFE51ED9FD8F0076B1AC /* DetectionKit.h */,
+				918D8BF3210FEEF0002DCD7B /* DetectStreamKit.framework */,
+				2D5BCFE61ED9FD8F0076B1AC /* Info.plist */,
+				2D64A6D21F7B159F0042DF2D /* MSWeakTimer_macOS.framework */,
+				2D29289E1F7873BC00782F15 /* NSString+HTML.h */,
+				2D29289D1F7873BC00782F15 /* NSString+HTML.m */,
 				2D2928A21F79B36200782F15 /* OnigRegexp+MatchExtensions.h */,
 				2D2928A31F79B36200782F15 /* OnigRegexp+MatchExtensions.m */,
 				91AFCF5E1F1030C60029AC09 /* PlexAuth.h */,
 				91AFCF5F1F1030C60029AC09 /* PlexAuth.m */,
 				2D5BD0211EDA000B0076B1AC /* Recognition.h */,
 				2D5BD0221EDA000B0076B1AC /* Recognition.m */,
-				918D8BF3210FEEF0002DCD7B /* DetectStreamKit.framework */,
+				91AFCF5A1F100EBB0029AC09 /* SAMKeychain.framework */,
 				2DD1B0881F78146C0061AC16 /* StreamInfoRetrieval.h */,
 				2DD1B0891F78146C0061AC16 /* StreamInfoRetrieval.m */,
-				2DD1B08D1F78167A0061AC16 /* MediaStreamParse.m */,
-				2D8C5C361F79EFD600B3EC96 /* ezregex.h */,
-				2D8C5C351F79EFD600B3EC96 /* ezregex.m */,
-				2DD1B08C1F7816790061AC16 /* MediaStreamParse.h */,
-				2D29289E1F7873BC00782F15 /* NSString+HTML.h */,
-				2D29289D1F7873BC00782F15 /* NSString+HTML.m */,
-				2D5BCFE61ED9FD8F0076B1AC /* Info.plist */,
-				F866294120976F90006E5E46 /* AFNetworking.framework */,
-				2D64A6D21F7B159F0042DF2D /* MSWeakTimer_macOS.framework */,
-				2D5BD0251EDA00A30076B1AC /* anitomy-osx.framework */,
-				2D5BD0191ED9FF1E0076B1AC /* CocoaOniguruma.framework */,
 				2D5BD0271EDA019B0076B1AC /* supportedplayers.json */,
 				91AFCF7B1F10386A0029AC09 /* XMLReader.framework */,
-				91AFCF5A1F100EBB0029AC09 /* SAMKeychain.framework */,
 			);
 			path = DetectionKit;
 			sourceTree = "<group>";
@@ -411,9 +399,7 @@
 				2D7A7CD91F7AD4800087A8E1 /* PingNotifier.h in Headers */,
 				2D2928A41F79B36200782F15 /* OnigRegexp+MatchExtensions.h in Headers */,
 				2D5BCFF31ED9FD8F0076B1AC /* DetectionKit.h in Headers */,
-				2D8C5C381F79EFE700B3EC96 /* ezregex.h in Headers */,
 				2D2928A61F79E90F00782F15 /* StreamInfoRetrieval.h in Headers */,
-				2D2928A71F79E91400782F15 /* MediaStreamParse.h in Headers */,
 				2D2928A81F79E91800782F15 /* NSString+HTML.h in Headers */,
 				2D5BD0231EDA000B0076B1AC /* Recognition.h in Headers */,
 			);
@@ -643,11 +629,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D8C5C371F79EFE200B3EC96 /* ezregex.m in Sources */,
 				2D2928A51F79B36200782F15 /* OnigRegexp+MatchExtensions.m in Sources */,
 				2D2928A11F78751300782F15 /* StreamInfoRetrieval.m in Sources */,
 				2D29289F1F78750E00782F15 /* NSString+HTML.m in Sources */,
-				2D2928A01F78750E00782F15 /* MediaStreamParse.m in Sources */,
 				2D5BCFFF1ED9FDC00076B1AC /* Detection.m in Sources */,
 				91AFCF611F1030C60029AC09 /* PlexAuth.m in Sources */,
 				2D5BD0241EDA000B0076B1AC /* Recognition.m in Sources */,

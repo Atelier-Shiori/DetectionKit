@@ -7,7 +7,9 @@
 //
 
 #import "StreamInfoRetrieval.h"
-#import "ezregex.h"
+#import <DetectStreamKit/MediaStreamParse.h>
+#import <CocoaOniguruma/OnigRegexp.h>
+#import <CocoaOniguruma/OnigRegexpUtility.h>
 #import "NSString+HTML.h"
 
 @implementation StreamInfoRetrieval
@@ -52,15 +54,17 @@ NSString *const supportedSites = @"(crunchyroll|daisuki|animelab|funimation)";
 }
 +(NSString *)getPageTitle:(NSString *)dom{
     // Parses title from DOM
-    ezregex *regex = [ezregex new];
-    NSString *title = [regex findMatch:dom pattern:@"<title>(.*?)<\\/title>" rangeatindex:0];
-    title = [regex searchreplace:title pattern:@"(<title>|<\\/title>)"];
+    OnigRegexp *regex = [OnigRegexp compile:@"<title>(.*?)<\\/title>" options:OnigOptionIgnorecase];
+    NSString *title = [regex search:dom].strings[0];
+    regex = [OnigRegexp compile:@"(<title>|<\\/title>)" options:OnigOptionIgnorecase];
+    title = [title replaceByRegexp:regex with:@""];
     //Unexcape HTML Characters
     title = [title kv_decodeHTMLCharacterEntities];
     return title;
 }
 +(NSString *)checkURL:(NSString *)url{
-    NSString *site = [[[ezregex alloc] init] findMatch:url pattern:supportedSites rangeatindex:0];
+    OnigResult *result = [[OnigRegexp compile:supportedSites options:OnigOptionIgnorecase] search:url];
+    NSString *site = result.strings.count > 0 ? result.strings[0] : @"";
     if ([site isEqualToString:@"32400"]) {
         //Plex local port, return plex
         return @"plex";
