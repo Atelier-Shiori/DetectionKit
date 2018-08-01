@@ -52,7 +52,7 @@ NSString *const supportedSites = @"(crunchyroll|daisuki|animelab|funimation)";
     }
     return nil;
 }
-+(NSString *)getPageTitle:(NSString *)dom{
++ (NSString *)getPageTitle:(NSString *)dom {
     // Parses title from DOM
     OnigRegexp *regex = [OnigRegexp compile:@"<title>(.*?)<\\/title>" options:OnigOptionIgnorecase];
     NSString *title = [regex search:dom].strings[0];
@@ -62,7 +62,7 @@ NSString *const supportedSites = @"(crunchyroll|daisuki|animelab|funimation)";
     title = [title kv_decodeHTMLCharacterEntities];
     return title;
 }
-+(NSString *)checkURL:(NSString *)url{
++(NSString *)checkURL:(NSString *)url {
     OnigResult *result = [[OnigRegexp compile:supportedSites options:OnigOptionIgnorecase] search:url];
     NSString *site = result.strings.count > 0 ? result.strings[0] : @"";
     if ([site isEqualToString:@"32400"]) {
