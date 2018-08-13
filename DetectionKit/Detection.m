@@ -422,7 +422,7 @@
 }
 
 - (NSDictionary *)checkmetadata:(NSDictionary *)metadata {
-    NSString *filepath = metadata[@"Media"][@"Part"][@"file"] && [(NSString *)metadata[@"Media"][@"Part"][@"decision"] isEqualToString:@"directplay"] ? metadata[@"Media"][@"Part"][@"file"]  : metadata[@"title"];
+    NSString *filepath = metadata[@"Media"][@"Part"][@"file"] && [(NSString *)metadata[@"Media"][@"Part"][@"decision"] isEqualToString:@"directplay"] ? metadata[@"Media"][@"Part"][@"file"]  : metadata[@"grandparentTitle"] && metadata[@"grandparentTitle"] != [NSNull null] && metadata[@"parentTitle"] && metadata[@"parentTitle"] != [NSNull null] ? [NSString stringWithFormat:@"%@ - %@ %@" , metadata[@"grandparentTitle"], metadata[@"index"], metadata[@"parentTitle"]] : metadata[@"title"];
     NSDictionary *recoginfo = [[Recognition alloc] recognize:filepath];
     NSString *DetectedTitle = (NSString *)recoginfo[@"title"];
     NSString *DetectedEpisode = (NSString *)recoginfo[@"episode"];
