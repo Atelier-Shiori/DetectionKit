@@ -136,7 +136,7 @@
         
         NSFileHandle *file;
         file = pipe.fileHandleForReading;
-        
+        [task setEnvironment:@{@"LC_ALL" : @"en_US.UTF-8"}];
         [task launch];
         
         NSData *data;
@@ -541,7 +541,7 @@
     
     NSFileHandle *file;
     file = pipe.fileHandleForReading;
-    
+    [task setEnvironment:@{@"LC_ALL" : @"en_US.UTF-8"}];
     [task launch];
     
     NSData *data;
