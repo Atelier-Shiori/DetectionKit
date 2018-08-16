@@ -350,7 +350,8 @@
             [_plexmanager.requestSerializer setValue:@"X-Plex-Version" forHTTPHeaderField:NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]];
             NSError *error;
             NSURLSessionDataTask *task;
-            id responseObject = [_plexmanager syncPOST:[NSString stringWithFormat:@"http://%@:%li/status/sessions?X-Plex-Token=%@", [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username]] parameters:nil task:&task error:&error];
+            NSString *httpprefix = [NSUserDefaults.standardUserDefaults boolForKey:@"plexusehttps"] ? @"https" : @"http";
+            id responseObject = [_plexmanager syncPOST:[NSString stringWithFormat:@"%@://%@:%li/status/sessions?X-Plex-Token=%@", httpprefix, [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username]] parameters:nil task:&task error:&error];
             switch (((NSHTTPURLResponse *)task.response).statusCode) {
                 case 200:{
                     return [self parsePlexXML:[NSString stringWithUTF8String:[responseObject bytes]]];
