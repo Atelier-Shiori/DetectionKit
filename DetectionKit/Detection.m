@@ -46,6 +46,7 @@
         _plexmanager.responseSerializer = [AFHTTPResponseSerializer serializer];
         _plexmanager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
         _detectstreammgr = [DetectStreamManager new];
+        [self promptAutomation];
     }
     return self;
 }
@@ -110,7 +111,7 @@
     NSArray *player = [NSJSONSerialization JSONObjectWithData:supportedplayersdata options:0 error:&error];
     NSString *string;
     OnigRegexp    *regex;
-    for (NSUInteger i = 0; i <player.count; i++) {
+    for (NSUInteger i = 0; i < player.count; i++) {
         NSTask *task;
         NSDictionary *theplayer = player[i];
         if (theplayer[@"applescript_command"]) {
@@ -629,6 +630,49 @@
     [_plexreach changeHostName:url];
     // Start notifier
     [_plexreach startPing];
+}
+
+#pragma mark Mojave Applescript Privacy
+- (void)promptAutomation {
+    if (![NSUserDefaults.standardUserDefaults boolForKey:@"promptautomation"]) {
+        NSAlert *alert = [NSAlert new];
+        alert.messageText = [NSString stringWithFormat:NSLocalizedString(@"On macOS 10.14 or later, you need to approve Automation Permissions in order to make some media detection work for %@.", nil), [[[NSBundle mainBundle] infoDictionary]   objectForKey:@"CFBundleName"]];
+        alert.informativeText = NSLocalizedString(@"macOS 10.14 or later requires the user to approve the use of Automation to use certain features such as stream and video detection. Failing to approve these prompts will degrade program functionality.\n\nYou can do these prompts now so we don't have to ask for them later. Do you want to do it now?", nil);
+        alert.alertStyle = NSInformationalAlertStyle;
+        [alert addButtonWithTitle:NSLocalizedString(@"Yes",nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"No",nil)];
+        if ([alert runModal] == NSAlertFirstButtonReturn) {
+            // Get Automation Permission
+            [self getAutomationPermission];
+            [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"promptautomation"];
+        }
+    }
+    
+}
+- (void)getAutomationPermission {
+    BrowserDetection *browserdetect = [BrowserDetection new];
+    [browserdetect getAutomationPermission];
+    NSError *error;
+    NSData *supportedplayersdata = [[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"supportedplayers" ofType:@"json"] encoding:NSUTF8StringEncoding error:&error] dataUsingEncoding:NSUTF8StringEncoding];
+    if (!supportedplayersdata) {
+        NSLog(@"Error: Can't load supportedplayers.json, %@", error.localizedDescription);
+        return;
+    }
+    NSArray *player = [NSJSONSerialization JSONObjectWithData:supportedplayersdata options:0 error:&error];
+    for (NSUInteger i = 0; i < player.count; i++) {
+        NSTask *task;
+        NSDictionary *theplayer = player[i];
+        if (theplayer[@"applescript_command"]) {
+            // Run Applescript command as specified
+            task = [[NSTask alloc] init];
+            task.launchPath = @"/usr/bin/osascript";
+            task.arguments = @[@"-e", (NSString *)theplayer[@"applescript_command"]];
+            [task launch];
+        }
+        else {
+            continue;
+        }
+    }
 }
 
 #pragma mark Utility Methods
