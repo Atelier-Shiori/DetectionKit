@@ -46,7 +46,9 @@
         _plexmanager.responseSerializer = [AFHTTPResponseSerializer serializer];
         _plexmanager.completionQueue = dispatch_queue_create("AFNetworking+Synchronous", NULL);
         _detectstreammgr = [DetectStreamManager new];
-        [self promptAutomation];
+        if (@available(macOS 10.14, *)) {
+            [self promptAutomation];
+        }
     }
     return self;
 }
