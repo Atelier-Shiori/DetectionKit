@@ -148,7 +148,7 @@
                 string = [string stringByReplacingOccurrencesOfString:@":" withString:@"/"]; // Replace colons with clashes (colon not a valid filename character)
                 string = [NSString stringWithFormat:@"/%@",string];
             }
-            regex = [OnigRegexp compile:@"^.+(avi|mkv|mp4|ogm|rm|rmvb|wmv|divx|mov|flv|mpg|3gp)$" options:OnigOptionIgnorecase];
+            regex = [OnigRegexp compile:@"^.+\\.(avi|mkv|mp4|ogm|rm|rmvb|wmv|divx|mov|flv|mpg|3gp)$" options:OnigOptionIgnorecase];
             //Get the filename first
             OnigResult    *match;
             match = [regex search:string];
