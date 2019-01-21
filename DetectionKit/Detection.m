@@ -170,7 +170,7 @@
                     BOOL invalidepisode = [self checkIgnoredKeywords:d[@"types"]];
                     if (!invalidepisode) {
                         NSString *DetectedTitle = (NSString *)d[@"title"];
-                        NSString *DetectedEpisode = (NSString *)d[@"episode"];
+                        NSString *DetectedEpisode = @(((NSString *)d[@"episode"]).intValue).stringValue;
                         NSNumber *DetectedSeason = d[@"season"];
                         NSString *DetectedGroup = (NSString *)d[@"group"];
                         if (DetectedTitle.length > 0) {
@@ -280,7 +280,7 @@
                 BOOL invalidepisode = [self checkIgnoredKeywords:d[@"types"]];
                 if (!invalidepisode) {
                     NSString *DetectedTitle = (NSString *)d[@"title"];
-                    NSString *DetectedEpisode = (NSString *)d[@"episode"];
+                    NSString *DetectedEpisode = @(((NSString *)d[@"episode"]).intValue).stringValue;
                     NSNumber *DetectedSeason = d[@"season"];
                     NSString *DetectedGroup = d[@"group"];
                     NSString *DetectedSource = @"Kodi/Plex";
@@ -426,7 +426,7 @@
     NSString *filepath = metadata[@"Media"][@"Part"][@"file"] && [(NSString *)metadata[@"Media"][@"Part"][@"decision"] isEqualToString:@"directplay"] ? metadata[@"Media"][@"Part"][@"file"]  : metadata[@"grandparentTitle"] && metadata[@"grandparentTitle"] != [NSNull null] && metadata[@"parentTitle"] && metadata[@"parentTitle"] != [NSNull null] ? [NSString stringWithFormat:@"%@ - %@ %@" , metadata[@"grandparentTitle"], metadata[@"index"], metadata[@"parentTitle"]] : metadata[@"title"];
     NSDictionary *recoginfo = [[Recognition alloc] recognize:filepath];
     NSString *DetectedTitle = (NSString *)recoginfo[@"title"];
-    NSString *DetectedEpisode = (NSString *)recoginfo[@"episode"];
+    NSString *DetectedEpisode = @(((NSString *)recoginfo[@"episode"]).intValue).stringValue;
     NSString *DetectedSource = @"Plex";
     NSNumber *DetectedSeason = recoginfo[@"season"];
     NSString *DetectedGroup = (NSString *)recoginfo[@"group"];
