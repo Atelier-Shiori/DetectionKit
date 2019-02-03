@@ -392,18 +392,20 @@
                     NSString *playerusername = video[@"User"][@"title"];
                     if ([playerstate isEqualToString:@"playing"] && [playerusername isEqualToString:currentuser]) {
                         NSDictionary *result;
-                        if ([video[@"Media"][@"Part"] isKindOfClass:[NSArray class]]) {
-                            if (((NSArray *)video[@"Media"][@"Part"]).count > 0) {
-                                for (NSDictionary *v in video[@"Media"][@"Part"]) {
-                                    result = [self checkmetadata:@{@"Media" : @{@"Part" : v}}];
-                                    if (result) {
-                                        return result;
+                        if (video[@"Media"][@"Part"]) {
+                            if ([video[@"Media"][@"Part"] isKindOfClass:[NSArray class]]) {
+                                if (((NSArray *)video[@"Media"][@"Part"]).count > 0) {
+                                    for (NSDictionary *v in video[@"Media"][@"Part"]) {
+                                        result = [self checkmetadata:@{@"Media" : @{@"Part" : v}}];
+                                        if (result) {
+                                            return result;
+                                        }
                                     }
                                 }
                             }
-                        }
-                        else if (video[@"Media"][@"Part"]) {
-                            result = [self checkmetadata:video];
+                            else {
+                                result = [self checkmetadata:video];
+                            }
                         }
                         else {
                             result = [self checkmetadata:[self retrievemetadata:(NSString *)video[@"key"]]];
@@ -411,6 +413,7 @@
                         if (result) {
                             return result;
                         }
+                            
                     }
                 }
                 else {
