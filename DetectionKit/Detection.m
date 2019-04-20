@@ -130,63 +130,69 @@
                 continue; // Application not running, don't check
             }
         }
-        NSPipe *pipe;
-        pipe = [NSPipe pipe];
-        task.standardOutput = pipe;
-        
-        NSFileHandle *file;
-        file = pipe.fileHandleForReading;
-        [task setEnvironment:@{@"LC_ALL" : @"en_US.UTF-8"}];
-        [task launch];
-        
-        NSData *data;
-        data = [file readDataToEndOfFile];
-        
-        string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-        if (string.length > 0) {
-            if (![[OnigRegexp compile:@"/"] search:string]) {
-                string = [string stringByReplacingOccurrencesOfString:@":" withString:@"/"]; // Replace colons with clashes (colon not a valid filename character)
-                string = [NSString stringWithFormat:@"/%@",string];
-            }
-            regex = [OnigRegexp compile:@"^.+\\.(avi|mkv|mp4|ogm|rm|rmvb|wmv|divx|mov|flv|mpg|3gp)$" options:OnigOptionIgnorecase];
-            //Get the filename first
-            OnigResult    *match;
-            match = [regex search:string];
-            NSMutableArray *filenames = [NSMutableArray new];
-            for (NSString *matchedString in match.strings) {
-                [filenames addObject:matchedString];
-            }
-            // Populate Source
-            NSString *DetectedSource = theplayer[@"player_name"];
-            //Check if thee file name or directory is on any ignore list
-            for (NSUInteger f = 0; f < filenames.count; f++) {
-                //Check every possible match
-                string = filenames[f];
-                BOOL onIgnoreList = [self checkifIgnored:string source:DetectedSource];
-                //Make sure the file name is valid, even if player is open. Do not update video files in ignored directories
-                
-                if ([[regex match:string] havematches] && !onIgnoreList) {
-                    NSDictionary *d = [[Recognition alloc] recognize:string];
-                    BOOL invalidepisode = [self checkIgnoredKeywords:d[@"types"]];
-                    if (!invalidepisode) {
-                        NSString *DetectedTitle = (NSString *)d[@"title"];
-                        NSString *DetectedEpisode = @(((NSString *)d[@"episode"]).intValue).stringValue;
-                        NSNumber *DetectedSeason = d[@"season"];
-                        NSString *DetectedGroup = (NSString *)d[@"group"];
-                        if (DetectedTitle.length > 0) {
-                            //Return result
-                            result = @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": d[@"types"]};
-                            return result;
+        @try {
+            NSPipe *pipe;
+            pipe = [NSPipe pipe];
+            task.standardOutput = pipe;
+            
+            NSFileHandle *file;
+            file = pipe.fileHandleForReading;
+            [task setEnvironment:@{@"LC_ALL" : @"en_US.UTF-8"}];
+            [task launch];
+            
+            NSData *data;
+            data = [file readDataToEndOfFile];
+            
+            string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+            if (string.length > 0) {
+                if (![[OnigRegexp compile:@"/"] search:string]) {
+                    string = [string stringByReplacingOccurrencesOfString:@":" withString:@"/"]; // Replace colons with clashes (colon not a valid filename character)
+                    string = [NSString stringWithFormat:@"/%@",string];
+                }
+                regex = [OnigRegexp compile:@"^.+\\.(avi|mkv|mp4|ogm|rm|rmvb|wmv|divx|mov|flv|mpg|3gp)$" options:OnigOptionIgnorecase];
+                //Get the filename first
+                OnigResult    *match;
+                match = [regex search:string];
+                NSMutableArray *filenames = [NSMutableArray new];
+                for (NSString *matchedString in match.strings) {
+                    [filenames addObject:matchedString];
+                }
+                // Populate Source
+                NSString *DetectedSource = theplayer[@"player_name"];
+                //Check if thee file name or directory is on any ignore list
+                for (NSUInteger f = 0; f < filenames.count; f++) {
+                    //Check every possible match
+                    string = filenames[f];
+                    BOOL onIgnoreList = [self checkifIgnored:string source:DetectedSource];
+                    //Make sure the file name is valid, even if player is open. Do not update video files in ignored directories
+                    
+                    if ([[regex match:string] havematches] && !onIgnoreList) {
+                        NSDictionary *d = [[Recognition alloc] recognize:string];
+                        BOOL invalidepisode = [self checkIgnoredKeywords:d[@"types"]];
+                        if (!invalidepisode) {
+                            NSString *DetectedTitle = (NSString *)d[@"title"];
+                            NSString *DetectedEpisode = @(((NSString *)d[@"episode"]).intValue).stringValue;
+                            NSNumber *DetectedSeason = d[@"season"];
+                            NSString *DetectedGroup = (NSString *)d[@"group"];
+                            if (DetectedTitle.length > 0) {
+                                //Return result
+                                result = @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": d[@"types"]};
+                                return result;
+                            }
+                        }
+                        else {
+                            continue;
                         }
                     }
                     else {
                         continue;
                     }
                 }
-                else {
-                    continue;
-                }
             }
+        }
+        @catch (NSException *ex) {
+            NSLog(@"Video Detection failed: %@", ex);
+            return nil;
         }
     }
     return result;
@@ -239,8 +245,8 @@
             }
         }
     }
-    @catch (NSException *e) {
-        NSLog(@"Stream Detection Failed: %@", e);
+    @catch (NSException *ex) {
+        NSLog(@"Stream Detection Failed: %@", ex);
     }
     return nil;
 }
@@ -534,36 +540,41 @@
     return false;
 }
 
-- (NSArray *)detectAndRetrieveInfo{
-    NSTask *task;
-    task = [[NSTask alloc] init];
-    task.launchPath = @"/bin/ps";
-    task.arguments = @[@"-ax"];
-    NSPipe *pipe;
-    pipe = [NSPipe pipe];
-    task.standardOutput = pipe;
-    
-    NSFileHandle *file;
-    file = pipe.fileHandleForReading;
-    [task setEnvironment:@{@"LC_ALL" : @"en_US.UTF-8"}];
-    [task launch];
-    
-    NSData *data;
-    data = [file readDataToEndOfFile];
-    NSString *string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-    NSString *pattern = @"streamlink *.* (https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})";
-    OnigRegexp *regex = [OnigRegexp compile:pattern];
-    OnigResult *matches = [regex search:string];
-    if (matches.strings.count > 0) {
-        string = matches.strings[0];
-        NSString *urlpattern = @"(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})";
-        regex = [OnigRegexp compile:urlpattern];
-        string = [regex search:string].strings[0];
-        NSDictionary *info = [StreamInfoRetrieval retrieveStreamInfo:string];
-        if (info){
-            return [MediaStreamParse parse:@[info]];
+- (NSArray *)detectAndRetrieveInfo {
+    @try {
+        NSTask *task;
+        task = [[NSTask alloc] init];
+        task.launchPath = @"/bin/ps";
+        task.arguments = @[@"-ax"];
+        NSPipe *pipe;
+        pipe = [NSPipe pipe];
+        task.standardOutput = pipe;
+        
+        NSFileHandle *file;
+        file = pipe.fileHandleForReading;
+        [task setEnvironment:@{@"LC_ALL" : @"en_US.UTF-8"}];
+        [task launch];
+        NSData *data;
+        data = [file readDataToEndOfFile];
+        NSString *string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+        NSString *pattern = @"streamlink *.* (https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})";
+        OnigRegexp *regex = [OnigRegexp compile:pattern];
+        OnigResult *matches = [regex search:string];
+        if (matches.strings.count > 0) {
+            string = matches.strings[0];
+            NSString *urlpattern = @"(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})";
+            regex = [OnigRegexp compile:urlpattern];
+            string = [regex search:string].strings[0];
+            NSDictionary *info = [StreamInfoRetrieval retrieveStreamInfo:string];
+            if (info){
+                return [MediaStreamParse parse:@[info]];
+            }
+            return nil;
         }
-        return nil;
+    }
+    @catch (NSException *ex) {
+        NSLog(@"Streamlink detection failed: %@", ex);
+        return @[];
     }
     return nil;
 }
