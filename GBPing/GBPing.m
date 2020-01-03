@@ -207,14 +207,14 @@ static NSTimeInterval const kDefaultTimeout =           2.0;
             success = CFHostStartInfoResolution(hostRef, kCFHostAddresses, &streamError);
         } else {
             success = NO;
-        }        
+        }
         
         if (!success) {
             //construct an error
             NSDictionary *userInfo;
             NSError *error;
             
-            if (streamError.domain == kCFStreamErrorDomainNetDB) {
+            if (hostRef && streamError.domain == kCFStreamErrorDomainNetDB) {
                 userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
                             [NSNumber numberWithInteger:streamError.error], kCFGetAddrInfoFailureKey,
                             nil
@@ -242,7 +242,6 @@ static NSTimeInterval const kDefaultTimeout =           2.0;
         
         //get the first IPv4 or IPv6 address
         Boolean resolved;
-        const struct sockaddr *addrPtr;
         NSArray *addresses = (__bridge NSArray *)CFHostGetAddressing(hostRef, &resolved);
         if (resolved && (addresses != nil)) {
             resolved = false;
@@ -253,7 +252,6 @@ static NSTimeInterval const kDefaultTimeout =           2.0;
                     (anAddrPtr->sa_family == AF_INET || anAddrPtr->sa_family == AF_INET6)) {
                     
                     resolved = true;
-                    addrPtr = anAddrPtr;
                     self.hostAddress = address;
                     struct sockaddr_in *sin = (struct sockaddr_in *)anAddrPtr;
                     char str[INET6_ADDRSTRLEN];
@@ -366,7 +364,11 @@ static NSTimeInterval const kDefaultTimeout =           2.0;
     enum { kBufferSize = 65535 };
     
     buffer = malloc(kBufferSize);
-    assert(buffer);
+
+    if (buffer == nil) {
+        err = errno;
+        return;
+    }
     
     //read the data.
     addrLen = sizeof(addr);
@@ -388,7 +390,11 @@ static NSTimeInterval const kDefaultTimeout =           2.0;
             NSMutableData *packet;
 
             packet = [NSMutableData dataWithBytes:buffer length:(NSUInteger) bytesRead];
-            assert(packet);
+
+            if (packet == nil) {
+                err = errno;
+                return;
+            }
 
             //complete the ping summary
             const struct ICMPHeader *headerPointer;
@@ -410,6 +416,13 @@ static NSTimeInterval const kDefaultTimeout =           2.0;
                     // IP can't be read from header for ICMPv6
                     if (sin->sin_family == AF_INET) {
                         pingSummary.host = [[self class] sourceAddressInPacket:packet];
+                        
+                        //set ttl from response (different servers may respond with different ttls)
+                        const struct IPHeader *ipPtr;
+                        if ([packet length] >= sizeof(IPHeader)) {
+                            ipPtr = (const IPHeader *)[packet bytes];
+                             pingSummary.ttl = ipPtr->timeToLive;
+                        }
                     }
 
                     pingSummary.status = GBPingStatusSuccess;
@@ -498,6 +511,7 @@ static NSTimeInterval const kDefaultTimeout =           2.0;
                 packet = [self pingPacketWithType:kICMPv6TypeEchoRequest payload:payload requiresChecksum:NO];
             } break;
             default: {
+                err = errno;
                 return;
             } break;
         }
@@ -694,8 +708,8 @@ static uint16_t in_cksum(const void *buffer, size_t bufferLen)
     }
     
     /* add back carry outs from top 16 bits to low 16 bits */
-    sum = (sum >> 16) + (sum & 0xffff);	/* add hi 16 to low 16 */
-    sum += (sum >> 16);			/* add carry */
+    sum = (sum >> 16) + (sum & 0xffff);    /* add hi 16 to low 16 */
+    sum += (sum >> 16);            /* add carry */
     answer = (uint16_t) ~sum;   /* truncate to 16 bits */
     
     return answer;
@@ -764,7 +778,6 @@ static uint16_t in_cksum(const void *buffer, size_t bufferLen)
             result = [self isValidPing6ResponsePacket:packet];
         } break;
         default: {
-            assert(NO);
             result = NO;
         } break;
     }
@@ -854,7 +867,7 @@ static uint16_t in_cksum(const void *buffer, size_t bufferLen)
     ICMPHeader *            icmpPtr;
     
     packet = [NSMutableData dataWithLength:sizeof(*icmpPtr) + payload.length];
-    assert(packet != nil);
+    if (packet == nil) { return nil; }
     
     icmpPtr = packet.mutableBytes;
     icmpPtr->type = type;
