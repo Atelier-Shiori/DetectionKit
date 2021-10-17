@@ -6,75 +6,152 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		h0oKP4eZgar/rc1LPHkGRPtqpF8=
+		83VpdMwhCJd9D7uR4bS79nAfGLk=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/BrowserDetection.h</key>
+		<key>Headers/AFHTTPRequestSerializer+OAuth2.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			8SJD2VX7RM9VORYiOdAJuPUFsuM=
+			vD+MC/Jo4ZerYigw94kElC5zkFw=
 			</data>
 			<key>hash2</key>
 			<data>
-			vwvC0jZHF39EjocLggQIODZzEAHyReb/PE1d6m3D1c4=
+			afa8HSYtl3zA365ImtFb9YPrHVS9DqA8d2/7/55PXn8=
 			</data>
 		</dict>
-		<key>Headers/DetectStreamKit.h</key>
+		<key>Headers/AFHTTPSessionManager+Synchronous.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Ffi3i3grb16gg/oxgunc8NE7SsE=
+			qdXINkVFB9BY0QcZOJnep5auq40=
 			</data>
 			<key>hash2</key>
 			<data>
-			KaDJmHxMt5ErOrZg/ojENjZcQ6H2g4C1vBpniZoKk0Q=
+			v8YjvHw9EljvFLhMInnhEtQwNnm4n7YMRFlL/LQf9dg=
 			</data>
 		</dict>
-		<key>Headers/DetectStreamManager.h</key>
+		<key>Headers/AFHTTPSessionManager.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			UvJkcfB8ay2TxHtNlZ8f6AgNz/w=
+			p3y9y+DZ33iDXLM2/mkVpkPccC4=
 			</data>
 			<key>hash2</key>
 			<data>
-			VU130iQpmNeD+eHF5xs/76r5hUAYP/XR+7sOR+kCNC0=
+			BqwnAj446Qw/r7PcV4ibwL2mt4PrlFn7q7x+P1EukMA=
 			</data>
 		</dict>
-		<key>Headers/MediaStreamParse.h</key>
+		<key>Headers/AFNetworkReachabilityManager.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			vF1V0OdPnZiOneZqK7R1a2pQ3LM=
+			R/t4WKNzLfS6JczqTfl+4lPeSCA=
 			</data>
 			<key>hash2</key>
 			<data>
-			i2tcEo9YAq/BCSwHtB4h8VA/7w5jvYpuzvZc1nNdmM0=
+			J1AT1NAK4MovKULfkwSZBr4x9J1SkaJzWNQ5SB0Eby8=
+			</data>
+		</dict>
+		<key>Headers/AFNetworking.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			mbYQx9uQISVHfVZlbXjf3gUYOwc=
+			</data>
+			<key>hash2</key>
+			<data>
+			NkpwxeOEdy/8onq92zyWQyvAG2D9QY2A8V8eQMGIFYQ=
+			</data>
+		</dict>
+		<key>Headers/AFOAuth2Manager.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			SRyCYG1dw8kkmF3MGGsZ+kkZ39Q=
+			</data>
+			<key>hash2</key>
+			<data>
+			IoSR/xVZN21KWke5SQd5LhopxD2lVgUj2hZogw6X0pw=
+			</data>
+		</dict>
+		<key>Headers/AFOAuthCredential.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			nHTQ1MkSS8gcyeyZwm/q0s0SK2M=
+			</data>
+			<key>hash2</key>
+			<data>
+			KkifXZxBppVGOKVooUgf0Jl+ypP8EdvVozIXzkK3lLw=
+			</data>
+		</dict>
+		<key>Headers/AFSecurityPolicy.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			sbAejRIs5q8A3eCqlJdxh9ldd0s=
+			</data>
+			<key>hash2</key>
+			<data>
+			CtR6U4APL0biRZsiCZ6QZ+K1XWqVal9uWDeiAdS3sso=
+			</data>
+		</dict>
+		<key>Headers/AFURLRequestSerialization.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			yUuOFpvN5gtri8UhbNkMUi5k+Jw=
+			</data>
+			<key>hash2</key>
+			<data>
+			082CkQ2NOpKoySPbvGCDhUdkPiWyyxt2XFjbpO8hbYI=
+			</data>
+		</dict>
+		<key>Headers/AFURLResponseSerialization.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			596fkDcpD1iHy1h71Lajc0oXO+0=
+			</data>
+			<key>hash2</key>
+			<data>
+			v+HFEaDHsXlge2ctPSSvCQdR5wm4Vq5CSema3vvwNmk=
+			</data>
+		</dict>
+		<key>Headers/AFURLSessionManager.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			IW9uzKavrAM1lNAIUZgRZw7MKjg=
+			</data>
+			<key>hash2</key>
+			<data>
+			PV/Z4UlMxeT19Tn8D6kRJ+UV5V2oXW0yTEGqvWOUC0I=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			2LcgngPF3wlC+DgVO1HG3ujrTSU=
+			GAquRYmEySlGihLbL//lwYDPQjo=
 			</data>
 			<key>hash2</key>
 			<data>
-			UJKOy6lVToMwagCnk/5e3an7AtpQyCJbG50ZtZZrbCI=
+			ZsDrk4ieFt7KUrgawVcGo9kQAfmgjtwfr0wYGrOj4Zk=
 			</data>
 		</dict>
 		<key>Resources/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			h0oKP4eZgar/rc1LPHkGRPtqpF8=
+			83VpdMwhCJd9D7uR4bS79nAfGLk=
 			</data>
 			<key>hash2</key>
 			<data>
-			zvmhgVsjxKJtbfzFWNkLzzYuGCG3IvvZMkq9GpY3Bak=
+			VeaGmYq8eFPMAxRUmuFHQ3wnchKZ6gdIZOso+WWRydY=
 			</data>
 		</dict>
 	</dict>

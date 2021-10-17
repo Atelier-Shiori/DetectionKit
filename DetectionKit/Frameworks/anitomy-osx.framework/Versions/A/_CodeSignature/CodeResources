@@ -6,76 +6,146 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		h0oKP4eZgar/rc1LPHkGRPtqpF8=
+		yVyvWsSe9kzNONiHK9avdJAtLGw=
 		</data>
+		<key>Resources/LICENSE</key>
+		<data>
+		l0TO3OCZ9yezJ82ZE6H9xYp/VZk=
+		</data>
+		<key>Resources/en.lproj/InfoPlist.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			MiLKDDnrUKr4EmuvhS5VQwxHGK8=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/BrowserDetection.h</key>
+		<key>Headers/anitomy-objc-wrapper.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			8SJD2VX7RM9VORYiOdAJuPUFsuM=
+			C1r1wMtkNiCMR8WXdkkALLkH7UE=
 			</data>
 			<key>hash2</key>
 			<data>
-			vwvC0jZHF39EjocLggQIODZzEAHyReb/PE1d6m3D1c4=
+			taLB1dGwQvBjr0bhU3fRYb5Phb4Fot5fMT1AZNegOYU=
 			</data>
 		</dict>
-		<key>Headers/DetectStreamKit.h</key>
+		<key>PrivateHeaders/anitomy.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Ffi3i3grb16gg/oxgunc8NE7SsE=
+			k9Ic9lPOwDbwFn/ye9dOnZBmR5k=
 			</data>
 			<key>hash2</key>
 			<data>
-			KaDJmHxMt5ErOrZg/ojENjZcQ6H2g4C1vBpniZoKk0Q=
+			9jOS8h1CTK/BX4Fe5MuNuAkqavqdnXzn5rNe/ggAPps=
 			</data>
 		</dict>
-		<key>Headers/DetectStreamManager.h</key>
+		<key>PrivateHeaders/element.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			UvJkcfB8ay2TxHtNlZ8f6AgNz/w=
+			q0ha2heHf4gtYXXRRVelDT0OViw=
 			</data>
 			<key>hash2</key>
 			<data>
-			VU130iQpmNeD+eHF5xs/76r5hUAYP/XR+7sOR+kCNC0=
+			sXdr8Agl9rA/HYM8pRVmMYCyYtUgeL1UGK7FH7Brn1o=
 			</data>
 		</dict>
-		<key>Headers/MediaStreamParse.h</key>
+		<key>PrivateHeaders/keyword.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			vF1V0OdPnZiOneZqK7R1a2pQ3LM=
+			XZ2xZGLfo4D72hYrFKgZNWwKtxw=
 			</data>
 			<key>hash2</key>
 			<data>
-			i2tcEo9YAq/BCSwHtB4h8VA/7w5jvYpuzvZc1nNdmM0=
+			qyEBGlrD5Zw9yeQhdQzX5GNwO5uJTjJGhpbcdetL+XE=
 			</data>
 		</dict>
-		<key>Modules/module.modulemap</key>
+		<key>PrivateHeaders/parser.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			2LcgngPF3wlC+DgVO1HG3ujrTSU=
+			bAj21DnCreP6T9+9QU22CgbzAT4=
 			</data>
 			<key>hash2</key>
 			<data>
-			UJKOy6lVToMwagCnk/5e3an7AtpQyCJbG50ZtZZrbCI=
+			ZDETdPvJjjojTeH4MTNK+bNkSHotEuyuJ3p6zysx3Xc=
+			</data>
+		</dict>
+		<key>PrivateHeaders/string2.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			G/Jg7oIvFOAMRnTDWiMHPwI5ScE=
+			</data>
+			<key>hash2</key>
+			<data>
+			Vgt9CgMpYlNgNZ4utwOdpHyb6CUdIucBwZe98BJjyS4=
+			</data>
+		</dict>
+		<key>PrivateHeaders/token.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			AAXN46YcB2iuy9TnZpntEuvZ1Tw=
+			</data>
+			<key>hash2</key>
+			<data>
+			JdHxlEMKTCKAsEkYjOznlD6175I0DlvVZOsvaDG+NHY=
+			</data>
+		</dict>
+		<key>PrivateHeaders/tokenizer.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			pZUDL/65Y5QlpHs5NWeLwhxyCoo=
+			</data>
+			<key>hash2</key>
+			<data>
+			2OS0fI16eh9DMm2PFfYKPbZb5N0NZ3apZvX2i+VzW+A=
 			</data>
 		</dict>
 		<key>Resources/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			h0oKP4eZgar/rc1LPHkGRPtqpF8=
+			yVyvWsSe9kzNONiHK9avdJAtLGw=
 			</data>
 			<key>hash2</key>
 			<data>
-			zvmhgVsjxKJtbfzFWNkLzzYuGCG3IvvZMkq9GpY3Bak=
+			ddlA0kwPDe4VYhp015j4y4N08rTpul/OR8sc+CGNQiA=
 			</data>
+		</dict>
+		<key>Resources/LICENSE</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			l0TO3OCZ9yezJ82ZE6H9xYp/VZk=
+			</data>
+			<key>hash2</key>
+			<data>
+			+rPda9qyJvHAhjCx3ZF+Efy07F4eAg4sFvg6ChOGPoU=
+			</data>
+		</dict>
+		<key>Resources/en.lproj/InfoPlist.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			MiLKDDnrUKr4EmuvhS5VQwxHGK8=
+			</data>
+			<key>hash2</key>
+			<data>
+			Oc8u4Ht7Mz58F50L9NeYpbcq9qTlhPUeZCcDu/pPyCg=
+			</data>
+			<key>optional</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>rules</key>

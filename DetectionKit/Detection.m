@@ -523,10 +523,20 @@
     if (ignoredirectories.count > 0) {
         for (NSDictionary *d in ignoredirectories) {
             if ([filename isEqualToString:d[@"directory"]]) {
-                NSLog(@"Video being played is in ignored directory");
-                return true;
+                if ([NSUserDefaults.standardUserDefaults boolForKey:@"useDirectoryAsWhitelist"]) {
+                    NSLog(@"Video being played is in a whitelisted directory");
+                    return true;
+                }
+                else {
+                    NSLog(@"Video being played is in ignored directory");
+                    return true;
+                }
             }
         }
+    }
+    if ([NSUserDefaults.standardUserDefaults boolForKey:@"useDirectoryAsWhitelist"]) {
+        NSLog(@"Video being played is not in a whitelisted directory");
+        return true;
     }
     return false;
 }

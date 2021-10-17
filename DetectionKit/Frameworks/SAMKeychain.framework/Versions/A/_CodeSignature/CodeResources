@@ -6,76 +6,76 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		h0oKP4eZgar/rc1LPHkGRPtqpF8=
+		fXyfrhHc843/hppmCDPs0YditAA=
 		</data>
+		<key>Resources/SAMKeychain.bundle/en.lproj/SAMKeychain.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			LlihTO/vSkU4IatcWawJIL8z1Pc=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/BrowserDetection.h</key>
+		<key>Headers/SAMKeychain.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			8SJD2VX7RM9VORYiOdAJuPUFsuM=
+			KNRrxSoAVAHX90EiYILMUO5aVkA=
 			</data>
 			<key>hash2</key>
 			<data>
-			vwvC0jZHF39EjocLggQIODZzEAHyReb/PE1d6m3D1c4=
+			x/tsn5hDe9mUZEz//s9VhIDw508MlTSSxNbV5mCupp0=
 			</data>
 		</dict>
-		<key>Headers/DetectStreamKit.h</key>
+		<key>Headers/SAMKeychainQuery.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Ffi3i3grb16gg/oxgunc8NE7SsE=
+			tGUar4xfSTrxcIlZATDQ6s/Dyqs=
 			</data>
 			<key>hash2</key>
 			<data>
-			KaDJmHxMt5ErOrZg/ojENjZcQ6H2g4C1vBpniZoKk0Q=
-			</data>
-		</dict>
-		<key>Headers/DetectStreamManager.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			UvJkcfB8ay2TxHtNlZ8f6AgNz/w=
-			</data>
-			<key>hash2</key>
-			<data>
-			VU130iQpmNeD+eHF5xs/76r5hUAYP/XR+7sOR+kCNC0=
-			</data>
-		</dict>
-		<key>Headers/MediaStreamParse.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			vF1V0OdPnZiOneZqK7R1a2pQ3LM=
-			</data>
-			<key>hash2</key>
-			<data>
-			i2tcEo9YAq/BCSwHtB4h8VA/7w5jvYpuzvZc1nNdmM0=
+			9POle+hx2Di7xruT/jTJ+gFNo2ODcimStlAWtl4/qsQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			2LcgngPF3wlC+DgVO1HG3ujrTSU=
+			axhsRVr8fEcH3tCx3l5EBem8O0M=
 			</data>
 			<key>hash2</key>
 			<data>
-			UJKOy6lVToMwagCnk/5e3an7AtpQyCJbG50ZtZZrbCI=
+			55hnanWvKzsUZfA9kd63ryWbfgxF0O4iFe49bl7tqCw=
 			</data>
 		</dict>
 		<key>Resources/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			h0oKP4eZgar/rc1LPHkGRPtqpF8=
+			fXyfrhHc843/hppmCDPs0YditAA=
 			</data>
 			<key>hash2</key>
 			<data>
-			zvmhgVsjxKJtbfzFWNkLzzYuGCG3IvvZMkq9GpY3Bak=
+			KeHbTPdAyNVG4uKcyTaXbOEDXnDyBv9H51SAYUwMgSc=
 			</data>
+		</dict>
+		<key>Resources/SAMKeychain.bundle/en.lproj/SAMKeychain.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			LlihTO/vSkU4IatcWawJIL8z1Pc=
+			</data>
+			<key>hash2</key>
+			<data>
+			SO23YR2zpjwSvKBtZP5bzkFnodS9j56NVtmrtL7iy0A=
+			</data>
+			<key>optional</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>rules</key>
