@@ -525,7 +525,7 @@
             if ([filename isEqualToString:d[@"directory"]]) {
                 if ([NSUserDefaults.standardUserDefaults boolForKey:@"useDirectoryAsWhitelist"]) {
                     NSLog(@"Video being played is in a whitelisted directory");
-                    return true;
+                    return false;
                 }
                 else {
                     NSLog(@"Video being played is in ignored directory");
