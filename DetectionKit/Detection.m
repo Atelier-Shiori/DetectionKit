@@ -218,7 +218,7 @@
             if ([(NSString *)result[@"type"] isEqualToString:@"manga"]) {
                 return nil;
             }
-            else if ([(NSString *)result[@"site"] isEqualToString:@"plex"]) {
+            else if ([(NSString *)result[@"site"] isEqualToString:@"plex"] || [(NSString *)result[@"site"] isEqualToString:@"youtube"]) {
                 //Do additional pharsing
                 NSDictionary *d2 = [[Recognition alloc] recognize:result[@"title"]];
                 NSString *DetectedTitle = (NSString *)d2[@"title"];
@@ -226,6 +226,9 @@
                 NSString *DetectedSource = [NSString stringWithFormat:@"%@ in %@", [result[@"site"] capitalizedString], result[@"browser"]];
                 NSNumber *DetectedSeason = d2[@"season"];
                 NSString *DetectedGroup = (NSString *)d2[@"group"];
+                if (![NSUserDefaults.standardUserDefaults boolForKey:@"donated"] && [(NSString *)result[@"site"] isEqualToString:@"youtube"]) {
+                    return nil;
+                }
                 if (DetectedTitle.length > 0 && ![self checkifTitleIgnored:DetectedTitle source:result[@"site"]]) {
                     //Return result
                     return @{@"detectedtitle": DetectedTitle, @"detectedepisode": DetectedEpisode, @"detectedseason": DetectedSeason, @"detectedsource": DetectedSource, @"group": DetectedGroup, @"types": d2[@"types"]};
