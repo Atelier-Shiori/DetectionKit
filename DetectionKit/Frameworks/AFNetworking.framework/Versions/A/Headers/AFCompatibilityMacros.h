@@ -1,6 +1,5 @@
-// AFHTTPRequestSerializer+OAuth2.h
-//
-// Copyright (c) 2012-2014 AFNetworking (http://afnetworking.com)
+// AFCompatibilityMacros.h
+// Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +19,31 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <AFNetworking/AFURLRequestSerialization.h>
+#ifndef AFCompatibilityMacros_h
+#define AFCompatibilityMacros_h
 
-@class AFOAuthCredential;
+#ifdef API_AVAILABLE
+    #define AF_API_AVAILABLE(...) API_AVAILABLE(__VA_ARGS__)
+#else
+    #define AF_API_AVAILABLE(...)
+#endif // API_AVAILABLE
 
-@interface AFHTTPRequestSerializer (OAuth2)
+#ifdef API_UNAVAILABLE
+    #define AF_API_UNAVAILABLE(...) API_UNAVAILABLE(__VA_ARGS__)
+#else
+    #define AF_API_UNAVAILABLE(...)
+#endif // API_UNAVAILABLE
 
-/**
- Sets the "Authorization" HTTP header set in request objects made by the HTTP client to contain the access token within the OAuth credential. This overwrites any existing value for this header.
+#if __has_warning("-Wunguarded-availability-new")
+    #define AF_CAN_USE_AT_AVAILABLE 1
+#else
+    #define AF_CAN_USE_AT_AVAILABLE 0
+#endif
 
- @param credential The OAuth2 credential
- */
-- (void)setAuthorizationHeaderFieldWithCredential:(AFOAuthCredential *)credential;
+#if ((__IPHONE_OS_VERSION_MAX_ALLOWED && __IPHONE_OS_VERSION_MAX_ALLOWED < 100000) || (__MAC_OS_VERSION_MAX_ALLOWED && __MAC_OS_VERSION_MAX_ALLOWED < 101200) ||(__WATCH_OS_MAX_VERSION_ALLOWED && __WATCH_OS_MAX_VERSION_ALLOWED < 30000) ||(__TV_OS_MAX_VERSION_ALLOWED && __TV_OS_MAX_VERSION_ALLOWED < 100000))
+    #define AF_CAN_INCLUDE_SESSION_TASK_METRICS 0
+#else
+    #define AF_CAN_INCLUDE_SESSION_TASK_METRICS 1
+#endif
 
-@end
+#endif /* AFCompatibilityMacros_h */

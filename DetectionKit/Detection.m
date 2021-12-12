@@ -269,7 +269,7 @@
         NSDictionary *parameters = @{@"jsonrpc": @"2.0", @"method": @"Player.GetItem", @"params": @{ @"properties": @[@"title", @"season", @"episode", @"showtitle", @"tvshowid", @"thumbnail", @"file", @"fanart", @"streamdetails"], @"playerid": @(1) }, @"id": @"VideoGetItem"};
         NSError *error;
         NSURLSessionDataTask *task;
-        id responseobject = [_kodijsonrpcmanager syncPOST:[NSString stringWithFormat:@"http://%@:%@/jsonrpc", address,port] parameters:parameters task:&task error:&error];
+        id responseobject = [_kodijsonrpcmanager syncPOST:[NSString stringWithFormat:@"http://%@:%@/jsonrpc", address,port] parameters:parameters headers:@{} task:&task error:&error];
         if (!error) {
             if (responseobject[@"result"]) {
                 //Valid Result, parse title
@@ -360,7 +360,7 @@
             NSError *error;
             NSURLSessionDataTask *task;
             NSString *httpprefix = [NSUserDefaults.standardUserDefaults boolForKey:@"plexusehttps"] ? @"https" : @"http";
-            id responseObject = [_plexmanager syncPOST:[NSString stringWithFormat:@"%@://%@:%li/status/sessions?X-Plex-Token=%@", httpprefix, [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username]] parameters:nil task:&task error:&error];
+            id responseObject = [_plexmanager syncPOST:[NSString stringWithFormat:@"%@://%@:%li/status/sessions?X-Plex-Token=%@", httpprefix, [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username]] parameters:nil headers:@{} task:&task error:&error];
             switch (((NSHTTPURLResponse *)task.response).statusCode) {
                 case 200:{
                     return [self parsePlexXML:[NSString stringWithUTF8String:[responseObject bytes]]];
@@ -458,7 +458,7 @@
     [_plexmanager.requestSerializer setValue:@"X-Plex-Version" forHTTPHeaderField:NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]];
     NSError *error;
     NSURLSessionDataTask *task;
-    id responseObject = [_plexmanager syncPOST:[NSString stringWithFormat:@"http://%@:%li/status/sessions?X-Plex-Token=%@", [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username]] parameters:nil task:&task error:&error];
+    id responseObject = [_plexmanager syncPOST:[NSString stringWithFormat:@"http://%@:%li/status/sessions?X-Plex-Token=%@", [defaults objectForKey:@"plexaddress"],(long)[defaults integerForKey:@"plexport"], [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@ - Plex", NSBundle.mainBundle.infoDictionary[@"CFBundleName"]] account:username]] parameters:nil headers:@{} task:&task error:&error];
     switch (((NSHTTPURLResponse *)task.response).statusCode) {
         case 200:{
             NSError *error = nil;

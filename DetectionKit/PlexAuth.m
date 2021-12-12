@@ -18,7 +18,7 @@
     [manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"plexidentifier"] forHTTPHeaderField:@"X-Plex-Client-Identifier"];
     [manager.requestSerializer setValue:NSBundle.mainBundle.infoDictionary[@"CFBundleName"] forHTTPHeaderField:@"X-Plex-Product"];
     [manager.requestSerializer setValue:@"X-Plex-Version" forHTTPHeaderField:NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"]];
-    [manager POST:@"https://plex.tv/users/sign_in.xml" parameters:@{@"user[login]" : username, @"user[password]" : password} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:@"https://plex.tv/users/sign_in.xml" parameters:@{@"user[login]" : username, @"user[password]" : password} headers:@{} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSError *error;
         NSDictionary *d = [XMLReader dictionaryForXMLString:[NSString stringWithUTF8String:[responseObject bytes]] options:XMLReaderOptionsProcessNamespaces error:&error];
         if (!error) {
