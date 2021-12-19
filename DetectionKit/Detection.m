@@ -500,12 +500,12 @@
     // Get filename only
     filename = [filename replaceByRegexp:[OnigRegexp compile:@"^.+/" options:OnigOptionIgnorecase] with:@""];
     source = [source replaceByRegexp:[OnigRegexp compile:@"\\sin\\s\\w+" options:OnigOptionIgnorecase] with:@""];
-    NSArray *ignoredfilenames = [[[NSUserDefaults standardUserDefaults] objectForKey:@"IgnoreTitleRules"] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(rulesource ==[c] %@) OR (rulesource ==[c] %@)" , @"All Sources", source]];
+    NSArray *ignoredfilenames = [[[NSUserDefaults standardUserDefaults] objectForKey:@"IgnoreTitleRules"] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(rulesource == %@) OR (rulesource ==[c] %@)" , @"All Sources", source]];
     NSLog(@"Debug: %@", filename);
     if (ignoredfilenames.count > 0) {
         for (NSDictionary *d in ignoredfilenames) {
             NSString *rule = [NSString stringWithFormat:@"%@", d[@"rule"]];
-            if ([[[OnigRegexp compile:@"%@" options:OnigOptionIgnorecase] match:filename] havematches] && rule.length !=0) { // Blank rules are infinite, thus should not be counted
+            if ([[OnigRegexp compile:rule options:OnigOptionIgnorecase] search:filename].count > 0 && rule.length !=0) { // Blank rules are infinite, thus should not be counted
                 NSLog(@"Video file name is on filename ignore list.");
                 return true;
             }
