@@ -226,7 +226,7 @@
                 NSString *DetectedSource = [NSString stringWithFormat:@"%@ in %@", [result[@"site"] capitalizedString], result[@"browser"]];
                 NSNumber *DetectedSeason = d2[@"season"];
                 NSString *DetectedGroup = (NSString *)d2[@"group"];
-                if (![NSUserDefaults.standardUserDefaults boolForKey:@"donated"] && [(NSString *)result[@"site"] isEqualToString:@"youtube"]) {
+                if ((![NSUserDefaults.standardUserDefaults boolForKey:@"donated"] && [(NSString *)result[@"site"] isEqualToString:@"youtube"]) || (![NSUserDefaults.standardUserDefaults boolForKey:@"youtubedetection"] && [NSUserDefaults.standardUserDefaults boolForKey:@"donated"])) {
                     return nil;
                 }
                 if (DetectedTitle.length > 0 && ![self checkifTitleIgnored:DetectedTitle source:result[@"site"]]) {
@@ -500,7 +500,7 @@
     // Get filename only
     filename = [filename replaceByRegexp:[OnigRegexp compile:@"^.+/" options:OnigOptionIgnorecase] with:@""];
     source = [source replaceByRegexp:[OnigRegexp compile:@"\\sin\\s\\w+" options:OnigOptionIgnorecase] with:@""];
-    NSArray *ignoredfilenames = [[[NSUserDefaults standardUserDefaults] objectForKey:@"IgnoreTitleRules"] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(rulesource == %@) OR (rulesource ==[c] %@)" , @"All Sources", source]];
+    NSArray *ignoredfilenames = [[[NSUserDefaults standardUserDefaults] objectForKey:@"IgnoreTitleRules"] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(rulesource ==[c] %@) OR (rulesource ==[c] %@)" , @"All Sources", source]];
     NSLog(@"Debug: %@", filename);
     if (ignoredfilenames.count > 0) {
         for (NSDictionary *d in ignoredfilenames) {
