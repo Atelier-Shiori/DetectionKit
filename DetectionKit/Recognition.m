@@ -40,12 +40,20 @@
     OnigResult *smatch;
     regex = [OnigRegexp compile:@"((S|s|Season )\\d+|\\d+(st|nd|rd|th) Season|\\d+)" options:OnigOptionIgnorecase];
     smatch = [regex search:tmptitle];
-    if (smatch.count > 0) {
+    if (smatch.count > 0 ) {
         tmpseason = [smatch stringAt:0];
         regex = [OnigRegexp compile:@"(S|s|Season |(st|nd|rd|th) Season)" options:OnigOptionIgnorecase];
         tmpseason = [tmpseason replaceByRegexp:regex with:@""];
-        DetectedSeason = tmpseason.intValue;
-        DetectedTitle = [DetectedTitle replaceByRegexp:[OnigRegexp compile:@"((S|s|Season )\\d+|\\d+(st|nd|rd|th) Season|\\d+)" options:OnigOptionIgnorecase] with:@""];
+        regex = [OnigRegexp compile:@"\\w\\d+\\w" options:OnigOptionIgnorecase];
+        smatch = [regex search:tmptitle];
+        // Check if season is actually a season number and not a number in a title
+        if (smatch.count == 0 ) {
+            DetectedSeason = tmpseason.intValue;
+            DetectedTitle = [DetectedTitle replaceByRegexp:[OnigRegexp compile:@"((S|s|Season )\\d+|\\d+(st|nd|rd|th) Season|\\d+)" options:OnigOptionIgnorecase] with:@""];
+        }
+        else {
+            DetectedSeason = 1;
+        }
     }
     else {
         DetectedSeason = 1;
