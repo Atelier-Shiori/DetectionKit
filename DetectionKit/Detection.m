@@ -526,7 +526,7 @@
     NSArray *ignoredirectories = [[NSUserDefaults standardUserDefaults] objectForKey:@"ignoreddirectories"];
     if (ignoredirectories.count > 0) {
         for (NSDictionary *d in ignoredirectories) {
-            if ([filename isEqualToString:d[@"directory"]]) {
+            if ([filename localizedCaseInsensitiveContainsString:d[@"directory"]]) {
                 if ([NSUserDefaults.standardUserDefaults boolForKey:@"useDirectoryAsWhitelist"]) {
                     NSLog(@"Video being played is in a whitelisted directory");
                     return false;
