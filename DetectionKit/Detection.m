@@ -628,6 +628,8 @@
 
 #pragma mark Plex Media Server Helper Methods
 - (void)setPlexReach:(BOOL)enable {
+    _plexonline = true;
+    /*
     if (enable == 1) {
         //Create Reachability Object
         if (!_plexreach) {
@@ -651,6 +653,7 @@
         [_plexreach stopPing];
         _plexreach = nil;
     }
+     */
 }
 - (void)setPlexReachAddress:(NSString *)url{
     [_plexreach stopPing];
